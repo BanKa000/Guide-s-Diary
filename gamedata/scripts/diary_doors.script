@@ -1,11 +1,18 @@
 --------------------------------------------------------------------------------
 --' Дневник проводника: запертые двери.
 --' Рядом с игроком снимается запор (ph_door.locked) у запертых дверей, кроме сюжетных
---' из [doors] keep_locked. Кроме того, двери из [doors] names открываются всегда, как только
---' появляются в онлайне. Каждая найденная запертая дверь один раз пишется в diary_errors.log
---' (имя и координаты), чтобы можно было занести её в баланс.
+--' из [doors] keep_locked. Двери из [doors] names открываются всегда, как только появляются в онлайне.
+--' Открытие: сначала через сам скрипт двери (action:open_door), если он доступен, затем мотором шарнира:
+--' дверь отпирается, мотор приоткрывает её, потом шарнир освобождается и дверь можно двигать рукой.
+--' Каждая обработанная дверь пишется в diary_errors.log (имя, координаты, поля ph_door, углы шарнира).
 --------------------------------------------------------------------------------
 local logged = {}
+local opened = {}       --' id -> true: дверь уже открыта в этой сессии
+local drives = {}       --' id -> {j, dir, a0, t, stage, name}
+local scan_t = 0
+
+local MOTOR_FORCE = 1000
+local MOTOR_SPEED = 1.2
 
 local function note(msg)
 	pcall(function()
@@ -26,14 +33,106 @@ local function in_list(list, name)
 	return false
 end
 
-local function unlock(o, ph, why)
+--' поля таблицы (числа, строки, булевы) одной строкой
+local function dump(t)
+	local out = {}
+	pcall(function()
+		for k, v in pairs(t) do
+			local tv = type(v)
+			if tv == "number" or tv == "string" or tv == "boolean" then
+				table.insert(out, tostring(k) .. "=" .. tostring(v))
+			else
+				table.insert(out, tostring(k) .. ":" .. tv)
+			end
+		end
+	end)
+	table.sort(out)
+	return table.concat(out, " ")
+end
+
+local function joint_of(o)
+	local j = nil
+	pcall(function()
+		local sh = o:get_physics_shell()
+		if sh ~= nil and sh:get_joints_number() > 0 then j = sh:get_joint_by_order(0) end
+	end)
+	return j
+end
+
+local function angle_of(j)
+	local a = nil
+	pcall(function() a = j:get_axis_angle(90) end)
+	return a
+end
+
+--' 1) через скрипт двери
+local function open_by_action(sto)
+	local done = false
+	pcall(function()
+		for act, _ in pairs(sto.actions or {}) do
+			if act.open_door ~= nil then
+				act:open_door(true)
+				done = true
+			end
+		end
+	end)
+	return done
+end
+
+--' 2) мотор шарнира
+local function start_drive(o, sto)
+	local j = joint_of(o)
+	if j == nil then
+		note("no joint: " .. tostring(o:name()))
+		return
+	end
+	local a0 = angle_of(j)
+	local ok = pcall(function() j:set_max_force_and_velocity(MOTOR_FORCE, MOTOR_SPEED, 0) end)
+	drives[o:id()] = {j = j, dir = 1, a0 = a0 or 0, t = time_global(), stage = 1, name = o:name()}
+	note(string.format("drive start: %s angle=%s motor=%s", tostring(o:name()), tostring(a0), tostring(ok)))
+end
+
+local function drive_tick()
+	local now = time_global()
+	for id, d in pairs(drives) do
+		local el = now - d.t
+		if level.object_by_id(id) == nil then
+			drives[id] = nil
+		elseif d.stage == 1 and el > 700 then
+			local a1 = angle_of(d.j)
+			if a1 ~= nil and math.abs(a1 - d.a0) < 1.5 then
+				--' не сдвинулась: крутим в другую сторону
+				d.dir = -d.dir
+				pcall(function() d.j:set_max_force_and_velocity(MOTOR_FORCE, MOTOR_SPEED * d.dir, 0) end)
+				note(string.format("drive reverse: %s angle=%s", d.name, tostring(a1)))
+			end
+			d.a0 = a1 or d.a0
+			d.stage = 2
+			d.t = now
+		elseif d.stage == 2 and el > 1800 then
+			local a2 = angle_of(d.j)
+			pcall(function() d.j:set_max_force_and_velocity(0, 0, 0) end)
+			note(string.format("drive end: %s angle=%s dir=%d", d.name, tostring(a2), d.dir))
+			drives[id] = nil
+		end
+	end
+end
+
+local function unlock(o, sto, ph, why)
+	local id = o:id()
+	local p = o:position()
+	if not logged[id] then
+		logged[id] = true
+		note(string.format("%s: %s (%.2f, %.2f, %.2f) ph_door{%s}", why, tostring(o:name()), p.x, p.y, p.z, dump(ph)))
+	end
 	ph.locked = false
 	pcall(function() ph.closed = false end)
 	pcall(function() o:set_tip_text_default() end)
-	local p = o:position()
-	if not logged[o:id()] then
-		logged[o:id()] = true
-		note(string.format("%s: %s (%.2f, %.2f, %.2f)", why, tostring(o:name()), p.x, p.y, p.z))
+	if not opened[id] then
+		opened[id] = true
+		local by_action = open_by_action(sto)
+		note(string.format("open %s: action=%s", tostring(o:name()), tostring(by_action)))
+		start_drive(o, sto)
 	end
 end
 
@@ -51,24 +150,38 @@ local function give_open_infos(apos)
 	end
 end
 
+function level_enter(lvl)
+	opened = {}
+	drives = {}
+	scan_t = 0
+end
+
 function update(delta)
 	local a = db.actor
 	if a == nil then return end
+	local now = time_global()
+	pcall(drive_tick)
+	if now < scan_t then return end
+	scan_t = now + 1000
 	pcall(give_open_infos, a:position())
 	local near = diary_cfg.num("doors", "unlock_near", 4)
 	local names = diary_cfg.list("doors", "names")
 	local keep = diary_cfg.list("doors", "keep_locked")
 	local apos = a:position()
+	for id, _ in pairs(opened) do
+		--' дверь ушла в оффлайн: при следующем появлении логика двери запрёт её заново
+		if level.object_by_id(id) == nil then opened[id] = nil end
+	end
 	for id, sto in pairs(db.storage) do
 		local ph = sto and sto.ph_door
-		if ph ~= nil and ph.locked then
+		if ph ~= nil and not opened[id] then
 			local o = level.object_by_id(id)
 			if o ~= nil then
 				local name = o:name()
 				if in_list(names, name) then
-					unlock(o, ph, "unlocked by name")
-				elseif near > 0 and o:position():distance_to(apos) <= near and not in_list(keep, name) then
-					unlock(o, ph, "unlocked near")
+					unlock(o, sto, ph, "open by name")
+				elseif near > 0 and ph.locked and o:position():distance_to(apos) <= near and not in_list(keep, name) then
+					unlock(o, sto, ph, "open near")
 				end
 			end
 		end

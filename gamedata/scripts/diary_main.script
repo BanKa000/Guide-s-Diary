@@ -19,7 +19,7 @@ local MODULES = {
 	{name = "diary_cleanup", levels = {zaton = true, jupiter = true}, period = 200},
 	{name = "diary_story",   levels = {zaton = true, jupiter = true}, period = 250},
 	{name = "diary_sawmill", levels = {zaton = true}, period = 250},
-	{name = "diary_doors",   levels = {zaton = true, jupiter = true}, period = 1000},
+	{name = "diary_doors",   levels = {zaton = true, jupiter = true}, period = 250},
 	{name = "diary_debts",   levels = {zaton = true}, period = 500},
 	{name = "diary_jobs",    levels = {zaton = true, jupiter = true}, period = 1000},
 	{name = "diary_trade",   period = 2000},
