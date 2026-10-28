@@ -45,18 +45,35 @@ local function dump(t)
 	return table.concat(out, " ")
 end
 
---' через скрипт двери
-local function open_by_action(sto)
-	local done = false
+--' „ерез скрипт двери: в хранилище ph_door есть door_action (сам обработчик двери) и параметры:
+--' locked (заперта), closed (закрыта), tip_open/tip_unlock (надпись), snd_open_* (звуки).
+--' ѕараметры выставл€ютс€ как у открытой двери, затем обработчик двери открывает еЄ.
+local function open_by_action(ph)
+	local res = {}
+	local da = ph.door_action
+	if da == nil then return "no door_action" end
+	local function try(name, ...)
+		local args = {...}
+		local ok, err = pcall(function() return da[name](da, unpack(args)) end)
+		table.insert(res, name .. "=" .. tostring(ok) .. (ok and "" or ("(" .. tostring(err) .. ")")))
+	end
+	try("reset_scheme")
+	try("open_door", true)
+	return table.concat(res, " ")
+end
+
+--' какие секции логики есть у двери (дл€ отладки)
+local function logic_info(ph)
+	local out = {}
 	pcall(function()
-		for act, _ in pairs(sto.actions or {}) do
-			if act.open_door ~= nil then
-				act:open_door(true)
-				done = true
-			end
+		for _, sec in ipairs({"ph_door@unlocked", "ph_door@open", "ph_door@opened", "ph_door@closed", "ph_door@free", "ph_door@normal", "ph_door@unlock"}) do
+			if ph.ini:section_exist(sec) then table.insert(out, sec) end
+		end
+		for i, c in pairs(ph.logic or {}) do
+			table.insert(out, "logic[" .. tostring(i) .. "]=" .. tostring(c.name) .. "/" .. tostring(c.p1))
 		end
 	end)
-	return done
+	return table.concat(out, " ")
 end
 
 local function unlock(o, sto, ph, why)
@@ -67,12 +84,15 @@ local function unlock(o, sto, ph, why)
 		note(string.format("%s: %s (%.2f, %.2f, %.2f) ph_door{%s}", why, tostring(o:name()), p.x, p.y, p.z, dump(ph)))
 	end
 	ph.locked = false
-	pcall(function() ph.closed = false end)
-	pcall(function() o:set_tip_text_default() end)
+	ph.closed = false
+	ph.tip_open = "tip_door_open"
+	ph.tip_unlock = "tip_door_open"
+	ph.snd_open_start = "trader_door_open_start"
+	ph.snd_open_stop = "trader_door_open_stop"
 	if not opened[id] then
 		opened[id] = true
-		local by_action = open_by_action(sto)
-		note(string.format("open %s: action=%s", tostring(o:name()), tostring(by_action)))
+		local r = open_by_action(ph)
+		note(string.format("open %s: %s | %s", tostring(o:name()), r, logic_info(ph)))
 	end
 end
 
