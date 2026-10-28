@@ -563,20 +563,67 @@ local function s3_night_now()
 	return h >= 0 and h < 5
 end
 
---' кто-то из хозяев лагеря видит героя
-local function s3_seen(g)
-	local seen = false
-	local sq = alife():object(g)
-	if sq == nil then return false end
-	pcall(function()
-		for m in sq:squad_members() do
-			local o = level.object_by_id(m.id)
-			if o ~= nil and o:alive() and o:position():distance_to(db.actor:position()) < 50 and o:see(db.actor) then
-				seen = true
-			end
+--' Хозяева лагеря - три отдельных NPC (diary_s3_guard, логика scripts\diary\diary_s3_guard.ltx): днём стоят у лагеря,
+--' с полуночи до пяти утра спят (пока включена инфопорция dj_s3_sleep), если их не обокрали на глазах.
+local S3_GUARDS = {"diary_s3_guard", "diary_s3_guard", "diary_s3_guard"}
+local S3_OFFSETS = {{2.5, 1.0}, {-2.0, 2.0}, {0.5, -2.5}}
+
+local function s3_guard_ids()
+	local out = {}
+	for k = 1, #S3_GUARDS do
+		local id = J.var("s3", "g" .. k, nil)
+		if id ~= nil then table.insert(out, id) end
+	end
+	return out
+end
+
+local function s3_guards_alive()
+	local n = 0
+	for _, id in ipairs(s3_guard_ids()) do
+		local se = alife():object(id)
+		if se ~= nil and se:alive() then n = n + 1 end
+	end
+	return n
+end
+
+--' отношение хозяев лагеря к игроку (кто в онлайне)
+local function s3_guards_rel(rel)
+	for _, id in ipairs(s3_guard_ids()) do
+		local o = level.object_by_id(id)
+		if o ~= nil and o:alive() then pcall(function() o:set_relation(rel, db.actor) end) end
+	end
+end
+
+--' кто-то из хозяев лагеря не спит и видит героя
+local function s3_seen()
+	for _, id in ipairs(s3_guard_ids()) do
+		local o = level.object_by_id(id)
+		if o ~= nil and o:alive() and o:position():distance_to(db.actor:position()) < 50 and o:see(db.actor) then
+			return true
 		end
-	end)
-	return seen
+	end
+	return false
+end
+
+--' ночью (с полуночи до пяти) хозяева спят; драка или кража на глазах будят
+local function s3_sleep_sync()
+	local want = s3_night_now() and not st("s3", "s3_fight") and not st("s3", "done")
+	if want and not has("dj_s3_sleep") then
+		give("dj_s3_sleep")
+	elseif not want and has("dj_s3_sleep") then
+		diary_lib.take("dj_s3_sleep")
+	end
+end
+
+--' после сдачи хозяева исчезают, когда игрок их не видит
+local function s3_cleanup()
+	if not st("s3", "done") then return end
+	local ids = s3_guard_ids()
+	if #ids == 0 then return end
+	s3_sleep_sync()
+	if release_ids_unseen(ids) then
+		for k = 1, #S3_GUARDS do J.set_var("s3", "g" .. k, nil) end
+	end
 end
 
 --' центр лагеря - там, где лежит рюкзак ([job_points] s3_docs); запасной вариант - смарт задания
@@ -623,23 +670,32 @@ end
 HOOKS.s3 = {
 	accept = function(q)
 		local sm = diary_lib.smart(q.smart)
-		J.add_squad(q.id, "dj_s3_guards", q.smart, "guards")
+		--' хозяева стоят вокруг рюкзака ([job_points] s3_docs)
+		local pos, lv, gv = resolve_point("s3_docs", q.smart)
+		if pos ~= nil then
+			for k, sec in ipairs(S3_GUARDS) do
+				local o = S3_OFFSETS[k]
+				local se = alife():create(sec, vector():set(pos.x + o[1], pos.y, pos.z + o[2]), lv, gv)
+				J.set_var(q.id, "g" .. k, se.id)
+			end
+		end
 		J.spawn_item(q)
 		if sm ~= nil then J.add_spot(q.id, sm.id) end
 	end,
 	tick = function(q)
 		s3_clear_area(q)
+		s3_sleep_sync()
 		if not st(q.id, "obj") and diary_lib.count_item(q.item) > 0 then
-			local g = J.var(q.id, "guards", nil)
-			if g ~= nil and not s3_night_now() and s3_seen(g) then
+			if not s3_night_now() and s3_seen() then
 				--' заметили с папкой в руках
 				set(q.id, "s3_fight")
-				diary_lib.squad_relation(g, "enemy")
+				s3_sleep_sync()
 			end
 			done_obj(q.id)
 		end
+		if st(q.id, "s3_fight") then s3_guards_rel(game_object.enemy) end
 	end,
-	tick_after = function(q) s3_clear_area(q) s3_copy_tick(q) end,
+	tick_after = function(q) s3_clear_area(q) s3_sleep_sync() s3_copy_tick(q) end,
 	--' копия у героя, но ещё не в лагере: метка на лагерь, а не на Султана
 	target = function(q)
 		if st(q.id, "copy_taken") and not st(q.id, "planted") then
@@ -701,7 +757,7 @@ function s3_copy_tick(q)
 	if camp == nil then return end
 	local near = a:position():distance_to(camp) < diary_cfg.num("s3", "plant_radius", 35)
 	if diary_lib.count_item(S3_COPY) == 0 then
-		if near and (s3_night() or diary_lib.squad_alive(J.var(q.id, "guards", 0)) == 0) then
+		if near and (s3_night() or s3_guards_alive() == 0) then
 			--' копию оставили в лагере ночью: все спят, никто не видел
 			set(q.id, "planted")
 			set(q.id, "planted_night")
@@ -719,15 +775,18 @@ end
 function s3_copy_take()
 	diary_lib.give_items(S3_COPY, 1)
 	set("s3", "copy_taken")
-	local g = J.var("s3", "guards", nil)
-	if g ~= nil then diary_lib.squad_relation(g, "neutral") end
+	--' лагерь снова не враждебен
+	diary_lib.take("dj_s3_s3_fight")
+	s3_guards_rel(game_object.neutral)
 	updated("s3", "dj_s3_upd_plant")
 end
 
 function s3_front_here(npc)
 	if not st("s3", "copy_taken") or st("s3", "planted") or diary_lib.count_item(S3_COPY) == 0 then return false end
-	local sq = diary_lib.npc_squad(npc)
-	return sq ~= nil and sq == J.var("s3", "guards", -1)
+	for _, id in ipairs(s3_guard_ids()) do
+		if id == npc:id() then return true end
+	end
+	return false
 end
 function s3_front()
 	diary_lib.take_items(S3_COPY, 1)
@@ -1424,6 +1483,7 @@ end
 function update()
 	diary_main.safe("jobs_zat.b3", b3_update)
 	diary_main.safe("jobs_zat.b5", b5_cleanup)
+	diary_main.safe("jobs_zat.s3", s3_cleanup)
 	s9_transfer()
 	s9_leave()
 	s9_exodus()

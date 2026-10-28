@@ -213,8 +213,7 @@ function can_offer(id)
 	if state(id, "given") then return false end
 	if q.gate ~= nil and not has(q.gate) then return false end
 	if q.prev ~= nil and not state(q.prev, "done") then return false end
-	--' "Бартер доверия": пауза между заданиями заказчика ([job_cooldown] в diary_balance.ltx, по умолчанию - только Сыч и Тремор:
-	--' после первых двух просьб следующая - не раньше чем через 5 часов). У остальных заказчиков паузы нет.
+	--' пауза между заданиями заказчика ([job_cooldown] в diary_balance.ltx; по умолчанию паузы нет ни у кого)
 	local gap = diary_cfg.num("job_cooldown", q.giver, 0)
 	if gap > 0 and q.prev ~= nil and line_index(id) > 2 then
 		local t = var(q.prev, "done_t", nil)

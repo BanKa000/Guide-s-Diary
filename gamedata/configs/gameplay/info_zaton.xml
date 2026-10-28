@@ -733,6 +733,8 @@
 	<info_portion id="dj_s3_planted"></info_portion>
 	<info_portion id="dj_s3_planted_front"></info_portion>
 	<info_portion id="dj_s3_planted_night"></info_portion>
+	<info_portion id="dj_s3_s3_fight"></info_portion>
+	<info_portion id="dj_s3_sleep"></info_portion>
 	<info_portion id="dj_s5_dead"></info_portion>
 	<info_portion id="dj_s5_freed"></info_portion>
 	<info_portion id="dj_s5_freed_stash"></info_portion>

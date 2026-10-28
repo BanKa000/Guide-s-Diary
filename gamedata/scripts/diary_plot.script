@@ -371,12 +371,13 @@ local N2 = {
 }
 
 HOOKS.n2 = {
-	--' Борода изучает находки: пауза после "Хвоста на севере" - [job_cooldown] n2 в diary_balance.ltx (по умолчанию 0 - без паузы)
+	--' Борода изучает находки: следующий шаг - в следующий календарный день и не раньше чем через [job_cooldown] n2 игровых часов
 	can_offer = function(q)
-		local gap = diary_cfg.num("job_cooldown", "n2", 0)
+		local gap = diary_cfg.num("job_cooldown", "n2", 12)
 		local t = J.var("n1", "done_t", nil)
-		if gap <= 0 or t == nil then return true end
-		return diary_lib.game_hours() - t >= gap
+		if t == nil then return true end
+		local now = diary_lib.game_hours()
+		return now - t >= gap and math.floor(now / 24) > math.floor(t / 24)
 	end,
 	accept = function(q) begin(q.id, N2) end,
 	tick = function(q)
