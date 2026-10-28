@@ -2,7 +2,7 @@
 --' Дневник проводника: запертые двери.
 --' Рядом с игроком снимается запор (ph_door.locked) у запертых дверей, кроме сюжетных
 --' из [doors] keep_locked. Двери из [doors] names открываются всегда, как только появляются в онлайне.
---' Дверь отпирается (locked = false), остаётся закрытой (closed = true) и открывается игроком обычным использованием.
+--' Дверь переключается на секцию ph_door@open (как при открытии логикой оригинала), запор снимается.
 --' Каждая обработанная дверь пишется в diary_errors.log (имя, координаты, поля ph_door).
 --------------------------------------------------------------------------------
 local logged = {}
@@ -45,37 +45,8 @@ local function dump(t)
 	return table.concat(out, " ")
 end
 
---' Через скрипт двери: в хранилище ph_door есть door_action (сам обработчик двери) и параметры:
---' locked (заперта), closed (закрыта), tip_open/tip_unlock (надпись), snd_open_* (звуки).
---' Дверь остаётся закрытой, но не заперта: игрок открывает её сам обычным использованием.
-local function open_by_action(ph)
-	local res = {}
-	local da = ph.door_action
-	if da == nil then return "no door_action" end
-	local function try(name, ...)
-		local args = {...}
-		local ok, err = pcall(function() return da[name](da, unpack(args)) end)
-		table.insert(res, name .. "=" .. tostring(ok) .. (ok and "" or ("(" .. tostring(err) .. ")")))
-	end
-	try("reset_scheme")
-	try("close_door", true)
-	return table.concat(res, " ")
-end
-
---' какие секции логики есть у двери (для отладки)
-local function logic_info(ph)
-	local out = {}
-	pcall(function()
-		for _, sec in ipairs({"ph_door@unlocked", "ph_door@open", "ph_door@opened", "ph_door@closed", "ph_door@free", "ph_door@normal", "ph_door@unlock"}) do
-			if ph.ini:section_exist(sec) then table.insert(out, sec) end
-		end
-		for i, c in pairs(ph.logic or {}) do
-			table.insert(out, "logic[" .. tostring(i) .. "]=" .. tostring(c.name) .. "/" .. tostring(c.p1))
-		end
-	end)
-	return table.concat(out, " ")
-end
-
+--' Открытая в оригинале дверь переключается логикой на секцию ph_door@open: так её скрипт сам включает
+--' обычное использование (кнопка действия). Делаем то же; если секции нет - просто снимаем запор.
 local function unlock(o, sto, ph, why)
 	local id = o:id()
 	local p = o:position()
@@ -83,17 +54,33 @@ local function unlock(o, sto, ph, why)
 		logged[id] = true
 		note(string.format("%s: %s (%.2f, %.2f, %.2f) ph_door{%s}", why, tostring(o:name()), p.x, p.y, p.z, dump(ph)))
 	end
-	ph.locked = false
-	ph.closed = true
-	ph.tip_open = "tip_door_open"
-	ph.tip_unlock = "tip_door_open"
-	ph.snd_open_start = "trader_door_open_start"
-	ph.snd_open_stop = "trader_door_open_stop"
-	if not opened[id] then
-		opened[id] = true
-		local r = open_by_action(ph)
-		note(string.format("open %s: %s | %s", tostring(o:name()), r, logic_info(ph)))
+	if opened[id] then
+		--' уже обработана в этой сессии: только держим запор снятым
+		ph.locked = false
+		return
 	end
+	opened[id] = true
+	local sw = "no section"
+	local da = ph.door_action
+	pcall(function()
+		if ph.ini ~= nil and ph.ini:section_exist("ph_door@open") then
+			xr_logic.switch_to_section(o, ph.ini, "ph_door@open")
+			sw = "switched"
+		end
+	end)
+	--' после переключения хранилище могло обновиться
+	local ph2 = (db.storage[id] and db.storage[id].ph_door) or ph
+	ph2.locked = false
+	ph2.tip_open = "tip_door_open"
+	ph2.tip_unlock = "tip_door_open"
+	ph2.snd_open_start = "trader_door_open_start"
+	ph2.snd_open_stop = "trader_door_open_stop"
+	local r = ""
+	if ph2.closed == false and da ~= nil then
+		--' дверь должна стоять закрытой
+		pcall(function() da:close_door(true) r = " close_door" end)
+	end
+	note(string.format("open %s: %s%s | after{%s}", tostring(o:name()), sw, r, dump(ph2)))
 end
 
 --' Двери, которые в оригинале открываются инфопорциями квеста (ветка Глухаря, zat_b38: подвал ВНЗ и лифт):
@@ -130,6 +117,7 @@ function update(delta)
 		--' дверь ушла в оффлайн: при следующем появлении логика двери запрёт её заново
 		if level.object_by_id(id) == nil then opened[id] = nil end
 	end
+	local todo = {}
 	for id, sto in pairs(db.storage) do
 		local ph = sto and sto.ph_door
 		if ph ~= nil and not opened[id] then
@@ -137,11 +125,12 @@ function update(delta)
 			if o ~= nil then
 				local name = o:name()
 				if in_list(names, name) then
-					unlock(o, sto, ph, "open by name")
+					table.insert(todo, {o, sto, ph, "open by name"})
 				elseif near > 0 and ph.locked and o:position():distance_to(apos) <= near and not in_list(keep, name) then
-					unlock(o, sto, ph, "open near")
+					table.insert(todo, {o, sto, ph, "open near"})
 				end
 			end
 		end
 	end
+	for _, t in ipairs(todo) do pcall(unlock, t[1], t[2], t[3], t[4]) end
 end
