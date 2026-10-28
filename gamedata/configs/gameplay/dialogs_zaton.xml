@@ -3298,15 +3298,6 @@
         </phrase_list>
     </dialog>
 
-    <!-- "Расшифровка": подождать три часа у Бороды (вместо сна) -->
-    <dialog id="dj_decode_wait">
-        <precondition>dialogs_diary.bor_wait_open</precondition>
-        <phrase_list>
-            <phrase id="0"><text>dj_decode_wait_0</text><next>1</next></phrase>
-            <phrase id="1"><text>dj_decode_wait_1</text><action>dialogs_diary.bor_wait</action></phrase>
-        </phrase_list>
-    </dialog>
-
     <!-- Вынос документов: подмена. Оригинал - Султану, через час копия, потом подбросить ночью или отдать в лоб -->
     <dialog id="dj_s3_copy">
         <precondition>dialogs_diary.s3_copy_open</precondition>

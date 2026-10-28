@@ -983,7 +983,6 @@
 		<actor_dialog>dj_n5_report</actor_dialog>
 		<actor_dialog>dj_n6_offer</actor_dialog>
 		<actor_dialog>diary_bor_supply</actor_dialog>
-		<actor_dialog>dj_decode_wait</actor_dialog>
 		<actor_dialog>dj_b3_alone</actor_dialog>
 		<actor_dialog>dj_n5_report_calm</actor_dialog>
 	</specific_character>
