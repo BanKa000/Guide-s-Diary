@@ -640,6 +640,14 @@ HOOKS.s3 = {
 		end
 	end,
 	tick_after = function(q) s3_clear_area(q) s3_copy_tick(q) end,
+	--' копия у героя, но ещё не в лагере: метка на лагерь, а не на Султана
+	target = function(q)
+		if st(q.id, "copy_taken") and not st(q.id, "planted") then
+			local sm = diary_lib.smart(q.smart)
+			return sm and sm.id
+		end
+		return nil
+	end,
 	--' обычная сдача - с оригиналом в рюкзаке; "копия" сдаётся отдельным разговором (s3_copy_finish)
 	can_report = function(q)
 		return st(q.id, "obj") and not st(q.id, "copy") and diary_lib.count_item(q.item) > 0
@@ -655,7 +663,6 @@ HOOKS.s3 = {
 --' Подмена: оригинал уходит Султану, через час он присылает копию с поправками, копию нужно подбросить в лагерь
 --' ночью, пока все спят, или отдать хозяевам лично, сказав, что бумаги нашли у убитого бандита.
 local S3_COPY = "dj_item_docs_copy"
-local s3_msg_at = nil
 local s3_check_t = 0
 
 local function s3_night()
@@ -671,22 +678,17 @@ function s3_copy_start()
 	diary_lib.take_items("dj_item_docs", 1)
 	set("s3", "copy")
 	J.set_var("s3", "copy_t", diary_lib.game_hours())
+	updated("s3", "dj_s3_upd_wait")
 end
 
 function s3_copy_tick(q)
 	if not st(q.id, "copy") or st(q.id, "planted") then return end
 	local a = db.actor
-	if not st(q.id, "copy_waited") then
-		--' ждём конца разговора: Султан просил подождать час
-		if a:is_talking() then return end
-		level.change_game_time(0, 1, 0)
-		set(q.id, "copy_waited")
-		s3_msg_at = time_global() + 3000
-		return
-	end
 	if not st(q.id, "copy_ready") then
-		if s3_msg_at == nil then s3_msg_at = time_global() + 3000 end
-		if time_global() < s3_msg_at then return end
+		--' Султан переписывает бумаги ровно час игрового времени (время не перематывается: игрок ждёт сам)
+		local t = J.var(q.id, "copy_t", nil)
+		if t ~= nil and diary_lib.game_hours() < t + diary_cfg.num("s3", "copy_hours", 1) then return end
+		if a:is_talking() then return end
 		set(q.id, "copy_ready")
 		diary_news.send("dj_s3_sms_from", "dj_s3_sms", 12000)
 		updated(q.id, "dj_s3_upd_copy")
