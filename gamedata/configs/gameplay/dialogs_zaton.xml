@@ -3412,6 +3412,27 @@
         </phrase_list>
     </dialog>
 
+    <!-- "ѕропавший сталкер": сп€щий сталкер с провизией -->
+    <dialog id="dj_b5_sleeper">
+        <precondition>dialogs_diary.b5_sleeper_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b5_sleeper_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b5_sleeper_1</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_b5_sleeper_wake_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_b5_sleeper_wake_r</text><action>dialogs_diary.b5_wake</action></phrase>
+            <phrase id="3"><text>dj_b5_sleeper_let_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_b5_sleeper_let_r</text><action>dialogs_diary.b5_wake</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_b5_awake">
+        <precondition>dialogs_diary.b5_awake_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b5_awake_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b5_awake_1</text></phrase>
+        </phrase_list>
+    </dialog>
+
     <!-- "ѕункт 2": пленный (после бо€ или выкупа) -->
     <dialog id="dj_k2_captive">
         <precondition>dialogs_diary.k2_captive_here</precondition>

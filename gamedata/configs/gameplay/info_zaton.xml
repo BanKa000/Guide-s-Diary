@@ -709,6 +709,7 @@
 	<info_portion id="dj_b4_killed"></info_portion>
 	<info_portion id="dj_b4_sent"></info_portion>
 	<info_portion id="dj_b5_placed"></info_portion>
+	<info_portion id="dj_b5_woke"></info_portion>
 	<info_portion id="dj_g1_cave"></info_portion>
 	<info_portion id="dj_g1_deal"></info_portion>
 	<info_portion id="dj_k2_free"></info_portion>

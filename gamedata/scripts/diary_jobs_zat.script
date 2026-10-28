@@ -492,26 +492,24 @@ HOOKS.b5 = {
 	tick_after = function(q) release_when_unseen(q.id) end,
 }
 
+--' диалог со сп€щим сталкером: сначала он спит (будим или оставл€ем), потом просто стоит и отвечает
+function b5_sleeper_here(npc)
+	return st("b5", "given") and not st("b5", "done") and npc:id() == npc_id("b5") and not st("b5", "woke")
+end
+function b5_awake_here(npc)
+	return st("b5", "given") and not st("b5", "done") and npc:id() == npc_id("b5") and st("b5", "woke")
+end
+function b5_wake() set("b5", "woke") end
+
 --' после сдачи сталкер, если ещЄ осталс€, исчезает, когда игрок его не видит
 local function b5_cleanup()
 	if st("b5", "done") and npc_id("b5") ~= nil then release_when_unseen("b5") end
 end
 
 --------------------------------------------------------------------------------
---' "’имера на юге" (b6): отр€д из одной химеры. «доровье вдвое меньше обычного ([b6] health в diary_balance.ltx),
---' точка по€влени€ - [job_points] b6_spawn (пусто - у смарта отр€да из diary_jobs.ltx).
+--' "’имера на юге" (b6): одна химера с половиной здоровь€ ([b6] health в diary_balance.ltx).
+--' —оздаЄтс€ без отр€да пр€мо в точке [job_points] b6_spawn (нет точки - у смарта zat_b33), поэтому симул€ци€ еЄ не уводит.
 --------------------------------------------------------------------------------
-local function b6_members(q)
-	local out = {}
-	for k = 1, J.var(q.id, "q", 0) do
-		local sq = alife():object(J.var(q.id, "q" .. k, 0))
-		if sq ~= nil then
-			pcall(function() for m in sq:squad_members() do table.insert(out, m.id) end end)
-		end
-	end
-	return out
-end
-
 --' отр€ды задани€ став€тс€ на смарт, ближайший к точке [job_points] name (иначе симул€ци€ вернЄт их на свой смарт); метка на вожака
 function squads_at_point(q, name)
 	local pos = resolve_point(name, nil)
@@ -524,47 +522,34 @@ function squads_at_point(q, name)
 	end
 end
 
-local function b6_setup(q)
-	local ids = b6_members(q)
-	if #ids == 0 then return end
-	if not st(q.id, "placed") then
-		set(q.id, "placed")
-		local pos, lv, gv = resolve_point("b6_spawn", nil)
-		if pos ~= nil then
-			for _, id in ipairs(ids) do
-				pcall(function() alife():teleport_object(id, gv, lv, pos) end)
-			end
-		end
-	end
-	--' метка на химеру: отр€д мог создать участников позже самого задани€
-	if J.var(q.id, "n", 0) == 0 then J.add_spot(q.id, ids[1]) end
-	--' здоровье уменьшаем, когда химера оказалась в онлайне
-	if J.var(q.id, "hp", 0) == 0 then
-		for _, id in ipairs(ids) do
-			local o = level.object_by_id(id)
-			if o ~= nil and o:alive() then
-				local ok = pcall(function() o.health = diary_cfg.num("b6", "health", 0.5) end)
-				if ok then J.set_var(q.id, "hp", 1) end
-			end
-		end
+--' здоровье химеры уменьшаем, когда она оказалась в онлайне
+local function b6_hurt(q)
+	if J.var(q.id, "hp", 0) ~= 0 then return end
+	local nid = npc_id(q.id)
+	local o = nid ~= nil and level.object_by_id(nid) or nil
+	if o ~= nil and o:alive() then
+		local ok = pcall(function() o.health = diary_cfg.num("b6", "health", 0.5) end)
+		if ok then J.set_var(q.id, "hp", 1) end
 	end
 end
 
 HOOKS.b6 = {
 	accept = function(q)
-		for _, s in ipairs(q.squads) do
-			local sq = J.add_squad(q.id, s[1], s[2])
-			local m = sq and diary_lib.squad_leader(sq)
-			if m ~= nil then J.add_spot(q.id, m) end
-		end
+		local pos, lv, gv = resolve_point("b6_spawn", "zat_b33")
+		if pos == nil then return end
+		local se = alife():create("chimera_normal", pos, lv, gv)
+		J.set_var(q.id, "npc", se.id)
+		J.add_spot(q.id, se.id)
 	end,
 	tick = function(q)
-		b6_setup(q)
-		if not J.squads_alive(q.id) then done_obj(q.id) end
+		if st(q.id, "obj") then return end
+		if npc_id(q.id) == nil or npc_dead(q.id) then done_obj(q.id) return end
+		b6_hurt(q)
 	end,
 	--' ствол вместо денег (k = 1); деньги выдаЄт движок по choices
 	finish = function(q, k)
 		if k == 1 then diary_lib.give_items("wpn_m3super90", 1) end
+		J.set_var(q.id, "npc", nil)
 	end,
 }
 

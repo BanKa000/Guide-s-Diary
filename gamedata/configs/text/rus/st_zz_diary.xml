@@ -652,6 +652,14 @@
 	<string id="dj_b4_thief_send_r"><text>К Бороде... Ладно. Лучше уж так.</text></string>
 	<string id="dj_b4_c2_a"><text>Вора больше нет.</text></string>
 	<string id="dj_b4_c2_r"><text>Не стоило его убивать, вдруг толковый парень.</text></string>
+	<string id="dj_b5_sleeper_0"><text>Эй, друг. Просыпайся. Ты провизию Бороде нёс?</text></string>
+	<string id="dj_b5_sleeper_1"><text>А? Что... Где я? Выброс переждать присел, на минуту глаза прикрыл. Сколько времени-то прошло?</text></string>
+	<string id="dj_b5_sleeper_wake_a"><text>Больше суток. Борода уже извёлся, тебя ищет.</text></string>
+	<string id="dj_b5_sleeper_wake_r"><text>Сутки?! Вот я дал... Мешок цел, всё на месте. Сейчас соберусь и пойду. Скажи Бороде, что не подвёл.</text></string>
+	<string id="dj_b5_sleeper_let_a"><text>Неважно. Отдыхай, я скажу Бороде, что ты жив.</text></string>
+	<string id="dj_b5_sleeper_let_r"><text>Ага... Спасибо. Вот только глаза продеру и сразу к нему.</text></string>
+	<string id="dj_b5_awake_0"><text>Ты как, оклемался?</text></string>
+	<string id="dj_b5_awake_1"><text>Нормально. Уже собираюсь. Бороде передай: скоро буду, без обид.</text></string>
 	<string id="diary_b4_thief_name"><text>Ромка</text></string>
 	<string id="diary_b4_thief_bio"><text>Новичок из Кордона. Пришёл в Зону за лёгкими деньгами, остался без гроша и без еды.</text></string>
 
