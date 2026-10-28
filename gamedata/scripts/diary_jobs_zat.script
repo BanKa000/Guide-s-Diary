@@ -419,14 +419,21 @@ HOOKS.b4 = {
 			J.set_var(q.id, "box", box.id)
 			J.add_spot(q.id, sm1.id)
 		end
-		local se = spawn_npc(q.id, "diary_b4_thief", q.smarts[2])
-		if se ~= nil then J.add_spot(q.id, se.id) end
+		--' вор стоит в точке [job_points] b4_thief (снаружи, чтобы к нему можно было подойти); нет точки - смарт
+		local pos, lv, gv = resolve_point("b4_thief", q.smarts[2])
+		if pos ~= nil then
+			local se = alife():create("diary_b4_thief", pos, lv, gv)
+			J.set_var(q.id, "npc", se.id)
+			J.add_spot(q.id, se.id)
+		end
 	end,
 	tick = function(q)
 		local a = db.actor
 		for k, name in ipairs(q.smarts) do
 			local sm = diary_lib.smart(name)
-			if not st(q.id, "v" .. k) and sm ~= nil and a:position():distance_to(sm.position) < 30 then
+			local at = sm and sm.position
+			if k == 2 then at = resolve_point("b4_thief", name) or at end
+			if not st(q.id, "v" .. k) and at ~= nil and a:position():distance_to(at) < 30 then
 				set(q.id, "v" .. k)
 				J.drop_spot(q.id, k)
 			end
@@ -587,6 +594,14 @@ local function s3_seen(g)
 	return seen
 end
 
+--' центр лагеря - там, где лежит рюкзак ([job_points] s3_docs); запасной вариант - смарт задания
+local function s3_camp(q)
+	local pos = resolve_point("s3_docs", (q or J.get("s3")).smart)
+	if pos ~= nil then return pos end
+	local sm = diary_lib.smart((q or J.get("s3")).smart)
+	return sm and sm.position
+end
+
 --' Пока идёт "Бумаги из чужого лагеря", в радиусе [s3] clear_radius (150 м) от лагеря не должно быть чужих отрядов:
 --' симуляция присылает их снова и снова, поэтому раз в две секунды лишние отряды убираются, когда игрок их не видит.
 --' Остаются отряды заданий (dj_*, diary_*): хозяева лагеря и всё, что нужно другим заданиям.
@@ -594,8 +609,7 @@ local s3_clear_t = 0
 local function s3_clear_area(q)
 	if time_global() < s3_clear_t then return end
 	s3_clear_t = time_global() + 2000
-	local sm = diary_lib.smart(q.smart)
-	local camp = sm and sm.position
+	local camp = s3_camp(q)
 	if camp == nil then return end
 	local a = db.actor
 	if a:is_talking() then return end
@@ -659,11 +673,6 @@ local S3_COPY = "dj_item_docs_copy"
 local s3_msg_at = nil
 local s3_check_t = 0
 
-local function s3_camp()
-	local sm = diary_lib.smart(J.get("s3").smart)
-	return sm and sm.position
-end
-
 local function s3_night()
 	local h = level.get_time_hours()
 	return h >= 0 and h < 5
@@ -703,7 +712,7 @@ function s3_copy_tick(q)
 	s3_check_t = time_global() + 1500
 	local camp = s3_camp()
 	if camp == nil then return end
-	local near = a:position():distance_to(camp) < 20
+	local near = a:position():distance_to(camp) < diary_cfg.num("s3", "plant_radius", 35)
 	if diary_lib.count_item(S3_COPY) == 0 then
 		if near and (s3_night() or diary_lib.squad_alive(J.var(q.id, "guards", 0)) == 0) then
 			--' копию оставили в лагере ночью: все спят, никто не видел
@@ -725,6 +734,7 @@ function s3_copy_take()
 	set("s3", "copy_taken")
 	local g = J.var("s3", "guards", nil)
 	if g ~= nil then diary_lib.squad_relation(g, "neutral") end
+	updated("s3", "dj_s3_upd_plant")
 end
 
 function s3_front_here(npc)
