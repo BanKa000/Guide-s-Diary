@@ -44,6 +44,12 @@ function bor_can_decoded(first_speaker, second_speaker)
 	return has("diary_decoded") and not has("diary_cipher_read")
 end
 
+--' "Расшифровка": дожидаться можно и не во сне - в разговоре с Бородой ("Посижу тут, подожду")
+function bor_wait_open(first_speaker, second_speaker)
+	return has("diary_q10_given") and not has("diary_decoded")
+end
+function bor_wait() diary_story.wait_decode() end
+
 --' поставки: Борода жалуется (событие diary_trade), намекает, что у Сыча и Тремора то же самое
 function bor_supply_ready(first_speaker, second_speaker)
 	return has("diary_supply_bor_ready") and not has("diary_supply_bor_told")
