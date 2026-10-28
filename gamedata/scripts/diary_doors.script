@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: запертые двери.
+--' Рядом с игроком снимается запор (ph_door.locked) у запертых дверей, кроме сюжетных
+--' из [doors] keep_locked. Кроме того, двери из [doors] names открываются всегда, как только
+--' появляются в онлайне. Каждая найденная запертая дверь один раз пишется в diary_errors.log
+--' (имя и координаты), чтобы можно было занести её в баланс.
+--------------------------------------------------------------------------------
+local logged = {}
+
+local function note(msg)
+	pcall(function()
+		local f = io.open("diary_errors.log", "a")
+		if f ~= nil then
+			local stamp = ""
+			pcall(function() stamp = os.date("%Y-%m-%d %H:%M:%S") end)
+			f:write(string.format("[%s] [doors] %s\n", stamp, msg))
+			f:close()
+		end
+	end)
+end
+
+local function in_list(list, name)
+	for _, n in ipairs(list) do
+		if n == name then return true end
+	end
+	return false
+end
+
+local function unlock(o, ph, why)
+	ph.locked = false
+	pcall(function() ph.closed = false end)
+	local p = o:position()
+	if not logged[o:id()] then
+		logged[o:id()] = true
+		note(string.format("%s: %s (%.2f, %.2f, %.2f)", why, tostring(o:name()), p.x, p.y, p.z))
+	end
+end
+
+function update(delta)
+	local a = db.actor
+	if a == nil then return end
+	local near = diary_cfg.num("doors", "unlock_near", 4)
+	local names = diary_cfg.list("doors", "names")
+	local keep = diary_cfg.list("doors", "keep_locked")
+	local apos = a:position()
+	for id, sto in pairs(db.storage) do
+		local ph = sto and sto.ph_door
+		if ph ~= nil and ph.locked then
+			local o = level.object_by_id(id)
+			if o ~= nil then
+				local name = o:name()
+				if in_list(names, name) then
+					unlock(o, ph, "unlocked by name")
+				elseif near > 0 and o:position():distance_to(apos) <= near and not in_list(keep, name) then
+					unlock(o, ph, "unlocked near")
+				end
+			end
+		end
+	end
+end

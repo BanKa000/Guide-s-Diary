@@ -825,18 +825,72 @@ local function s5_bind(q)
 	J.add_spot(q.id, mid)
 end
 
---' игрок подошёл ближе 45 м: беглец срывается с места и уходит на точку задания (идёт на глазах у игрока)
+--' Конечная точка бегства: [job_points] s5_dest (точка с координатами) или смарт zat_sim_8
+local function s5_dest()
+	local pos, lv
+	pcall(function() pos, lv = diary_cfg.point("job_points", "s5_dest") end)
+	local sm = diary_lib.smart("zat_sim_8")
+	if pos == nil and sm ~= nil then
+		pos = sm.position
+		lv = sm.m_level_vertex_id
+	end
+	return pos, lv, sm
+end
+
+--' заставить отряд пересчитать цель (по {+dj_s5_flee} это zat_sim_8) и сразу побежать
+local function s5_force_run(q)
+	pcall(function()
+		local sq = alife():object(J.var(q.id, "rsq", 0))
+		if sq == nil then return end
+		local _, _, sm = s5_dest()
+		if sm ~= nil then sq.assigned_target_id = sm.id end
+		sq.current_action = nil
+		sq.current_target_id = nil
+		sq:get_next_action(true)
+	end)
+end
+
+--' игрок подошёл ближе 45 м: беглец срывается с места и бежит на точку (на глазах у игрока).
+--' Если за 6 игровых минут не добежал и игрок его не видит - переносим на точку.
 local function s5_route_tick(q)
 	s5_bind(q)
 	local stage = J.var(q.id, "stage", 1)
-	if stage >= 2 or st(q.id, "freed") or st(q.id, "freed_stash") or st(q.id, "dead") then return end
+	if st(q.id, "freed") or st(q.id, "freed_stash") or st(q.id, "dead") then return end
 	local nid = npc_id(q.id)
 	local se = nid and alife():object(nid)
 	if se == nil or not se:alive() then return end
 	local o = level.object_by_id(nid)
-	if o ~= nil and o:position():distance_to(db.actor:position()) < 45 then
-		set(q.id, "flee")
-		J.set_var(q.id, "stage", 2)
+	if stage == 1 then
+		if o ~= nil and o:position():distance_to(db.actor:position()) < 45 then
+			set(q.id, "flee")
+			J.set_var(q.id, "stage", 2)
+			J.set_var(q.id, "flee_t", diary_lib.game_hours())
+			s5_force_run(q)
+		end
+	elseif stage == 2 then
+		local pos, lv = s5_dest()
+		if pos == nil then J.set_var(q.id, "stage", 3) return end
+		local d = se.position:distance_to(pos)
+		if d < 25 then
+			J.set_var(q.id, "stage", 3)
+			return
+		end
+		--' отряд мог не сменить цель - подталкиваем раз в тик
+		if J.var(q.id, "flee_kick", 0) == 0 then
+			J.set_var(q.id, "flee_kick", 1)
+			s5_force_run(q)
+		end
+		if diary_lib.game_hours() - J.var(q.id, "flee_t", 0) > 0.1 then
+			if o ~= nil and o:position():distance_to(db.actor:position()) < 60 and db.actor:see(o) then return end
+			pcall(function()
+				local sq = alife():object(J.var(q.id, "rsq", 0))
+				local p = pos
+				if lv ~= nil then p = level.vertex_position(lv) end
+				if sq ~= nil and sq.set_squad_position ~= nil then sq:set_squad_position(p)
+				else diary_lib.place_npc(nid, p, lv) end
+			end)
+			J.set_var(q.id, "stage", 3)
+		end
 	end
 end
 
