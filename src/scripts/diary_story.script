@@ -1,0 +1,251 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: сюжет Затона.
+--' Состояние - только инфопорции и pstor; модуль каждый раз смотрит, на каком этапе игрок.
+--' Этапы:
+--'   старт -> К Бороде (q1) -> блокнот -> Тайник в пещере (q2) -> Лесопилка (q3: три записи)
+--'   -> труп -> Рассказать Бороде (q6) -> Расшифровка (q10: через 3 игровых часа)
+--'   -> долги Компаса (q7, q8, d1..d3, модуль diary_debts) -> Дорога на Юпитер (q9)
+--------------------------------------------------------------------------------
+local has, give = diary_lib.has, diary_lib.give
+
+--' Тайники: секция ящика (со story_id в devices.ltx) и точка {x, y, z, lv, gv}
+local CAVE = {sec = "diary_cache_cave", pos = {22.79, 5.51, 362.39, 991318, 59}}
+
+--' Три тайника лесопилки: порядок любой
+local CHAIN = {
+	{key = "logs",  task = "diary_q3", done = "diary_q3_done", sec = "diary_cache_logs",
+	 pos = {-293.10, 18.24, 352.97, 360299, 115}, note = "jup_b10_notes_02", news = "diary_news_q3"},
+	{key = "attic", task = "diary_q4", done = "diary_q4_done", sec = "diary_cache_attic",
+	 pos = {-318.88, 10.70, 426.75, 313871, 115}, note = "jup_a9_meeting_info", news = "diary_news_q4"},
+	{key = "tower", task = "diary_q5", done = "diary_q5_done", sec = "diary_cache_tower",
+	 pos = {-366.58, 23.66, 384.35, 234358, 115}, note = "jup_a9_delivery_info", news = "diary_news_q5"},
+}
+
+--' Задания, у которых уже есть своё сообщение: при выдаче только делаются активными на компасе
+local OWN_NEWS = {diary_q2 = true, diary_q7 = true, diary_q8 = true, diary_q9 = true,
+	diary_d1 = true, diary_d2 = true, diary_d3 = true}
+
+--' Выдать сюжетное задание (tm_zaton.ltx) и сделать его активным на компасе
+function give_task(id)
+	pcall(function() task_manager.get_task_manager():give_task(id) end)
+	pcall(diary_compass.set_active, id)
+	if not OWN_NEWS[id] then diary_news.task_new(id) end
+end
+
+local function vec(p) return vector():set(p[1], p[2], p[3]) end
+
+local function spawn_box(sec, p, items)
+	local box = alife():create(sec, vec(p), p[4], p[5])
+	for _, it in ipairs(items) do
+		if it[2] ~= nil and it[2] > 1 and string.sub(it[1], 1, 5) == "ammo_" then
+			create_ammo(it[1], vector():set(0, 0, 0), 0, 0, box.id, it[2])
+		else
+			alife():create(it[1], vector():set(0, 0, 0), 0, 0, box.id)
+		end
+	end
+	return box
+end
+
+--' ---- Этапы ----------------------------------------------------------------------------
+local start_t = nil
+
+local function stage_start(t)
+	if not has("diary_zat_start") then
+		give("diary_zat_start")
+		diary_news.thought("diary_news_start_t")
+		diary_news.record("start")
+		start_t = t
+		return true
+	end
+	if not has("diary_q1_given") then
+		start_t = start_t or t
+		if t - start_t >= diary_cfg.num("story", "start_delay", 8) * 1000 then
+			give("diary_q1_given")
+			give_task("diary_q1")
+		end
+		return true
+	end
+	return false
+end
+
+--' Борода отдал блокнот -> тайник в пещере
+local function stage_cave()
+	if has("diary_notebook_given") and not has("diary_cache_spawned") then
+		give("diary_cache_spawned")
+		spawn_box(CAVE.sec, CAVE.pos, {{"af_compass"}, {"wpn_toz34"}, {"ammo_12x70_buck", 30}, {"jup_b10_notes_01"}})
+		diary_news.send("diary_news_notebook", "diary_news_notebook_t")
+		diary_news.record("notebook")
+		give_task("diary_q2")
+		return true
+	end
+	if has("diary_cache_spawned") and not has("diary_q2_done") then
+		local a = db.actor
+		if a:object("af_compass") ~= nil and a:object("wpn_toz34") ~= nil and has("diary_noted_cave") then
+			give("diary_q2_done")
+			diary_news.send("diary_news_q2", "diary_news_q2_t")
+			diary_news.record("cave")
+		end
+		return true
+	end
+	return false
+end
+
+--' Лесопилка: три тайника, одно задание со счётчиком записей
+local function stage_chain()
+	if not has("diary_q2_done") then return false end
+	if not has("diary_chain_spawned") then
+		give("diary_chain_spawned")
+		for _, c in ipairs(CHAIN) do
+			spawn_box(c.sec, c.pos, {{c.note}})
+			give(c.task .. "_given")
+		end
+		give_task("diary_q3")
+		return true
+	end
+	local found = 0
+	for _, c in ipairs(CHAIN) do
+		if not has(c.done) and has("diary_noted_" .. c.key) then
+			give(c.done)
+			diary_news.thought(c.news)
+			diary_news.record(c.key)
+		end
+		if has(c.done) then found = found + 1 end
+	end
+	--' diary_saw_notes_N: заголовок задания q3 в tm_zaton.ltx меняется -> "Задание обновлено"
+	for n = 1, found do give("diary_saw_notes_" .. n) end
+	return false
+end
+
+--' ---- Расшифровка (правка 4) ---------------------------------------------------------------
+--' Записка готова через decode_hours игровых часов после того, как Лазарь отдал её Бороде
+--' (сон не нужен, время можно и проспать). Потом - сообщение, задание обновляется
+--' ("Вернуться к Бороде"), у Бороды появляется продолжение разговора.
+local decoded_news_t = nil
+
+local function stage_decode(t)
+	if not has("diary_q10_given") or has("diary_decoded") then return end
+	local from = diary_lib.load_var("diary_dec_from", nil)
+	if from == nil then
+		diary_lib.save_var("diary_dec_from", diary_lib.game_hours())
+		return
+	end
+	if diary_lib.game_hours() - from >= diary_cfg.num("story", "decode_hours", 3) then
+		give("diary_decoded")
+		diary_news.record("decoded")
+		decoded_news_t = t + 2000
+	end
+end
+
+local function decode_news(t)
+	if decoded_news_t ~= nil and t >= decoded_news_t then
+		decoded_news_t = nil
+		diary_news.thought("diary_news_decoded")
+	end
+end
+
+--' ---- Вторая часть: Борода, долги, дорога на Юпитер ---------------------------------------
+local function stage_after_corpse()
+	--' долги выдаются вместе с рассказом Бороде; страховка для сохранений, где рассказ уже был до правки
+	if has("diary_cipher_taken") and not has("diary_debts_given") then give("diary_debts_given") end
+	--' старые сохранения: долги выдавал второй разговор Бороды, он же брал "Сканер" (dj_n1)
+	if has("diary_debts_given") and not has("diary_cipher_read") and has("dj_n1_given") then
+		give("diary_cipher_read")
+	end
+	if has("diary_corpse_dropped") and not has("diary_q6_given") then
+		give("diary_q6_given")
+		give_task("diary_q6")
+		return true
+	end
+	if has("diary_cipher_taken") and not has("diary_q10_given") then
+		give("diary_q10_given")
+		give_task("diary_q10")
+		diary_news.record("cipher")
+		return true
+	end
+	if has("diary_debts_given") and not has("diary_q7_given") then
+		give("diary_q7_given")
+		diary_news.record("debts")
+		give_task("diary_q7")
+		give_task("diary_q8")
+		return true
+	end
+	--' дорога на Юпитер открывается после разговора "Перед дорогой" (n6), долги закрывать целиком не обязательно
+	if has("dj_n6_done") and not has("diary_exit_given") then
+		give("diary_exit_given")
+		diary_news.thought("diary_news_exit_t")
+		diary_news.record("exit")
+		give_task("diary_q9")
+		return true
+	end
+	return false
+end
+
+--' ---- Модуль ------------------------------------------------------------------------------
+local enter_t = nil
+local lvl = nil
+
+function level_enter(l)
+	lvl = l
+	enter_t = time_global()
+end
+
+function level_leave()
+	lvl = nil
+	enter_t = nil
+	decoded_news_t = nil
+end
+
+function update()
+	local t = time_global()
+	if lvl == "jupiter" then
+		if has("diary_exit_given") then give("diary_exit_done") end
+		diary_news.record("jupiter")
+		return
+	end
+	--' сюжет ждёт, пока уровень очищен от оригинала, и полсекунды после загрузки
+	if t - enter_t < 500 or not diary_cleanup.done("zaton") then return end
+	stage_decode(t)
+	decode_news(t)
+	if stage_start(t) then return end
+	if stage_cave() then return end
+	stage_chain()
+	stage_after_corpse()
+end
+
+--' Название задания для блокнота и компаса (у "Лесопилки" - счётчик записей)
+function task_name(key)
+	if key == "diary_q3" then
+		for n = 2, 1, -1 do
+			if has("diary_saw_notes_" .. n) then return game.translate_string("diary_q3_name_" .. n) end
+		end
+		if has("diary_saw_reached") then return game.translate_string("diary_q3_name_0") end
+	end
+	if key == "diary_q10" and has("diary_decoded") then
+		return game.translate_string("diary_q10_name_2")
+	end
+	return game.translate_string(key .. "_name")
+end
+
+--' Текст задания для блокнота
+function task_text(key)
+	if key == "diary_q10" and has("diary_decoded") then
+		return game.translate_string("diary_q10_text_2")
+	end
+	return game.translate_string(key .. "_text")
+end
+
+--' Список сюжетных заданий блокнота: порядок, когда выдано, когда выполнено
+TASK_ORDER = {"diary_q1", "diary_q2", "diary_q3", "diary_q6", "diary_q10", "diary_q7", "diary_q8",
+	"diary_d1", "diary_d2", "diary_d3", "diary_q9"}
+TASK_GIVEN = {
+	diary_q1 = "diary_q1_given", diary_q2 = "diary_cache_spawned", diary_q3 = "diary_chain_spawned",
+	diary_q6 = "diary_q6_given", diary_q10 = "diary_q10_given", diary_q7 = "diary_q7_given",
+	diary_q8 = "diary_q7_given", diary_q9 = "diary_exit_given",
+	diary_d1 = "diary_deb_fixed", diary_d2 = "diary_deb_fixed", diary_d3 = "diary_deb_ready",
+}
+TASK_DONE = {
+	diary_q1 = "diary_notebook_given", diary_q2 = "diary_q2_done", diary_q3 = "diary_saw_notes_3",
+	diary_q6 = "diary_cipher_taken", diary_q10 = "diary_cipher_read", diary_q7 = "diary_debt_c_done",
+	diary_q8 = "diary_debt_s_done", diary_q9 = "diary_exit_done",
+	diary_d1 = "diary_deb_1_done", diary_d2 = "diary_deb_2_done", diary_d3 = "diary_deb_3_done",
+}

@@ -1,0 +1,3682 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+    <dialog id="zat_b51_stalker_nimble_get_order">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_place_order">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_about">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_first_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_third_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_arc">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_catastrophe">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_dog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_maps">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_about_himself">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_refuse_af_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_detectors_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor3">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor2">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor4">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_compass_give_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_compass_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_compass_revert_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_compass_revert_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_compass_double_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_compass_give_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_about_new_detector">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_take_business_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_oasis_art_sell">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b52_about_snag">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_about">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_apologies_joker">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_apologies_both">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_apologies_barge">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_pda">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_come_with_me">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_bunker_guarding">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_start_last_chance_end">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_b30_actor_after_barmen">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b57_barmen_about_bloodsucker_lair_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_employ_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalker_squad_leader_come_with_me">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_killed_self_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_leader_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_about_anomalies">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_about_surge">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_second_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_medic_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_medic_info_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_medic_bloodsucker_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_task_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_b52_about_snag">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_about_sci_helpers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_about_sci_helpers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b53_artefact_hunter_2_gathering_artefacts">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_b40_about_merc_camp">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_about_toolkit">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_share_package_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_refuse_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b57_barman_reward_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_barmen_under_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_about_supplies">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_find_supplies">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_pripyat_no_way">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_start">
+        <phrase_list>
+            <phrase id="31">
+                <text>zat_b215_stalker_guide_start_31</text>
+            </phrase>
+            <phrase id="41">
+                <text>zat_b215_stalker_guide_start_41</text>
+            </phrase>
+            <phrase id="51">
+                <text>zat_b215_stalker_guide_start_51</text>
+            </phrase>
+            <phrase id="3">
+                <text />
+                <precondition>dialogs.level_zaton</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <has_info>zat_b215_gave_maps</has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>31</next>
+            </phrase>
+            <phrase id="4">
+                <text />
+                <precondition>dialogs.level_jupiter</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <dont_has_info>zat_b215_gave_maps</dont_has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>41</next>
+            </phrase>
+            <phrase id="5">
+                <text />
+                <precondition>dialogs.level_jupiter</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <has_info>zat_b215_gave_maps</has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>51</next>
+            </phrase>
+            <phrase id="1">
+                <text />
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <dont_has_info>zat_b215_first_meet</dont_has_info>
+                <next>11</next>
+            </phrase>
+            <phrase id="7">
+                <text />
+                <precondition>dialogs.is_surge_running</precondition>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>71</next>
+            </phrase>
+            <phrase id="21">
+                <text>zat_b215_stalker_guide_start_21</text>
+            </phrase>
+            <phrase id="2">
+                <text />
+                <precondition>dialogs.level_zaton</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <dont_has_info>zat_b215_gave_maps</dont_has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>21</next>
+            </phrase>
+            <phrase id="6">
+                <text />
+                <precondition>dialogs.is_surge_running</precondition>
+                <dont_has_info>zat_b215_first_meet</dont_has_info>
+                <next>61</next>
+            </phrase>
+            <phrase id="11">
+                <text>zat_b215_stalker_guide_start_11</text>
+                <give_info>zat_b215_first_meet</give_info>
+            </phrase>
+            <phrase id="61">
+                <text>zat_b215_stalker_guide_start_61</text>
+                <give_info>zat_b215_first_meet</give_info>
+            </phrase>
+            <phrase id="71">
+                <text>zat_b215_stalker_guide_start_71</text>
+            </phrase>
+            <phrase id="0">
+                <text />
+                <next>1</next>
+                <next>2</next>
+                <next>3</next>
+                <next>4</next>
+                <next>5</next>
+                <next>6</next>
+                <next>7</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_zaton">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_pripyat">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_plateau_way">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_cop_about_himself_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_about_sci_guards">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_hunt_himera">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_jupiter">
+        <precondition>dialogs.level_zaton</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_guide_ask</text>
+                <next>1</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_guide_price</text>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <next>21</next>
+                <next>22</next>
+                <next>23</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_guide_surge</text>
+                <precondition>dialogs.is_surge_running</precondition>
+            </phrase>
+            <phrase id="21">
+                <text>zat_b215_stalker_guide_to_jupiter_21</text>
+                <precondition>dialogs_zaton.zat_b215_actor_has_money_poor</precondition>
+                <action>dialogs.save_uni_travel_zat_to_jup</action>
+                <next>211</next>
+            </phrase>
+            <phrase id="211">
+                <text />
+                <action>dialogs_zaton.zat_b215_relocate_money_poor</action>
+                <action>dialogs.break_dialog</action>
+                <give_info>zat_b215_guide_to_jupiter</give_info>
+            </phrase>
+            <phrase id="22">
+                <precondition>dialogs_zaton.zat_b215_actor_has_no_money_poor</precondition>
+                <text>zat_b215_stalker_guide_to_jupiter_22</text>
+            </phrase>
+            <phrase id="23">
+                <text>zat_b215_stalker_guide_to_jupiter_23</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_stalker_medic_dialog_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_stalker_medic_need_health_care">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b29_rivals_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b29_stalker_rival_exchange_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_ufo_memory_repair">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_buy_info">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_come_with_me">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_employ_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_info_about_soroka">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_info_about_soroka_gone">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_trapper_send">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_info_about_soroka_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_b22_about_stalker_vampire">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_army">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalker_squad_leader_bunker_guarding">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_ruin_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b29_actor_info">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_intro">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_about_sci_guards">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_where_to">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_after_quest_b5_dealer_actor4">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_b5_daring_quest_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_stages">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_stalker_rival_1_about_detector">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_take_money_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b53_artefact_hunter_1_gathering_artefacts">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_about">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_return_access_card">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_b207_about_dealer_pda">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_b33_about_snags_container">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_drink_1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_show">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_repair_gauss">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_stalker_rival_2_about_detector">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_himself">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_mutants">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_soroka_actor_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_soroka_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_about_cache_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_b52_my_gun_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b7_actor_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_about_compass">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_actor_choose_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_b52_about_gun_questions">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_choose_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_init">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_sell_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_strange_item">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_wrong">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b29_actor_get_adv_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_sell_items">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_leave_zone">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalker_squad_leader_employ_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_raiders_actor_choose_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_about_halfart_jup_b1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b52_robbery_port_bandits_1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_raiders_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_actor_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_robbery">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_start_last_chance">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_at_bar_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b29_actor_give_adv_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_stalker_medic_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b5_illicit_dealer_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b5_bandit_hide_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_drink_3">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_end">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_instruments">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_drink_2">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b7_give_task_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b5_give_task_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b52_about_snag">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_start_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_make_battery">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b5_stalker_commander_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_actor_info">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_after_fight">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_garmata_b106_after_hunt">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_done">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_raiders_actor_teleport_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_electro_toolkit_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_barmen_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_bor_0</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_barmen_start_1">
+        <dont_has_info>diary_notebook_given</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_s1_0</text>
+                <dont_has_info>diary_notebook_given</dont_has_info>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_s1_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_s1_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_st_s1_3</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>diary_st_s1_4</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>diary_st_s1_5</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <text>diary_st_s1_6</text>
+                <next>7</next>
+            </phrase>
+            <phrase id="7">
+                <text>diary_st_s1_7</text>
+                <next>8</next>
+            </phrase>
+            <phrase id="8">
+                <text>diary_st_s1_8</text>
+                <next>9</next>
+            </phrase>
+            <phrase id="9">
+                <text>diary_st_s1_9</text>
+                <give_info>diary_notebook_given</give_info>
+                <action>dialogs_diary.give_notebook</action>
+                <next>10</next>
+            </phrase>
+            <phrase id="10">
+                <text>diary_st_s1_10</text>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>diary_st_s1_11</text>
+                <next>12</next>
+            </phrase>
+            <phrase id="12">
+                <text>diary_st_s1_12</text>
+                <next>13</next>
+            </phrase>
+            <phrase id="13">
+                <text>diary_st_s1_13</text>
+                <next>14</next>
+            </phrase>
+            <phrase id="14">
+                <text>diary_st_s1_14</text>
+                <next>15</next>
+            </phrase>
+            <phrase id="15">
+                <text>diary_st_s1_15</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_barmen_start_2">
+        <has_info>diary_notebook_given</has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_bor_2</text>
+                <has_info>diary_notebook_given</has_info>
+                <action>dialogs_diary.bor_roll</action>
+                <next>41</next>
+            </phrase>
+            <phrase id="41">
+                <text>diary_bor_41</text>
+                <script_text>dialogs_diary.bor_line</script_text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_barmen_start_6">
+        <precondition>dialogs_diary.bor_can_tell</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m2_0</text>
+                <precondition>dialogs_diary.bor_can_tell</precondition>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m2_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_m2_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_st_m2_3</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>diary_st_m2_4</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>diary_st_m2_5</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <text>diary_st_m2_6</text>
+                <next>7</next>
+            </phrase>
+            <phrase id="7">
+                <text>diary_st_m2_7</text>
+                <give_info>diary_cipher_taken</give_info>
+                <give_info>diary_debts_given</give_info>
+                <action>dialogs_diary.bor_take_cipher</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_barmen_start_7">
+        <precondition>dialogs_diary.bor_can_decoded</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m3_0</text>
+                <precondition>dialogs_diary.bor_can_decoded</precondition>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m3_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_m3_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_st_m3_3</text>
+                <give_info>diary_cipher_read</give_info>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>diary_st_m3_4</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>diary_st_m3_5</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <text>diary_st_m3_6</text>
+                <next>7</next>
+            </phrase>
+            <phrase id="7">
+                <text>diary_st_m3_7</text>
+                <action>dialogs_diary.n1_take</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_medic_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_zat_medic_greet</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_medic_start_100">
+        <phrase_list>
+            <phrase id="0">
+                <text>zat_b22_stalker_medic_need_health_care_0</text>
+                <next>1</next>
+                <next>2</next>
+            </phrase>
+            <phrase id="1">
+                <text>zat_b22_stalker_medic_need_health_care_1</text>
+                <precondition>dialogs.actor_needs_bless</precondition>
+                <next>11</next>
+            </phrase>
+            <phrase id="2">
+                <text>zat_b22_stalker_medic_need_health_care_2</text>
+                <precondition>dialogs.actor_is_damn_healthy</precondition>
+            </phrase>
+            <phrase id="11">
+                <text>zat_b22_stalker_medic_need_health_care_11</text>
+                <action>dialogs.medic_magic_potion</action>
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text>zat_b22_stalker_medic_need_health_care_111</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_mechanic_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_zat_mechanic_greet</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_mechanic_start_1">
+        <precondition>dialogs_diary.c_fresh</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_c_1</text>
+                <precondition>dialogs_diary.c_fresh</precondition>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>diary_c_11</text>
+                <next>12</next>
+                <next>13</next>
+                <next>14</next>
+                <next>15</next>
+                <next>16</next>
+            </phrase>
+            <phrase id="12">
+                <text>diary_c_12</text>
+                <precondition>dialogs_diary.c_can_full</precondition>
+                <next>121</next>
+            </phrase>
+            <phrase id="13">
+                <text>diary_c_13</text>
+                <precondition>dialogs_diary.c_can_half</precondition>
+                <next>131</next>
+            </phrase>
+            <phrase id="14">
+                <text>diary_c_14</text>
+                <precondition>dialogs_diary.c_has_item</precondition>
+                <next>141</next>
+            </phrase>
+            <phrase id="15">
+                <text>diary_c_15</text>
+                <next>151</next>
+            </phrase>
+            <phrase id="16">
+                <text>diary_c_16</text>
+                <next>161</next>
+            </phrase>
+            <phrase id="121">
+                <text>diary_c_121</text>
+                <action>dialogs_diary.c_pay_full</action>
+            </phrase>
+            <phrase id="131">
+                <text>diary_c_131</text>
+                <action>dialogs_diary.c_pay_half</action>
+            </phrase>
+            <phrase id="141">
+                <text>diary_c_141</text>
+                <action>dialogs_diary.c_pay_item</action>
+            </phrase>
+            <phrase id="151">
+                <text>diary_c_151</text>
+                <action>dialogs_diary.c_steal</action>
+            </phrase>
+            <phrase id="161">
+                <text>diary_c_161</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_mechanic_start_3">
+        <precondition>dialogs_diary.c_rest_open</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_c_3</text>
+                <precondition>dialogs_diary.c_rest_open</precondition>
+                <next>31</next>
+            </phrase>
+            <phrase id="31">
+                <text>diary_c_31</text>
+                <next>32</next>
+                <next>33</next>
+            </phrase>
+            <phrase id="32">
+                <text>diary_c_32</text>
+                <precondition>dialogs_diary.c_can_rest</precondition>
+                <next>321</next>
+            </phrase>
+            <phrase id="33">
+                <text>diary_c_33</text>
+                <next>331</next>
+            </phrase>
+            <phrase id="321">
+                <text>diary_c_321</text>
+                <action>dialogs_diary.c_pay_rest</action>
+            </phrase>
+            <phrase id="331">
+                <text>diary_c_331</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_trader_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_zat_trader_greet</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_trader_start_1">
+        <precondition>dialogs_diary.s_fresh</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_s_1</text>
+                <precondition>dialogs_diary.s_fresh</precondition>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>diary_s_11</text>
+                <next>12</next>
+                <next>13</next>
+                <next>14</next>
+                <next>15</next>
+                <next>16</next>
+            </phrase>
+            <phrase id="12">
+                <text>diary_s_12</text>
+                <precondition>dialogs_diary.s_can_full</precondition>
+                <next>121</next>
+            </phrase>
+            <phrase id="13">
+                <text>diary_s_13</text>
+                <precondition>dialogs_diary.s_can_half</precondition>
+                <next>131</next>
+            </phrase>
+            <phrase id="14">
+                <text>diary_s_14</text>
+                <precondition>dialogs_diary.s_has_item</precondition>
+                <next>141</next>
+            </phrase>
+            <phrase id="15">
+                <text>diary_s_15</text>
+                <next>151</next>
+            </phrase>
+            <phrase id="16">
+                <text>diary_s_16</text>
+                <next>161</next>
+            </phrase>
+            <phrase id="121">
+                <text>diary_s_121</text>
+                <action>dialogs_diary.s_pay_full</action>
+            </phrase>
+            <phrase id="131">
+                <text>diary_s_131</text>
+                <action>dialogs_diary.s_pay_half</action>
+            </phrase>
+            <phrase id="141">
+                <text>diary_s_141</text>
+                <action>dialogs_diary.s_pay_item</action>
+            </phrase>
+            <phrase id="151">
+                <text>diary_s_151</text>
+                <action>dialogs_diary.s_steal</action>
+            </phrase>
+            <phrase id="161">
+                <text>diary_s_161</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_trader_start_3">
+        <precondition>dialogs_diary.s_rest_open</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_s_3</text>
+                <precondition>dialogs_diary.s_rest_open</precondition>
+                <next>31</next>
+            </phrase>
+            <phrase id="31">
+                <text>diary_s_31</text>
+                <next>32</next>
+                <next>33</next>
+            </phrase>
+            <phrase id="32">
+                <text>diary_s_32</text>
+                <precondition>dialogs_diary.s_can_rest</precondition>
+                <next>321</next>
+            </phrase>
+            <phrase id="33">
+                <text>diary_s_33</text>
+                <next>331</next>
+            </phrase>
+            <phrase id="321">
+                <text>diary_s_321</text>
+                <action>dialogs_diary.s_pay_rest</action>
+            </phrase>
+            <phrase id="331">
+                <text>diary_s_331</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_krim_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_krim_greet</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_krim_start_80">
+        <precondition>dialogs_diary.deb2_open</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_dk_1</text>
+                <precondition>dialogs_diary.deb2_open</precondition>
+                <next>801</next>
+            </phrase>
+            <phrase id="801">
+                <text>diary_dk_11</text>
+                <next>802</next>
+                <next>803</next>
+            </phrase>
+            <phrase id="802">
+                <text>diary_dk_12</text>
+                <precondition>dialogs_diary.deb2_can_pay</precondition>
+                <next>8021</next>
+            </phrase>
+            <phrase id="803">
+                <text>diary_dk_13</text>
+                <next>8031</next>
+            </phrase>
+            <phrase id="8021">
+                <text>diary_dk_121</text>
+                <action>dialogs_diary.deb2_pay</action>
+            </phrase>
+            <phrase id="8031">
+                <text>diary_dk_131</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_sultan_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_sultan_greet</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_sultan_start_80">
+        <precondition>dialogs_diary.deb1_open</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_ds_1</text>
+                <precondition>dialogs_diary.deb1_open</precondition>
+                <next>801</next>
+            </phrase>
+            <phrase id="801">
+                <text>diary_ds_11</text>
+                <next>802</next>
+                <next>803</next>
+            </phrase>
+            <phrase id="802">
+                <text>diary_ds_12</text>
+                <precondition>dialogs_diary.deb1_can_pay</precondition>
+                <next>8021</next>
+            </phrase>
+            <phrase id="803">
+                <text>diary_ds_13</text>
+                <next>8031</next>
+            </phrase>
+            <phrase id="8021">
+                <text>diary_ds_121</text>
+                <action>dialogs_diary.deb1_pay</action>
+            </phrase>
+            <phrase id="8031">
+                <text>diary_ds_131</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k2_ransom">
+        <precondition>dialogs_diary.k2_ransom_here</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k2_r_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k2_r_1</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_k2_r_2</text>
+                <precondition>dialogs_diary.k2_can_pay</precondition>
+                <action>dialogs_diary.k2_pay</action>
+                <next>21</next>
+            </phrase>
+            <phrase id="21">
+                <text>dj_k2_r_21</text>
+            </phrase>
+            <phrase id="3">
+                <text>dj_k2_r_3</text>
+                <next>31</next>
+            </phrase>
+            <phrase id="31">
+                <text>dj_k2_r_31</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- ===== Дневник проводника: задания линий (diary_build.py из diary_jobs.ltx) ===== -->
+    <dialog id="dj_b1_offer">
+        <precondition>dialogs_diary.o_b1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b1_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b1_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_b1_yes</text>
+                <action>dialogs_diary.a_b1</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_b1_no</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_b1_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b1_report">
+        <precondition>dialogs_diary.r_b1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b1_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b1_done</text>
+                <action>dialogs_diary.d_b1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b3_offer">
+        <precondition>dialogs_diary.o_b3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b3_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b3_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_b3_yes</text>
+                <action>dialogs_diary.a_b3</action>
+            </phrase>
+            <phrase id="3">
+                <text>dj_b3_no</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b3_report">
+        <precondition>dialogs_diary.r_b3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b3_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b3_q</text>
+                <next>c1</next>
+                <next>c2</next>
+            </phrase>
+            <phrase id="c1">
+                <text>dj_b3_c0_a</text>
+                <precondition>dialogs_diary.c_b3_1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>dj_b3_c0_r</text>
+                <action>dialogs_diary.d_b3_1</action>
+            </phrase>
+            <phrase id="c2">
+                <text>dj_b3_c1_a</text>
+                <precondition>dialogs_diary.c_b3_2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>dj_b3_c1_r</text>
+                <action>dialogs_diary.d_b3_2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b4_offer">
+        <precondition>dialogs_diary.o_b4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b4_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b4_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_b4_yes</text>
+                <action>dialogs_diary.a_b4</action>
+            </phrase>
+            <phrase id="3">
+                <text>dj_b4_no</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b4_report">
+        <precondition>dialogs_diary.r_b4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b4_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b4_q</text>
+                <next>c1</next>
+                <next>c2</next>
+                <next>c3</next>
+            </phrase>
+            <phrase id="c1">
+                <text>dj_b4_c0_a</text>
+                <precondition>dialogs_diary.c_b4_1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>dj_b4_c0_r</text>
+                <action>dialogs_diary.d_b4_1</action>
+            </phrase>
+            <phrase id="c2">
+                <text>dj_b4_c1_a</text>
+                <precondition>dialogs_diary.c_b4_2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>dj_b4_c1_r</text>
+                <action>dialogs_diary.d_b4_2</action>
+            </phrase>
+            <phrase id="c3">
+                <text>dj_b4_c2_a</text>
+                <precondition>dialogs_diary.c_b4_3</precondition>
+                <next>r3</next>
+            </phrase>
+            <phrase id="r3">
+                <text>dj_b4_c2_r</text>
+                <action>dialogs_diary.d_b4_3</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b5_offer">
+        <precondition>dialogs_diary.o_b5</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b5_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b5_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_b5_yes</text>
+                <action>dialogs_diary.a_b5</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_b5_no</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_b5_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b5_report">
+        <precondition>dialogs_diary.r_b5</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b5_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b5_done</text>
+                <action>dialogs_diary.d_b5</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b6_offer">
+        <precondition>dialogs_diary.o_b6</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b6_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b6_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_b6_yes</text>
+                <action>dialogs_diary.a_b6</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_b6_no</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_b6_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_b6_report">
+        <precondition>dialogs_diary.r_b6</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_b6_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_b6_q</text>
+                <next>c1</next>
+                <next>c2</next>
+            </phrase>
+            <phrase id="c1">
+                <text>dj_b6_c0_a</text>
+                <precondition>dialogs_diary.c_b6_1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>dj_b6_c0_r</text>
+                <action>dialogs_diary.d_b6_1</action>
+            </phrase>
+            <phrase id="c2">
+                <text>dj_b6_c1_a</text>
+                <precondition>dialogs_diary.c_b6_2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>dj_b6_c1_r</text>
+                <action>dialogs_diary.d_b6_2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s1_offer">
+        <precondition>dialogs_diary.o_s1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s1_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s1</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s1_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s1_report">
+        <precondition>dialogs_diary.r_s1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s1_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s1_done</text>
+                <action>dialogs_diary.d_s1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_offer">
+        <precondition>dialogs_diary.o_s3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s3_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s3</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s3_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_report">
+        <precondition>dialogs_diary.r_s3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s3_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s3_done</text>
+                <action>dialogs_diary.d_s3</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s4_offer">
+        <precondition>dialogs_diary.o_s4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s4_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s4</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s4_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s4_report">
+        <precondition>dialogs_diary.r_s4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s4_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s4_done</text>
+                <action>dialogs_diary.d_s4</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s5_offer">
+        <precondition>dialogs_diary.o_s5</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s5_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s5</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s5_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s5_report">
+        <precondition>dialogs_diary.r_s5</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s5_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_report_q</text>
+                <next>c1</next>
+                <next>c2</next>
+                <next>c3</next>
+            </phrase>
+            <phrase id="c1">
+                <text>dj_s5_c0_a</text>
+                <precondition>dialogs_diary.c_s5_1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>dj_s5_c0_r</text>
+                <action>dialogs_diary.d_s5_1</action>
+            </phrase>
+            <phrase id="c2">
+                <text>dj_s5_c1_a</text>
+                <precondition>dialogs_diary.c_s5_2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>dj_s5_c1_r</text>
+                <action>dialogs_diary.d_s5_2</action>
+            </phrase>
+            <phrase id="c3">
+                <text>dj_s5_c2_a</text>
+                <precondition>dialogs_diary.c_s5_3</precondition>
+                <next>r3</next>
+            </phrase>
+            <phrase id="r3">
+                <text>dj_s5_c2_r</text>
+                <action>dialogs_diary.d_s5_3</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s6_offer">
+        <precondition>dialogs_diary.o_s6</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s6_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s6</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s6_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s6_report">
+        <precondition>dialogs_diary.r_s6</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s6_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s6_done</text>
+                <action>dialogs_diary.d_s6</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s7_offer">
+        <precondition>dialogs_diary.o_s7</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s7_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s7</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s7_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s7_report">
+        <precondition>dialogs_diary.r_s7</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s7_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s7_done</text>
+                <action>dialogs_diary.d_s7</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s8_offer">
+        <precondition>dialogs_diary.o_s8</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s8_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s8</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s8_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s8_report">
+        <precondition>dialogs_diary.r_s8</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s8_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_report_q</text>
+                <next>c1</next>
+                <next>c2</next>
+            </phrase>
+            <phrase id="c1">
+                <text>dj_s8_c0_a</text>
+                <precondition>dialogs_diary.c_s8_1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>dj_s8_c0_r</text>
+                <action>dialogs_diary.d_s8_1</action>
+            </phrase>
+            <phrase id="c2">
+                <text>dj_s8_c1_a</text>
+                <precondition>dialogs_diary.c_s8_2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>dj_s8_c1_r</text>
+                <action>dialogs_diary.d_s8_2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s9_offer">
+        <precondition>dialogs_diary.o_s9</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s9_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s9</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s9_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k1_offer">
+        <precondition>dialogs_diary.o_k1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k1_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_k1</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_k1_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k1_report">
+        <precondition>dialogs_diary.r_k1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k1_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k1_done</text>
+                <action>dialogs_diary.d_k1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k2_offer">
+        <precondition>dialogs_diary.o_k2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k2_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_k2</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_k2_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k2_report">
+        <precondition>dialogs_diary.r_k2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k2_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k2_done</text>
+                <action>dialogs_diary.d_k2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k2_alt">
+        <precondition>dialogs_diary.l_k2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k2_alt_a</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k2_alt_r</text>
+                <action>dialogs_diary.p_k2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k4_offer">
+        <precondition>dialogs_diary.o_k4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k4_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_k4</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_k4_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k4_report">
+        <precondition>dialogs_diary.r_k4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k4_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k4_done</text>
+                <action>dialogs_diary.d_k4</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k5_offer">
+        <precondition>dialogs_diary.o_k5</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k5_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_k5</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_k5_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k5_report">
+        <precondition>dialogs_diary.r_k5</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k5_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k5_done</text>
+                <action>dialogs_diary.d_k5</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k6_offer">
+        <precondition>dialogs_diary.o_k6</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k6_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_k6</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_k6_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k6_report">
+        <precondition>dialogs_diary.r_k6</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k6_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k6_done</text>
+                <action>dialogs_diary.d_k6</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k7_offer">
+        <precondition>dialogs_diary.o_k7</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k7_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_k7</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_k7_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k7_report">
+        <precondition>dialogs_diary.r_k7</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k7_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_report_q</text>
+                <next>c1</next>
+                <next>c2</next>
+            </phrase>
+            <phrase id="c1">
+                <text>dj_k7_c0_a</text>
+                <precondition>dialogs_diary.c_k7_1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>dj_k7_c0_r</text>
+                <action>dialogs_diary.d_k7_1</action>
+            </phrase>
+            <phrase id="c2">
+                <text>dj_k7_c1_a</text>
+                <precondition>dialogs_diary.c_k7_2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>dj_k7_c1_r</text>
+                <action>dialogs_diary.d_k7_2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y1_offer">
+        <precondition>dialogs_diary.o_y1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y1_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_y1</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_y1_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y1_report">
+        <precondition>dialogs_diary.r_y1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_y1_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y1_done</text>
+                <action>dialogs_diary.d_y1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y1_deliver">
+        <precondition>dialogs_diary.dlv_here_y1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_y1_dlv_a</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y1_dlv_r</text>
+                <action>dialogs_diary.dlv_y1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y2_offer">
+        <precondition>dialogs_diary.o_y2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y2_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_y2</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_y2_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y2_report">
+        <precondition>dialogs_diary.r_y2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_y2_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y2_done</text>
+                <action>dialogs_diary.d_y2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y3_offer">
+        <precondition>dialogs_diary.o_y3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y3_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_y3</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_y3_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y3_report">
+        <precondition>dialogs_diary.r_y3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_y3_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y3_done</text>
+                <action>dialogs_diary.d_y3</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y3_deliver">
+        <precondition>dialogs_diary.dlv_here_y3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_y3_dlv_a</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y3_dlv_r</text>
+                <action>dialogs_diary.dlv_y3</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y4_offer">
+        <precondition>dialogs_diary.o_y4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y4_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_y4</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_y4_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_y4_report">
+        <precondition>dialogs_diary.r_y4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_y4_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_y4_done</text>
+                <action>dialogs_diary.d_y4</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t1_offer">
+        <precondition>dialogs_diary.o_t1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t1_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_t1</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_t1_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t1_report">
+        <precondition>dialogs_diary.r_t1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_t1_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t1_done</text>
+                <action>dialogs_diary.d_t1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t2_offer">
+        <precondition>dialogs_diary.o_t2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t2_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_t2</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_t2_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t2_report">
+        <precondition>dialogs_diary.r_t2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_t2_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t2_done</text>
+                <action>dialogs_diary.d_t2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t3_offer">
+        <precondition>dialogs_diary.o_t3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t3_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_t3</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_t3_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t3_report">
+        <precondition>dialogs_diary.r_t3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_t3_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t3_done</text>
+                <action>dialogs_diary.d_t3</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t4_offer">
+        <precondition>dialogs_diary.o_t4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t4_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_t4</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_t4_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_t4_report">
+        <precondition>dialogs_diary.r_t4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_t4_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_t4_done</text>
+                <action>dialogs_diary.d_t4</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_g1_offer">
+        <precondition>dialogs_diary.o_g1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_g1_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_g1</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_g1_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_g1_report">
+        <precondition>dialogs_diary.r_g1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_g1_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_g1_done</text>
+                <action>dialogs_diary.d_g1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n1_report">
+        <precondition>dialogs_diary.r_n1</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m4_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m4_1</text>
+                <action>dialogs_diary.d_n1</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_m4_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n2_offer">
+        <precondition>dialogs_diary.o_n2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m6_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m6_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_m6_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_st_m6_3</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>diary_st_m6_4</text>
+                <action>dialogs_diary.a_n2</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>diary_st_m6_5</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n2_report">
+        <precondition>dialogs_diary.r_n2</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m7_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m7_1</text>
+                <next>c1</next>
+                <next>c2</next>
+            </phrase>
+            <phrase id="c1">
+                <text>diary_st_m7_2</text>
+                <precondition>dialogs_diary.c_n2_1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>diary_st_m7_3</text>
+                <action>dialogs_diary.d_n2_1</action>
+            </phrase>
+            <phrase id="c2">
+                <text>diary_st_m7_4</text>
+                <precondition>dialogs_diary.c_n2_2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>diary_st_m7_5</text>
+                <action>dialogs_diary.d_n2_2</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n3_offer">
+        <precondition>dialogs_diary.o_n3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m8_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m8_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_m8_2</text>
+                <action>dialogs_diary.a_n3</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n3_report">
+        <precondition>dialogs_diary.r_n3</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m9_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m9_1</text>
+                <action>dialogs_diary.d_n3</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_m9_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_st_m9_3</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n4_offer">
+        <precondition>dialogs_diary.o_n4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m10_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m10_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_st_m10_2</text>
+                <action>dialogs_diary.a_n4</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n4_report">
+        <precondition>dialogs_diary.r_n4</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m11_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m11_1</text>
+                <next>a1</next>
+                <next>a2</next>
+            </phrase>
+            <phrase id="a1">
+                <text>diary_st_m11_2</text>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>diary_st_m11_3</text>
+                <action>dialogs_diary.n4_yes</action>
+            </phrase>
+            <phrase id="a2">
+                <text>diary_st_m11_4</text>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>diary_st_m11_5</text>
+                <action>dialogs_diary.n4_no</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n5_report">
+        <precondition>dialogs_diary.r_n5</precondition>
+        <precondition>dialogs_diary.n5_split</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m12_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m12_1</text>
+                <next>a1</next>
+                <next>a2</next>
+            </phrase>
+            <phrase id="a1">
+                <text>diary_st_m12_2</text>
+                <precondition>dialogs_diary.n5_bandits</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>diary_st_m12_3</text>
+                <action>dialogs_diary.d_n5</action>
+            </phrase>
+            <phrase id="a2">
+                <text>diary_st_m12_4</text>
+                <precondition>dialogs_diary.n5_mercs</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>diary_st_m12_5</text>
+                <action>dialogs_diary.d_n5</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_n6_offer">
+        <precondition>dialogs_diary.o_n6</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_n6_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_n6_q</text>
+                <action>dialogs_diary.a_n6</action>
+                <next>a0</next>
+                <next>a1</next>
+                <next>a2</next>
+                <next>a3</next>
+                <next>a4</next>
+                <next>a5</next>
+                <next>a6</next>
+                <next>a7</next>
+                <next>a8</next>
+                <next>a9</next>
+                <next>a10</next>
+                <next>a11</next>
+                <next>a12</next>
+                <next>a13</next>
+                <next>a14</next>
+                <next>a15</next>
+            </phrase>
+            <phrase id="a0">
+                <text>dj_n6_a_none</text>
+                <precondition>dialogs_diary.n6_m0</precondition>
+                <next>r0</next>
+            </phrase>
+            <phrase id="r0">
+                <text>dj_n6_r_none</text>
+                <action>dialogs_diary.d_n6_2</action>
+            </phrase>
+            <phrase id="a1">
+                <text>dj_n6_a_1</text>
+                <precondition>dialogs_diary.n6_m1</precondition>
+                <next>r1</next>
+            </phrase>
+            <phrase id="r1">
+                <text>dj_n6_r_kb</text>
+                <action>dialogs_diary.d_n6_2</action>
+            </phrase>
+            <phrase id="a2">
+                <text>dj_n6_a_2</text>
+                <precondition>dialogs_diary.n6_m2</precondition>
+                <next>r2</next>
+            </phrase>
+            <phrase id="r2">
+                <text>dj_n6_r_kcb</text>
+                <action>dialogs_diary.d_n6_2</action>
+            </phrase>
+            <phrase id="a3">
+                <text>dj_n6_a_3</text>
+                <precondition>dialogs_diary.n6_m3</precondition>
+                <next>r3</next>
+            </phrase>
+            <phrase id="r3">
+                <text>dj_n6_r_kb</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a4">
+                <text>dj_n6_a_4</text>
+                <precondition>dialogs_diary.n6_m4</precondition>
+                <next>r4</next>
+            </phrase>
+            <phrase id="r4">
+                <text>dj_n6_r_kcb</text>
+                <action>dialogs_diary.d_n6_2</action>
+            </phrase>
+            <phrase id="a5">
+                <text>dj_n6_a_5</text>
+                <precondition>dialogs_diary.n6_m5</precondition>
+                <next>r5</next>
+            </phrase>
+            <phrase id="r5">
+                <text>dj_n6_r_kb</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a6">
+                <text>dj_n6_a_6</text>
+                <precondition>dialogs_diary.n6_m6</precondition>
+                <next>r6</next>
+            </phrase>
+            <phrase id="r6">
+                <text>dj_n6_r_kc</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a7">
+                <text>dj_n6_a_7</text>
+                <precondition>dialogs_diary.n6_m7</precondition>
+                <next>r7</next>
+            </phrase>
+            <phrase id="r7">
+                <text>dj_n6_r_k</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a8">
+                <text>dj_n6_a_8</text>
+                <precondition>dialogs_diary.n6_m8</precondition>
+                <next>r8</next>
+            </phrase>
+            <phrase id="r8">
+                <text>dj_n6_r_cb</text>
+                <action>dialogs_diary.d_n6_2</action>
+            </phrase>
+            <phrase id="a9">
+                <text>dj_n6_a_9</text>
+                <precondition>dialogs_diary.n6_m9</precondition>
+                <next>r9</next>
+            </phrase>
+            <phrase id="r9">
+                <text>dj_n6_r_b</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a10">
+                <text>dj_n6_a_10</text>
+                <precondition>dialogs_diary.n6_m10</precondition>
+                <next>r10</next>
+            </phrase>
+            <phrase id="r10">
+                <text>dj_n6_r_cb</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a11">
+                <text>dj_n6_a_11</text>
+                <precondition>dialogs_diary.n6_m11</precondition>
+                <next>r11</next>
+            </phrase>
+            <phrase id="r11">
+                <text>dj_n6_r_b</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a12">
+                <text>dj_n6_a_12</text>
+                <precondition>dialogs_diary.n6_m12</precondition>
+                <next>r12</next>
+            </phrase>
+            <phrase id="r12">
+                <text>dj_n6_r_cb</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a13">
+                <text>dj_n6_a_13</text>
+                <precondition>dialogs_diary.n6_m13</precondition>
+                <next>r13</next>
+            </phrase>
+            <phrase id="r13">
+                <text>dj_n6_r_b</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a14">
+                <text>dj_n6_a_14</text>
+                <precondition>dialogs_diary.n6_m14</precondition>
+                <next>r14</next>
+            </phrase>
+            <phrase id="r14">
+                <text>dj_n6_r_c</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+            <phrase id="a15">
+                <text>dj_n6_a_all</text>
+                <precondition>dialogs_diary.n6_m15</precondition>
+                <next>r15</next>
+            </phrase>
+            <phrase id="r15">
+                <text>dj_n6_r_all</text>
+                <action>dialogs_diary.d_n6_1</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s10_offer">
+        <precondition>dialogs_diary.o_s10</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s10_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_s10</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_s10_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s10_report">
+        <precondition>dialogs_diary.r_s10</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_s10_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_s10_done</text>
+                <action>dialogs_diary.d_s10</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k8_offer">
+        <precondition>dialogs_diary.o_k8</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_ask</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k8_offer</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_accept</text>
+                <action>dialogs_diary.a_k8</action>
+                <next>4</next>
+            </phrase>
+            <phrase id="3">
+                <text>dj_later</text>
+            </phrase>
+            <phrase id="4">
+                <text>dj_k8_ok</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k8_report">
+        <precondition>dialogs_diary.r_k8</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k8_rep</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k8_done</text>
+                <action>dialogs_diary.d_k8</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <!-- ===== Дневник проводника: особые диалоги (gen\diary_dialogs.xml) ===== -->
+
+    <!-- Борода: поставки (событие diary_trade, через 1-3 дня) -->
+    <dialog id="diary_bor_supply">
+        <precondition>dialogs_diary.bor_supply_ready</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_bor_supply_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_bor_supply_1</text><action>dialogs_diary.bor_supply_tell</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Вынос документов: подмена. Оригинал - Султану, через час копия, потом подбросить ночью или отдать в лоб -->
+    <dialog id="dj_s3_copy">
+        <precondition>dialogs_diary.s3_copy_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_c1_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_copy_1</text><action>dialogs_diary.s3_copy_start</action><next>2</next></phrase>
+            <phrase id="2"><text>dj_s3_copy_2</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_s3_copy_3</text></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_take">
+        <precondition>dialogs_diary.s3_copy_ready_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_take_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_take_1</text><action>dialogs_diary.s3_copy_take</action></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_front">
+        <precondition>dialogs_diary.s3_front_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_front_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_front_1</text><action>dialogs_diary.s3_front</action></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_copy_done">
+        <precondition>dialogs_diary.s3_planted_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_copy_done_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_copy_done_r</text><action>dialogs_diary.s3_copy_finish</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Эгида: приветствие (у группировки нет общих фраз hello_dialog) -->
+    <dialog id="diary_aegis_start">
+        <phrase_list>
+            <phrase id="0"><text>diary_aegis_greet</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Учёные заданий: приветствие -->
+    <dialog id="diary_sci_start">
+        <phrase_list>
+            <phrase id="0"><text>diary_sci_greet</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Сыч и Тремор: тоже проблемы с поставками. Разговор сразу переходит в первую просьбу;
+         без него просьба не открывается (gate в diary_jobs.ltx). "Позже" - просьба остаётся темой разговора. -->
+    <dialog id="diary_syc_supply">
+        <precondition>dialogs_diary.syc_supply_hint</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_syc_supply_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_syc_supply_1</text><action>dialogs_diary.syc_supply_tell</action><next>2</next></phrase>
+            <phrase id="2"><text>diary_syc_supply_2</text><precondition>dialogs_diary.y1_free</precondition><next>3</next></phrase>
+            <phrase id="3"><text>dj_y1_offer</text><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_accept</text><action>dialogs_diary.a_y1</action><next>6</next></phrase>
+            <phrase id="5"><text>dj_later</text></phrase>
+            <phrase id="6"><text>dj_y1_ok</text></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_tre_supply">
+        <precondition>dialogs_diary.tre_supply_hint</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_tre_supply_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_tre_supply_1</text><action>dialogs_diary.tre_supply_tell</action><next>2</next></phrase>
+            <phrase id="2"><text>diary_tre_supply_2</text><precondition>dialogs_diary.t1_free</precondition><next>3</next></phrase>
+            <phrase id="3"><text>dj_t1_offer</text><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_accept</text><action>dialogs_diary.a_t1</action><next>6</next></phrase>
+            <phrase id="5"><text>dj_later</text></phrase>
+            <phrase id="6"><text>dj_t1_ok</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Ложный SOS": игрок сходил к передатчику сам, задания не брал, и рассказывает Бороде -->
+    <dialog id="dj_b3_alone">
+        <precondition>dialogs_diary.b3_alone_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b3_alone_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b3_q</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_b3_c0_a</text><precondition>dialogs_diary.b3_killed</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_b3_c0_r</text><action>dialogs_diary.b3_alone_1</action></phrase>
+            <phrase id="3"><text>dj_b3_c1_a</text><precondition>dialogs_diary.b3_paid_only</precondition><next>31</next></phrase>
+            <phrase id="31"><text>dj_b3_c1_r</text><action>dialogs_diary.b3_alone_2</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Ложный SOS": бандиты у передатчика требуют деньги (говорит бандит, с которым открылась беседа) -->
+    <dialog id="dj_b3_bandit">
+        <precondition>dialogs_diary.b3_boss_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b3_bandit_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b3_bandit_1</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_b3_bandit_pay_a</text><action>dialogs_diary.b3_pay</action><next>21</next><next>22</next></phrase>
+            <phrase id="21"><text>dj_b3_bandit_pay_r</text><precondition>dialogs_diary.b3_not_poor</precondition></phrase>
+            <phrase id="22"><text>dj_b3_bandit_poor_r</text><precondition>dialogs_diary.b3_poor</precondition></phrase>
+            <phrase id="3"><text>dj_b3_bandit_no_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_b3_bandit_no_r</text><action>dialogs_diary.b3_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Лишний рот": голодный пацан -->
+    <dialog id="dj_b4_thief">
+        <precondition>dialogs_diary.b4_thief_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b4_thief_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b4_thief_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_b4_thief_free_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_b4_thief_free_r</text><action>dialogs_diary.b4_free</action></phrase>
+            <phrase id="3"><text>dj_b4_thief_send_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_b4_thief_send_r</text><action>dialogs_diary.b4_send</action></phrase>
+            <phrase id="4"><text>dj_later</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 2": пленный (после боя или выкупа) -->
+    <dialog id="dj_k2_captive">
+        <precondition>dialogs_diary.k2_captive_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k2_captive_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k2_captive_1</text><action>dialogs_diary.k2_tell</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 7": наёмники Крима ждут у леса, идут в лабораторию после разговора -->
+    <dialog id="dj_k7_mercs">
+        <precondition>dialogs_diary.k7_mercs_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k7_mercs_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k7_mercs_1</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_k7_mercs_go</text><action>dialogs_diary.k7_go</action></phrase>
+            <phrase id="3"><text>dj_later</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 7": учёные в лаборатории рассказывают, что там было -->
+    <dialog id="dj_k7_sci">
+        <precondition>dialogs_diary.k7_sci_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k7_sci_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k7_sci_1</text><next>2</next><next>3</next><next>4</next><next>5</next></phrase>
+            <phrase id="2"><text>dj_k7_sci_what_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_k7_sci_what_r</text><next>3</next><next>4</next><next>5</next></phrase>
+            <phrase id="3"><text>dj_k7_sci_drive_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_k7_sci_drive_r</text><next>6</next><next>2</next><next>4</next><next>5</next></phrase>
+            <phrase id="6"><text>dj_k7_sci_give_a</text><precondition>dialogs_diary.k7_drive_left</precondition><next>61</next></phrase>
+            <phrase id="61"><text>dj_k7_sci_give_r</text><action>dialogs_diary.k7_give_drive</action><next>2</next><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_k7_sci_why_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_k7_sci_why_r</text><next>2</next><next>3</next><next>5</next></phrase>
+            <phrase id="5"><text>dj_k7_sci_bye_a</text><next>51</next></phrase>
+            <phrase id="51"><text>dj_k7_sci_bye_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Крыса" -->
+    <dialog id="dj_s5_rat">
+        <precondition>dialogs_diary.s5_rat_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s5_rat_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s5_rat_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_s5_rat_stash_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_s5_rat_stash_r</text><action>dialogs_diary.s5_free_stash</action></phrase>
+            <phrase id="3"><text>dj_s5_rat_free_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_s5_rat_free_r</text><action>dialogs_diary.s5_free</action></phrase>
+            <phrase id="4"><text>dj_s5_rat_fight_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_s5_rat_fight_r</text><action>dialogs_diary.s5_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Разведчик" -->
+    <dialog id="dj_s6_scout">
+        <precondition>dialogs_diary.s6_scout_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s6_scout_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s6_scout_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="4"><text>dj_s6_scout_recruit_a</text><precondition>dialogs_diary.s6_can_bribe</precondition><next>41</next></phrase>
+            <phrase id="41"><text>dj_s6_scout_recruit_r</text><action>dialogs_diary.s6_bribe</action></phrase>
+            <phrase id="2"><text>dj_s6_scout_chase_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_s6_scout_chase_r</text><action>dialogs_diary.s6_chase</action></phrase>
+            <phrase id="3"><text>dj_s6_scout_fight_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_s6_scout_fight_r</text><action>dialogs_diary.s6_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Переезд": Султан назначает встречу с Бородой -->
+    <dialog id="dj_s9_meet">
+        <precondition>dialogs_diary.s9_can_set_meet</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s9_meet_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s9_meet_1</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_s9_meet_with_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_s9_meet_with_r</text><action>dialogs_diary.s9_go_with_sultan</action><action>dialogs.break_dialog</action></phrase>
+            <phrase id="3"><text>dj_s9_meet_self_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_s9_meet_self_r</text><action>dialogs_diary.s9_set_meet</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Переезд": разговор на троих (говорит квестовый Борода, реплики Султана подписаны) -->
+    <dialog id="dj_s9_talk">
+        <precondition>dialogs_diary.s9_meeting_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s9_talk_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s9_talk_1</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_s9_talk_2</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_s9_talk_3</text><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_s9_talk_yes_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_s9_talk_yes_r</text><next>42</next></phrase>
+            <phrase id="42"><text>dj_s9_talk_pay_a</text><next>43</next></phrase>
+            <phrase id="43"><text>dj_s9_talk_pay_r</text><action>dialogs_diary.s9_agree</action><next>6</next><next>7</next><next>8</next></phrase>
+            <phrase id="5"><text>dj_s9_talk_no_a</text><next>51</next></phrase>
+            <phrase id="51"><text>dj_s9_talk_no_r</text><action>dialogs_diary.s9_refuse</action><next>6</next><next>7</next><next>8</next></phrase>
+            <phrase id="6"><text>dj_s9_leave_sultan_a</text><next>61</next></phrase>
+            <phrase id="61"><text>dj_s9_leave_sultan_r</text><action>dialogs_diary.s9_leave_sultan</action><action>dialogs.break_dialog</action></phrase>
+            <phrase id="7"><text>dj_s9_leave_boroda_a</text><next>71</next></phrase>
+            <phrase id="71"><text>dj_s9_leave_boroda_r</text><action>dialogs_diary.s9_leave_boroda</action><action>dialogs.break_dialog</action></phrase>
+            <phrase id="8"><text>dj_s9_leave_self_a</text><next>81</next></phrase>
+            <phrase id="81"><text>dj_s9_leave_self_r</text><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 6": мародёры -->
+    <dialog id="dj_k6_talk">
+        <precondition>dialogs_diary.k6_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k6_talk_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k6_talk_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_k6_bribe_a</text><precondition>dialogs_diary.k6_can_bribe</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_k6_bribe_r</text><action>dialogs_diary.k6_bribe</action></phrase>
+            <phrase id="3"><text>dj_k6_threat_a</text><action>dialogs_diary.k6_threat</action><next>31</next><next>32</next></phrase>
+            <phrase id="31"><text>dj_k6_threat_ok_r</text><precondition>dialogs_diary.k6_threat_ok</precondition></phrase>
+            <phrase id="32"><text>dj_k6_threat_fail_r</text><precondition>dialogs_diary.k6_threat_fail</precondition><action>dialogs.break_dialog</action></phrase>
+            <phrase id="4"><text>dj_k6_fight_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_k6_fight_r</text><action>dialogs_diary.k6_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Наёмник, должный Компасу -->
+    <dialog id="diary_deb3_talk">
+        <precondition>dialogs_diary.deb3_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_deb3_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_deb3_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>diary_deb3_take_a</text><next>21</next></phrase>
+            <phrase id="21"><text>diary_deb3_take_r</text><action>dialogs_diary.deb3_take</action></phrase>
+            <phrase id="3"><text>diary_deb3_forgive_a</text><next>31</next></phrase>
+            <phrase id="31"><text>diary_deb3_forgive_r</text><action>dialogs_diary.deb3_forgive</action></phrase>
+            <phrase id="4"><text>diary_deb3_fight_a</text><next>41</next></phrase>
+            <phrase id="41"><text>diary_deb3_fight_r</text><action>dialogs_diary.deb3_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Гаваец: с кем договариваться о товаре -->
+    <dialog id="dj_g1_talk">
+        <precondition>dialogs_diary.g1_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_g1_talk_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_g1_talk_1</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_g1_talk_2</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_g1_talk_3</text><action>dialogs_diary.g1_deal</action></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_g1_where_mercs">
+        <precondition>dialogs_diary.g1_mercs</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_g1_where_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_g1_where_mercs_r</text></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_g1_where_cave">
+        <precondition>dialogs_diary.g1_cave</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_g1_where_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_g1_where_cave_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Слухи у обычных сталкеров -->
+    <dialog id="diary_rumor">
+        <precondition>dialogs_diary.rumor_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_rumor_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_rumor_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>diary_rumor_buy_a</text><precondition>dialogs_diary.rumor_can_pay</precondition><next>21</next></phrase>
+            <phrase id="21"><text>diary_rumor_buy_r</text><action>dialogs_diary.rumor_buy</action></phrase>
+            <phrase id="3"><text>diary_rumor_nomoney_a</text><precondition>dialogs_diary.rumor_cant_pay</precondition><next>31</next></phrase>
+            <phrase id="31"><text>diary_rumor_nomoney_r</text></phrase>
+            <phrase id="4"><text>dj_later</text></phrase>
+        </phrase_list>
+    </dialog>
+
+
+
+    <!-- Сюжет Бороды (n2, n3, n5) -->
+    <dialog id="dj_n2_krim">
+        <precondition>dialogs_diary.n2_krim_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n2_krim_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n2_krim_1</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_n2_krim_a</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_n2_krim_r</text><action>dialogs_diary.n2_krim_talk</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w1ok">
+        <precondition>dialogs_diary.n3_w1_ok</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w1_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w1_ok</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_n3_w1_a</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_n3_w1_r</text><action>dialogs_diary.n3_w1_done</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w1no">
+        <precondition>dialogs_diary.n3_w1_no</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w1_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w_no</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w2ok">
+        <precondition>dialogs_diary.n3_w2_ok</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w2_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w2_ok</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_n3_w2_a</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_n3_w2_r</text><action>dialogs_diary.n3_w2_done</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w2no">
+        <precondition>dialogs_diary.n3_w2_no</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w2_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w_no</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n5_sul">
+        <precondition>dialogs_diary.n5_sul_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n5_sul_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n5_sul_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_n5_sul_free_a</text><precondition>dialogs_diary.n5_sul_free</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_n5_sul_free_r</text><action>dialogs_diary.n5_sul_peace_free</action></phrase>
+            <phrase id="3"><text>dj_n5_sul_pay_a</text><precondition>dialogs_diary.n5_sul_pay_ok</precondition><next>31</next></phrase>
+            <phrase id="31"><text>dj_n5_sul_pay_r</text><action>dialogs_diary.n5_sul_peace_pay</action></phrase>
+            <phrase id="4"><text>dj_n5_bye_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_n5_sul_bye_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n5_kri">
+        <precondition>dialogs_diary.n5_kri_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n5_kri_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n5_kri_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_n5_kri_free_a</text><precondition>dialogs_diary.n5_kri_free</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_n5_kri_free_r</text><action>dialogs_diary.n5_kri_peace_free</action></phrase>
+            <phrase id="3"><text>dj_n5_kri_pay_a</text><precondition>dialogs_diary.n5_kri_pay_ok</precondition><next>31</next></phrase>
+            <phrase id="31"><text>dj_n5_kri_pay_r</text><action>dialogs_diary.n5_kri_peace_pay</action></phrase>
+            <phrase id="4"><text>dj_n5_bye_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_n5_kri_bye_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+
+    <dialog id="dj_n5_report_calm">
+        <precondition>dialogs_diary.r_n5</precondition>
+        <precondition>dialogs_diary.n5_calm</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_st_m13_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_st_m13_1</text>
+                <action>dialogs_diary.d_n5</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+</game_dialogs>

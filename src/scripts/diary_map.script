@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: карта.
+--' Карта - штатная карта КПК на странице "Задания и карта" блокнота (configs\ui\pda_tasks.xml).
+--' Цели заданий мода ставит на неё движок через task_functor.diary_target.
+--' Раньше карта до находки закрывалась бумажной меткой diary_cover - метка снимается со старых сейвов.
+--------------------------------------------------------------------------------
+local SPOT = "diary_cover"
+
+function level_enter()
+	local id = db.actor:id()
+	local h = level.map_has_object_spot(id, SPOT)
+	if h ~= nil and h ~= false and h ~= 0 then level.map_remove_object_spot(id, SPOT) end
+end

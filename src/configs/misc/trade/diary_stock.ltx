@@ -1,0 +1,227 @@
+; Дневник проводника: склад торговцев (diary_trade.script).
+; [traders]: story id торговца = condlist состояний (первое подходящее).
+; Секция состояния: предмет = мин, макс. Патроны - в патронах (неполные пачки), остальное - штуками.
+; Склад обновляется при смене состояния и раз в игровые сутки. Цены - в trade_*.ltx.
+; Т1 - стартовое оружие и броня, Т2 - средний уровень (без снайперок, пока не сказано иное).
+
+[traders]
+zat_b30_owl_stalker_trader_id = {+diary_syc_t3} syc_t3, {+diary_syc_t2} syc_t2, {+diary_syc_t1} syc_t1, syc_t0
+zat_a2_stalker_barmen = {+diary_supply_bor_fixed} bor_t1, bor_t0
+zat_b22_stalker_medic = {+diary_tre_t4} tre_t4, {+diary_tre_t3} tre_t3, {+diary_tre_t2} tre_t2, {+diary_tre_t1} tre_t1, tre_t0
+diary_trader_b5 = {+diary_bandit_t3} bandit_t3, {+diary_bandit_t2} bandit_t2, {+diary_bandit_t1} bandit_t1, bandit_t0
+diary_medic_b5 = tre_t0
+diary_trader_b103 = merc_trader
+diary_medic_b103 = merc_medic
+jup_a6_stalker_barmen = {+diary_gav_t2} gav_t2, {+diary_gav_stopped} gav_stop, gav_t0
+jup_a6_stalker_medik = kostoprav
+
+;------------------------------------------------------------------------------
+; Сыч: сначала только пистолеты и дробовики Т1 (ХПСС и Кора - Т2) (Чейзер-13 - Т2, с syc_t2) и патроны к ним (30-60, бронебойных в 2-3 раза меньше).
+; Брони, медикаментов, еды, детекторов и прицелов нет. Задания Сыча открывают ПП, автоматы, броню Т1.
+;------------------------------------------------------------------------------
+[syc_t0]
+wpn_pm					= 0, 1
+wpn_fort				= 0, 1
+wpn_pb					= 0, 1
+wpn_beretta				= 0, 1
+wpn_bm16				= 0, 1
+wpn_toz34				= 0, 1
+ammo_9x18_fmj			= 30, 60
+ammo_9x18_pmm			= 10, 25
+ammo_9x19_fmj			= 30, 60
+ammo_9x19_pbp			= 10, 25
+ammo_12x70_buck			= 30, 60
+ammo_12x76_zhekan		= 10, 25
+
+[syc_t1]:syc_t0
+wpn_mp5					= 0, 1
+
+[syc_t2]:syc_t1
+wpn_wincheaster1300		= 0, 1		; Чейзер-13 - дробовик Т2
+wpn_hpsa				= 0, 1		; ХПСС - пистолет Т2
+wpn_colt1911			= 0, 1		; Кора-919 - пистолет Т2
+ammo_11.43x23_fmj		= 30, 60
+ammo_11.43x23_hydro		= 10, 25
+wpn_ak74u				= 0, 1
+wpn_ak74				= 0, 1
+ammo_5.45x39_fmj		= 30, 60
+ammo_5.45x39_ap			= 10, 25
+
+[syc_t3]:syc_t2
+novice_outfit			= 0, 1
+stalker_outfit			= 0, 1
+helm_respirator			= 0, 1
+helm_hardhat			= 0, 1
+
+;------------------------------------------------------------------------------
+; Борода: еды меньше 3 и только три вида; после "Запасов для бара" - все виды, но лимит вдвое меньше
+; обычного (1-3 вместо 2-6): склад восстановлен только наполовину
+;------------------------------------------------------------------------------
+[bor_t0]
+bread					= 0, 2
+kolbasa					= 0, 2
+conserva				= 0, 2
+
+[bor_t1]
+bread					= 1, 3
+kolbasa					= 1, 3
+conserva				= 1, 3
+vodka					= 1, 3
+energy_drink			= 1, 3
+
+;------------------------------------------------------------------------------
+; Тремор: то же, что у него было, по 0-3; анабиотиков и таблеток нет совсем (кроме "Барвинка").
+; Задания: лимит до 5, потом остальные медикаменты по очереди.
+;------------------------------------------------------------------------------
+[tre_t0]
+bandage					= 0, 3
+medkit					= 0, 3
+antirad					= 0, 3
+drug_coagulant			= 0, 3
+
+[tre_t1]
+bandage					= 1, 5
+medkit					= 1, 5
+antirad					= 1, 5
+drug_coagulant			= 1, 5
+
+[tre_t2]:tre_t1
+medkit_army				= 0, 5
+
+[tre_t3]:tre_t2
+drug_booster			= 0, 5
+drug_radioprotector		= 0, 5
+drug_antidot			= 0, 5
+drug_psy_blockade		= 0, 5
+
+[tre_t4]:tre_t3
+medkit_scientic			= 0, 3
+drug_anabiotic			= 0, 3
+
+;------------------------------------------------------------------------------
+; Торговец бандитов: как Сыч, открывается по заданиям Султана. Броня и оружие Т1.
+;------------------------------------------------------------------------------
+[bandit_t0]:syc_t0
+
+[bandit_t1]:syc_t0
+wpn_mp5					= 0, 1
+
+[bandit_t2]:bandit_t1
+wpn_wincheaster1300		= 0, 1
+wpn_ak74u				= 0, 1
+wpn_ak74				= 0, 1
+ammo_5.45x39_fmj		= 30, 60
+ammo_5.45x39_ap			= 10, 25
+
+[bandit_t3]:bandit_t2
+novice_outfit			= 0, 1
+helm_respirator			= 0, 1
+
+;------------------------------------------------------------------------------
+; Наёмники: торговец - Т1 (автоматы и ПП) и Т2 калибра 5,56, броня наёмников Т2. Цены - merc_mult в diary_balance.ltx (trade_diary_merc.ltx).
+; Медик - как Костоправ, плюс 3 армейские, 1 научная аптечка и 1 анабиотик.
+;------------------------------------------------------------------------------
+[merc_trader]
+wpn_mp5					= 0, 1
+wpn_ak74u				= 0, 1
+wpn_ak74				= 0, 1
+wpn_l85					= 0, 1
+wpn_lr300				= 0, 1
+wpn_sig550				= 0, 1
+wpn_g36					= 0, 1
+ammo_9x19_fmj			= 30, 60
+ammo_5.45x39_fmj		= 60, 100
+ammo_5.45x39_ap			= 20, 40
+ammo_5.56x45_ss190		= 60, 100
+ammo_5.56x45_ap			= 20, 40
+helm_tactic				= 0, 1
+
+[kostoprav]
+bandage					= 2, 7
+medkit					= 2, 7
+antirad					= 2, 7
+drug_booster			= 1, 7
+drug_coagulant			= 1, 7
+drug_psy_blockade		= 1, 7
+drug_antidot			= 1, 7
+drug_radioprotector		= 1, 7
+
+[merc_medic]:kostoprav
+medkit_army				= 3, 3
+medkit_scientic			= 1, 1
+drug_anabiotic			= 1, 1
+
+;------------------------------------------------------------------------------
+; Гаваец: оружие Т1 и часть Т2 (без снайперок), броня Т1, патроны к ним (в том числе бронебойные).
+; Автоматные - до 100 (9x39 и 5,56 - до 70), пистолетные - как у Сыча.
+; Через 3 дня перестаёт продавать оружие, броню и патроны; после кражи и договора - всё обратно,
+; плюс Т2 оружие и броня, снайперские Т2; патроны до 120 (9x39 и 5,56 - до 100).
+;------------------------------------------------------------------------------
+[gav_food]
+bread					= 2, 6
+kolbasa					= 2, 6
+conserva				= 2, 6
+vodka					= 2, 6
+energy_drink			= 2, 6
+
+[gav_stop]:gav_food
+
+[gav_t0]:gav_food
+wpn_pm					= 0, 1
+wpn_fort				= 0, 1
+wpn_hpsa				= 0, 1
+wpn_beretta				= 0, 1
+wpn_colt1911			= 0, 1
+wpn_usp					= 0, 1
+wpn_sig220				= 0, 1
+wpn_bm16				= 0, 1
+wpn_toz34				= 0, 1
+wpn_wincheaster1300		= 0, 1
+wpn_spas12				= 0, 1
+wpn_mp5					= 0, 1
+wpn_ak74u				= 0, 1
+wpn_ak74				= 0, 1
+wpn_abakan				= 0, 1
+wpn_l85					= 0, 1
+wpn_lr300				= 0, 1
+wpn_val					= 0, 1
+ammo_9x18_fmj			= 30, 60
+ammo_9x18_pmm			= 10, 25
+ammo_9x19_fmj			= 30, 60
+ammo_9x19_pbp			= 10, 25
+ammo_11.43x23_fmj		= 30, 60
+ammo_11.43x23_hydro		= 10, 25
+ammo_12x70_buck			= 30, 60
+ammo_12x76_zhekan		= 10, 25
+ammo_5.45x39_fmj		= 50, 100
+ammo_5.45x39_ap			= 20, 50
+ammo_5.56x45_ss190		= 30, 70
+ammo_5.56x45_ap			= 15, 35
+ammo_9x39_pab9			= 30, 70
+ammo_9x39_ap			= 15, 35
+novice_outfit			= 0, 1
+stalker_outfit			= 0, 1
+helm_respirator			= 0, 1
+helm_hardhat			= 0, 1
+
+[gav_t2]:gav_t0
+wpn_sig550				= 0, 1
+wpn_g36					= 0, 1
+wpn_groza				= 0, 1
+wpn_protecta			= 0, 1
+wpn_desert_eagle		= 0, 1
+wpn_svd					= 0, 1
+wpn_svu					= 0, 1
+wpn_vintorez			= 0, 1
+ammo_5.45x39_fmj		= 60, 120
+ammo_5.45x39_ap			= 30, 60
+ammo_5.56x45_ss190		= 50, 100
+ammo_5.56x45_ap			= 25, 50
+ammo_9x39_pab9			= 50, 100
+ammo_9x39_ap			= 25, 50
+ammo_7.62x54_7h1		= 20, 60
+specops_outfit			= 0, 1
+svoboda_light_outfit	= 0, 1
+dolg_outfit				= 0, 1
+helm_protective			= 0, 1
+helm_tactic				= 0, 1

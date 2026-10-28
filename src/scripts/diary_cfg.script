@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: доступ к балансу (configs\misc\diary_balance.ltx).
+--' Значения читаются один раз и кешируются; скрипты не держат констант баланса у себя.
+--------------------------------------------------------------------------------
+local ini = nil
+local cache = {}
+
+local function get_ini()
+	if ini == nil then
+		ini = ini_file("misc\\diary_balance.ltx")
+	end
+	return ini
+end
+
+--' Число из секции; def - если строки нет или она пустая
+function num(section, line, def)
+	local key = section .. "." .. line
+	if cache[key] == nil then
+		local v = def
+		local f = get_ini()
+		if f:line_exist(section, line) then
+			local s = f:r_string(section, line)
+			if s ~= nil and s ~= "" then v = tonumber(s) or def end
+		end
+		cache[key] = v
+	end
+	return cache[key]
+end
+
+--' Строка из секции
+function str(section, line, def)
+	local key = section .. "." .. line
+	if cache[key] == nil then
+		local v = def
+		local f = get_ini()
+		if f:line_exist(section, line) then
+			local s = f:r_string(section, line)
+			if s ~= nil and s ~= "" then v = s end
+		end
+		cache[key] = v
+	end
+	return cache[key]
+end
+
+--' Список через запятую
+function list(section, line)
+	local out = {}
+	local s = str(section, line, "")
+	for w in string.gmatch(s, "[^,%s]+") do table.insert(out, w) end
+	return out
+end
+
+--' Точка "x, y, z" -> vector или nil
+function point(section, line)
+	local s = str(section, line, "")
+	local t = {}
+	for w in string.gmatch(s, "[^,%s]+") do table.insert(t, tonumber(w)) end
+	if #t < 3 or t[1] == nil or t[2] == nil or t[3] == nil then return nil end
+	--' необязательные 4-е и 5-е числа - level vertex и game vertex точки (их пишет маркер точек)
+	return vector():set(t[1], t[2], t[3]), t[4], t[5]
+end
+
+--' Сбросить кеш (новая игра / загрузка)
+function reset()
+	cache = {}
+	ini = nil
+end

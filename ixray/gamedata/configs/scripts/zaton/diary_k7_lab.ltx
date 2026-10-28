@@ -1,0 +1,199 @@
+; Дневник проводника: работы смарта лаборатории под Железным лесом ("Пункт 7").
+; Пути - точки зомби оригинала (к имени пути смарт сам добавляет zat_a23_smart_terrain_).
+; Рестриктор оригинала не выпускает их наружу; в бою с точек сходят.
+;
+; Монолит несёт караул: стоит настороже, потом переводит дух и снова встаёт в караул (каждый со своими сроками,
+; чтобы не двигались хором). Учёные - пленные: сидят под стенкой, встают, снова сидят; когда Монолит перебит
+; (dj_k7_clear), вздыхают с облегчением и встают спокойно (без позы пленного).
+
+[walker@k7_mono]
+out_restr = zat_a23_zombie_restrictor
+meet = no_meet
+gather_items_enabled = false
+help_wounded_enabled = false
+
+[walker@k7_sci]
+out_restr = zat_a23_zombie_restrictor
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+
+[meet@k7_sci]
+close_anim = nil
+close_victim = nil
+far_anim = nil
+far_victim = nil
+close_distance = 0
+far_distance = 0
+use = true
+trade_enable = false
+allow_break = true
+meet_on_talking = false
+
+[logic@diary_k7_mono_1]
+suitable = {=npc_community(monolith)} true
+prior = 200
+active = walker@diary_k7_mono_1
+
+[walker@diary_k7_mono_1]:walker@k7_mono
+path_walk = zat_a23_zombie_01_walk
+def_state_standing = guard
+on_timer = 21000 | walker@diary_k7_mono_1_rest
+
+[walker@diary_k7_mono_1_rest]:walker@k7_mono
+path_walk = zat_a23_zombie_01_walk
+def_state_standing = wait_na
+on_timer = 9000 | walker@diary_k7_mono_1
+
+[logic@diary_k7_mono_2]
+suitable = {=npc_community(monolith)} true
+prior = 200
+active = walker@diary_k7_mono_2
+
+[walker@diary_k7_mono_2]:walker@k7_mono
+path_walk = zat_a23_zombie_02_walk
+def_state_standing = guard
+on_timer = 27000 | walker@diary_k7_mono_2_rest
+
+[walker@diary_k7_mono_2_rest]:walker@k7_mono
+path_walk = zat_a23_zombie_02_walk
+def_state_standing = wait_na
+on_timer = 12000 | walker@diary_k7_mono_2
+
+[logic@diary_k7_mono_3]
+suitable = {=npc_community(monolith)} true
+prior = 200
+active = walker@diary_k7_mono_3
+
+[walker@diary_k7_mono_3]:walker@k7_mono
+path_walk = zat_a23_zombie_03_walk
+def_state_standing = guard
+on_timer = 24000 | walker@diary_k7_mono_3_rest
+
+[walker@diary_k7_mono_3_rest]:walker@k7_mono
+path_walk = zat_a23_zombie_03_walk
+def_state_standing = wait_na
+on_timer = 8000 | walker@diary_k7_mono_3
+
+[logic@diary_k7_mono_4]
+suitable = {=npc_community(monolith)} true
+prior = 200
+active = walker@diary_k7_mono_4
+
+[walker@diary_k7_mono_4]:walker@k7_mono
+path_walk = zat_a23_zombie_04_walk
+def_state_standing = guard
+on_timer = 30000 | walker@diary_k7_mono_4_rest
+
+[walker@diary_k7_mono_4_rest]:walker@k7_mono
+path_walk = zat_a23_zombie_04_walk
+def_state_standing = wait_na
+on_timer = 10000 | walker@diary_k7_mono_4
+
+[logic@diary_k7_mono_5]
+suitable = {=npc_community(monolith)} true
+prior = 200
+active = walker@diary_k7_mono_5
+
+[walker@diary_k7_mono_5]:walker@k7_mono
+path_walk = zat_a23_zombie_05_walk
+def_state_standing = guard
+on_timer = 19000 | walker@diary_k7_mono_5_rest
+
+[walker@diary_k7_mono_5_rest]:walker@k7_mono
+path_walk = zat_a23_zombie_05_walk
+def_state_standing = wait_na
+on_timer = 11000 | walker@diary_k7_mono_5
+
+[logic@diary_k7_mono_6]
+suitable = {=npc_community(monolith)} true
+prior = 200
+active = walker@diary_k7_mono_6
+
+[walker@diary_k7_mono_6]:walker@k7_mono
+path_walk = zat_a23_zombie_06_walk
+def_state_standing = guard
+on_timer = 26000 | walker@diary_k7_mono_6_rest
+
+[walker@diary_k7_mono_6_rest]:walker@k7_mono
+path_walk = zat_a23_zombie_06_walk
+def_state_standing = wait_na
+on_timer = 7000 | walker@diary_k7_mono_6
+
+; учёный 1 (с ним говорят)
+[logic@diary_k7_sci_1]
+suitable = {=check_npc_name(diary_k7_sci_lab)} true
+prior = 200
+active = walker@diary_k7_sci_1
+
+[walker@diary_k7_sci_1]:walker@k7_sci
+path_walk = zat_a23_giant_home
+def_state_standing = prisoner
+meet = meet@k7_sci
+on_info = {+dj_k7_clear} walker@diary_k7_sci_1_free
+on_timer = 22000 | walker@diary_k7_sci_1_sit
+
+[walker@diary_k7_sci_1_sit]:walker@k7_sci
+path_walk = zat_a23_giant_home
+def_state_standing = sit_ass
+meet = meet@k7_sci
+on_info = {+dj_k7_clear} walker@diary_k7_sci_1_free
+on_timer = 16000 | walker@diary_k7_sci_1
+
+[walker@diary_k7_sci_1_free]:walker@k7_sci
+path_walk = zat_a23_giant_home
+def_state_standing = wait_na
+meet = meet@k7_sci
+
+; учёный 2 (с ним говорят)
+[logic@diary_k7_sci_2]
+suitable = {=check_npc_name(diary_k7_sci_lab)} true
+prior = 200
+active = walker@diary_k7_sci_2
+
+[walker@diary_k7_sci_2]:walker@k7_sci
+path_walk = zat_a23_giant_walk
+def_state_standing = prisoner
+meet = meet@k7_sci
+on_info = {+dj_k7_clear} walker@diary_k7_sci_2_free
+on_timer = 28000 | walker@diary_k7_sci_2_sit
+
+[walker@diary_k7_sci_2_sit]:walker@k7_sci
+path_walk = zat_a23_giant_walk
+def_state_standing = sit_ass
+meet = meet@k7_sci
+on_info = {+dj_k7_clear} walker@diary_k7_sci_2_free
+on_timer = 13000 | walker@diary_k7_sci_2
+
+[walker@diary_k7_sci_2_free]:walker@k7_sci
+path_walk = zat_a23_giant_walk
+def_state_standing = wait_na
+meet = meet@k7_sci
+
+; учёный 3 (молчит)
+[logic@diary_k7_sci_3]
+suitable = {=npc_community(ecolog) !check_npc_name(diary_k7_sci_lab)} true
+prior = 200
+active = walker@diary_k7_sci_3
+
+[walker@diary_k7_sci_3]:walker@k7_sci
+path_walk = zat_a23_zombie_spawn
+def_state_standing = prisoner
+meet = no_meet
+on_info = {+dj_k7_clear} walker@diary_k7_sci_3_free
+on_timer = 25000 | walker@diary_k7_sci_3_sit
+
+[walker@diary_k7_sci_3_sit]:walker@k7_sci
+path_walk = zat_a23_zombie_spawn
+def_state_standing = sit_ass
+meet = no_meet
+on_info = {+dj_k7_clear} walker@diary_k7_sci_3_free
+on_timer = 15000 | walker@diary_k7_sci_3
+
+[walker@diary_k7_sci_3_free]:walker@k7_sci
+path_walk = zat_a23_zombie_spawn
+def_state_standing = wait_na
+meet = no_meet

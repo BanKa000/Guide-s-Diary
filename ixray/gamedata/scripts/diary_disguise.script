@@ -1,0 +1,99 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: маскировка в заданиях.
+--' Костюм меняет группировку героя, но только если в момент переодевания его никто не видел
+--' из охраняющих отрядов. Если видели - группировка остаётся прежней (тот, кого заметили,
+--' остаётся для них прежним). Работает только пока задание вызывает tick; по окончании - restore.
+--' Соответствие костюм -> группировка: [disguise] в configs\misc\diary_balance.ltx.
+--------------------------------------------------------------------------------
+local VAR_ORIG, VAR_ON, VAR_LAST = "dis_orig", "dis_on", "dis_last"
+
+local function cur_outfit()
+	local ok, o = pcall(function() return db.actor:get_current_outfit() end)
+	if ok and o ~= nil then return o:section() end
+	return ""
+end
+
+--' группировка для костюма из [disguise] или nil
+local function costume_community(sec)
+	if sec == "" then return nil end
+	local c = diary_cfg.str("disguise", sec, nil)
+	if c == nil or c == "" then return nil end
+	return c
+end
+
+--' кто-то из охранников (squads - список id отрядов) видит героя ближе radius
+local function seen_by(squads, radius)
+	local a = db.actor
+	local seen = false
+	for _, sq_id in ipairs(squads) do
+		local sq = sq_id and alife():object(sq_id)
+		if sq ~= nil then
+			pcall(function()
+				for m in sq:squad_members() do
+					local o = level.object_by_id(m.id)
+					if o ~= nil and o:alive() and o:position():distance_to(a:position()) < radius and o:see(a) then
+						seen = true
+					end
+				end
+			end)
+		end
+	end
+	return seen
+end
+
+local function set_comm(c)
+	pcall(function() db.actor:set_character_community(c, 0, 0) end)
+end
+
+--' вызывать часто (раз в тик задания). squads - отряды охраны.
+function tick(squads)
+	local sec = cur_outfit()
+	local last = diary_lib.load_var(VAR_LAST, nil)
+	if last == nil then
+		--' первый вызов: запоминаем, во что одет, ничего не меняем
+		diary_lib.save_var(VAR_LAST, sec)
+		return
+	end
+	if last == sec then return end
+	diary_lib.save_var(VAR_LAST, sec)
+	--' переоделся: смотрим, видел ли кто
+	if seen_by(squads, diary_cfg.num("disguise", "see_radius", 80)) then return end
+	local target = costume_community(sec)
+	if target ~= nil then
+		if diary_lib.load_var(VAR_ORIG, nil) == nil then
+			local ok, c = pcall(function() return db.actor:character_community() end)
+			diary_lib.save_var(VAR_ORIG, (ok and c) or "actor")
+		end
+		set_comm(target)
+		diary_lib.save_var(VAR_ON, target)
+	else
+		restore()
+	end
+end
+
+--' под маскировкой? (возвращает группировку или nil)
+function disguised()
+	return diary_lib.load_var(VAR_ON, nil)
+end
+
+--' вернуть исходную группировку героя
+function restore()
+	local orig = diary_lib.load_var(VAR_ORIG, nil)
+	if orig ~= nil then set_comm(orig) end
+	diary_lib.save_var(VAR_ORIG, nil)
+	diary_lib.save_var(VAR_ON, nil)
+end
+
+--' конец задания: вернуть группировку и забыть костюм
+function finish()
+	restore()
+	diary_lib.save_var(VAR_LAST, nil)
+end
+
+--' страховка (вызывает мир раз в несколько секунд): задание не идёт, а группировка изменена - вернуть
+function safety()
+	if diary_lib.load_var(VAR_ORIG, nil) == nil then return end
+	local active = (diary_jobs.state("n3", "given") and not diary_jobs.state("n3", "done"))
+		or (diary_jobs.state("s3", "given") and not diary_jobs.state("s3", "done"))
+	if not active then finish() end
+end

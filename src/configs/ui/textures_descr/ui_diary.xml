@@ -1,0 +1,14 @@
+<w>
+	<file name="ui\ui_diary_paper">
+		<texture id="ui_diary_paper" x="0" y="0" width="512" height="640"/>
+	</file>
+	<file name="ui\ui_diary_cave">
+		<texture id="ui_diary_cave" x="0" y="0" width="512" height="640"/>
+	</file>
+	<file name="ui\ui_diary_notebook">
+		<texture id="ui_diary_notebook" x="0" y="0" width="1024" height="512"/>
+	</file>
+	<file name="ui\ui_diary_debts">
+		<texture id="ui_diary_debts" x="0" y="0" width="512" height="640"/>
+	</file>
+</w>

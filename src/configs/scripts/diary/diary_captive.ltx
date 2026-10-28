@@ -1,0 +1,25 @@
+; Diary: plennyj v zadanii Krima "Punkt 2" (diary_jobs, k2)
+[logic]
+active = remark@prisoner
+
+[remark@prisoner]
+anim = prisoner
+meet = meet@captive
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+
+[meet@captive]
+close_anim = nil
+close_victim = nil
+far_anim = nil
+far_victim = nil
+close_distance = 0
+far_distance = 0
+use = true
+trade_enable = false
+allow_break = true
+meet_on_talking = false

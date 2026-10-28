@@ -1,0 +1,446 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: КПК Лазаря - блокнот (pda_nb.xml), 5 страниц:
+--' задания, люди, аномалии, карта, записи.
+--' Штатный КПК невидим (configs\ui\pda.xml - всё за краем экрана): при открытии он выдаёт актёру
+--' info "ui_pda", update() в тот же кадр закрывает его и открывает блокнот. Клавиша КПК в блокноте
+--' закрывает блокнот. Запасной путь: F3 в меню паузы (diary_main.on_menu_key -> request()).
+--' Карта своя: текстура карты уровня (как у КПК) и метки - Лазарь, цели заданий, торговцы и техники.
+--------------------------------------------------------------------------------
+local PEOPLE = {"bor", "card", "sych", "med", "sult", "krim", "guide"}
+--' аномалии: только описание, без картинок
+local ANOMS = {"claw", "iron", "circus", "kettle", "sosnodub", "rubets"}
+local N_TASK, N_ANOM, N_MARKS = 28, 18, 20
+--' страницы: 1 задания, 2 люди, 3 аномалии, 4 карта, 5 записи
+local MAP_PAGE, N_PAGES = 4, 5
+--' карты: показываются по мере находок. full = карта уровня (info), part = набросок из записки
+--' bound - границы карты уровня в мире (levels\<уровень>\level.ltx, [level_map] bound_rect)
+local MAPS = {
+	{level = "zaton",   full = "diary_q2_done", part = "diary_notebook_given", bound = {-600, -615, 600, 585}},
+	{level = "jupiter", full = "diary_map_jup_full", bound = {-600, -600, 600, 600}},
+	{level = "pripyat", full = "diary_map_pri_full", bound = {-550, -550, 550, 550}},
+}
+--' место карты на листе (как у рисунков nb_m_draw_* в pda_nb.xml)
+local MAP_X, MAP_Y, MAP_S = 459, 175, 440
+local MARK_W, ACTOR_W = 14, 20
+
+local function tr(s) return game.translate_string(s) end
+
+local function map_state(i)
+	local a = db.actor
+	local m = MAPS[i]
+	if m.full ~= nil and a:has_info(m.full) then return 2 end
+	if m.part ~= nil and a:has_info(m.part) then return 1 end
+	return 0
+end
+
+--' текущие задания: {key, name, text}; использует и компас (diary_compass)
+local function collect_tasks()
+	local out = {}
+	local a = db.actor
+	local function add(key, name, text)
+		if #out < N_TASK then table.insert(out, {key = key, name = name, text = text}) end
+	end
+	--' выброс (штатное задание hide_from_surge) - первым
+	local sm = surge_manager.get_surge_manager()
+	if sm.started and sm.task_given then
+		add("hide_from_surge", tr(task_functor.surge_task_title()), surge_manager.get_task_descr())
+	end
+	--' сюжет; выполненное пропадает из списка
+	for _, id in ipairs(diary_story.TASK_ORDER) do
+		local taken = diary_story.TASK_GIVEN[id] ~= nil and a:has_info(diary_story.TASK_GIVEN[id])
+		local done = diary_story.TASK_DONE[id] ~= nil and a:has_info(diary_story.TASK_DONE[id])
+		if taken and not done then add(id, diary_story.task_name(id), diary_story.task_text(id)) end
+	end
+	--' задания линий; когда цель выполнена - приписка "вернуться"
+	for _, key in ipairs(diary_jobs.active_list()) do
+		local text = tr(key .. "_text")
+		if a:has_info(key .. "_obj") then text = text .. "\n\n" .. tr("dj_upd_return") end
+		add(key, tr(key .. "_name"), text)
+	end
+	return out
+end
+
+function task_list()
+	return collect_tasks()
+end
+
+local function collect_notes(list)
+	local out = {}
+	local a = db.actor
+	for _, key in ipairs(list) do
+		if a:has_info("diary_pda_" .. key) then
+			local name = string.gsub(tr("diary_pda_" .. key .. "_t"), "^[^:]+:%s*", "")
+			table.insert(out, {name = name, text = tr("diary_pda_" .. key .. "_x")})
+		end
+	end
+	return out
+end
+
+--' ---- Открытие записей ------------------------------------------------------------------------------------
+--' Люди: запись открывается, когда Лазарь оказывается рядом с человеком. Аномалии: когда он входит в район
+--' из [pda_places] (x, z, радиус) в diary_balance.ltx.
+local PEOPLE_SRC = {
+	bor = "zat_a2_stalker_barmen", card = "zat_a2_stalker_mechanic", sych = "zat_b30_owl_stalker_trader",
+	med = "zat_b22_stalker_medic", sult = "zat_b7_bandit_boss_sultan", krim = "diary_krim",
+	guide = "zat_b215_stalker_guide_zaton_squad",
+}
+
+local function open_note(key)
+	local a = db.actor
+	if a:has_info("diary_pda_" .. key) then return end
+	a:give_info_portion("diary_pda_" .. key)
+	pcall(diary_news.thought, "diary_pda_new")
+end
+
+function unlock_tick()
+	local a = db.actor
+	if a == nil then return end
+	local ap = a:position()
+	for key, sid in pairs(PEOPLE_SRC) do
+		if not a:has_info("diary_pda_" .. key) then
+			local id = get_story_object_id(sid)
+			local se = id and alife():object(id)
+			if se ~= nil and ap:distance_to(se.position) < 25 then open_note(key) end
+		end
+	end
+	for _, key in ipairs(ANOMS) do
+		if not a:has_info("diary_pda_" .. key) then
+			local s = diary_cfg.str("pda_places", key, "")
+			local x, z, r = string.match(s, "^%s*(-?[%d%.]+)%s*,%s*(-?[%d%.]+)%s*,%s*([%d%.]+)")
+			if x ~= nil then
+				local dx, dz = ap.x - tonumber(x), ap.z - tonumber(z)
+				if dx * dx + dz * dz < tonumber(r) * tonumber(r) then open_note(key) end
+			end
+		end
+	end
+end
+
+--' записи Лазаря (diary_news.record) - в том порядке, в каком игрок до них дошёл
+local function collect_records()
+	local out = {}
+	for _, key in ipairs(diary_news.records()) do
+		table.insert(out, {name = tr("diary_rec_" .. key .. "_t"), text = tr("diary_rec_" .. key .. "_x")})
+	end
+	return out
+end
+
+local function settext(c, s)
+	pcall(function() c:TextControl():SetText(s) end)
+end
+
+class "pda_nb" (CUIScriptWnd)
+
+function pda_nb:__init() super()
+	self:SetWndRect(Frect():set(0,0,1024,768))
+	self:Enable(true)
+	local xml = CScriptXmlInit()
+	xml:ParseFile("pda_nb.xml")
+	self.all = {}
+	local function st(name, complex)
+		local s = xml:InitStatic(name, self)
+		if complex then pcall(function() s:SetTextComplexMode(true) end) end
+		table.insert(self.all, s)
+		return s
+	end
+	local function mkbtn(name, fn)
+		local b = xml:Init3tButton(name, self)
+		self:Register(b, name)
+		self:AddCallback(name, ui_events.BUTTON_CLICKED, fn, self)
+		table.insert(self.all, b)
+		return b
+	end
+	self.base = st("nb_base")
+	self.h = {st("nb_h_tasks"), st("nb_h_people"), st("nb_h_anom"), st("nb_h_map"), st("nb_h_notes")}
+	--' данные; у карты (стр. 4) списка нет
+	self.data = {collect_tasks(), collect_notes(PEOPLE), collect_notes(ANOMS), {}, collect_records()}
+	--' подчёркивания
+	self.ul, self.aul, self.tul = {}, {}, {}
+	for i = 1, N_TASK do self.ul[i] = st("nb_ul_" .. i) end
+	for i = 1, N_ANOM do self.aul[i] = st("nb_aul_" .. i) end
+	for i = 1, N_PAGES do self.tul[i] = st("nb_tul_" .. i) end
+	--' карта: лист, кнопки карт, набросок, карта уровня и метки
+	self.msheet, self.mbtn = st("nb_m_sheet"), st("nb_m_btn")
+	self.msel, self.mtitle = {}, {}
+	for i = 1, 3 do
+		self.mtitle[i] = st("nb_m_title_" .. i)
+		self.msel[i] = st("nb_m_sel_" .. i)
+	end
+	self.mbt = st("nb_m_btntxt")
+	self.mdrawp = st("nb_m_draw_1p")
+	self.mreal = st("nb_map_real")
+	self.mk = {}
+	for i = 1, N_MARKS do self.mk[i] = st("nb_mk_" .. i) end
+	self.mk_actor = st("nb_mk_actor")
+	self.ring = st("nb_ring")
+	pcall(function() self.ring:InitTexture("ui\\ui_diary_pencil") end)
+	--' тексты: заголовок и тело страниц со списком (у карты нет)
+	self.title = {st("nb_t_title"), st("nb_p_title"), st("nb_a_title"), nil, st("nb_n_title")}
+	self.body = {st("nb_t_body", true), st("nb_p_body", true), st("nb_a_body", true), nil, st("nb_n_body", true)}
+	--' кнопки списков: nb_it_* общие для "Заданий", "Людей" и "Записей"
+	self.it, self.ai_b, self.mb, self.tab = {}, {}, {}, {}
+	for i = 1, N_TASK do self.it[i] = mkbtn("nb_it_" .. i, function() self:click_task(i) end) end
+	for i = 1, N_ANOM do self.ai_b[i] = mkbtn("nb_ai_" .. i, function() self:pick(i) end) end
+	for i = 1, 3 do self.mb[i] = mkbtn("nb_mb_" .. i, function() self:pick(i) end) end
+	for i = 1, N_PAGES do self.tab[i] = mkbtn("nb_tab_" .. i, function() self:go(i) end) end
+	self.sel = {1, 1, 1, 1, 1}
+	--' карта текущего уровня - выбрана сразу
+	for i, m in ipairs(MAPS) do
+		if m.level == level.name() then self.sel[MAP_PAGE] = i end
+	end
+	self:mark_active()
+	self.page = 1
+	self:show_page()
+end
+
+--' активное задание (его показывает компас) отмечено точкой; без выбора активно первое
+local ACTIVE_MARK = "• "
+function pda_nb:mark_active()
+	local tasks = self.data[1]
+	local key = diary_compass.active_key()
+	local idx = 1
+	for i, t in ipairs(tasks) do
+		t.name = string.gsub(t.name, "^" .. ACTIVE_MARK, "")
+		if t.key == key then idx = i end
+	end
+	if tasks[idx] ~= nil then
+		tasks[idx].name = ACTIVE_MARK .. tasks[idx].name
+		self.sel[1] = idx
+	end
+end
+
+--' "Задания": клик делает задание активным; на остальных страницах - просто выбор
+function pda_nb:click_task(i)
+	if self.page == 1 and self.data[1][i] ~= nil then
+		diary_compass.set_active(self.data[1][i].key)
+		self:mark_active()
+		self:show_page()
+		return
+	end
+	self:pick(i)
+end
+
+--' кнопки и подчёркивания списка страницы
+function pda_nb:list_of(p)
+	if p == 3 then return self.ai_b, self.aul, N_ANOM end
+	return self.it, self.ul, N_TASK
+end
+
+function pda_nb:show_page()
+	for _, c in ipairs(self.all) do c:Show(false) end
+	local p = self.page
+	self.base:Show(true)
+	self.h[p]:Show(true)
+	self.tul[p]:Show(true)
+	for i = 1, N_PAGES do self.tab[i]:Show(true) end
+	if p ~= MAP_PAGE then
+		local btns = self:list_of(p)
+		for i, it in ipairs(self.data[p]) do
+			btns[i]:Show(true)
+			settext(btns[i], it.name)
+		end
+		self:pick(math.min(self.sel[p], math.max(1, #self.data[p])))
+	else
+		self.mbtn:Show(true) self.mbt:Show(true) self.msheet:Show(true)
+		local first = nil
+		for i = 1, 3 do
+			local have = map_state(i) > 0
+			self.mb[i]:Show(have)
+			if have and first == nil then first = i end
+		end
+		if map_state(self.sel[MAP_PAGE]) == 0 and first ~= nil then self.sel[MAP_PAGE] = first end
+		self:pick(self.sel[MAP_PAGE])
+	end
+end
+
+function pda_nb:pick(i)
+	local p = self.page
+	self.sel[p] = i
+	if p ~= MAP_PAGE then
+		local _, uls, n = self:list_of(p)
+		for k = 1, n do uls[k]:Show(false) end
+		local it = self.data[p][i]
+		if it ~= nil then
+			uls[i]:Show(true)
+			self.title[p]:Show(true) self.body[p]:Show(true)
+			settext(self.title[p], it.name) settext(self.body[p], it.text)
+		elseif #self.data[p] == 0 then
+			self.body[p]:Show(true)
+			settext(self.body[p], tr("diary_nb_blank"))
+		end
+	else
+		self:show_map(i)
+	end
+end
+
+--' ---- Карта --------------------------------------------------------------------------------
+--' мировые x, z -> точка на листе (левый верхний угол значка шириной w)
+local function map_xy(m, pos, w)
+	local b = m.bound
+	local u = (pos.x - b[1]) / (b[3] - b[1])
+	local v = (b[4] - pos.z) / (b[4] - b[2])
+	if u < 0 or u > 1 or v < 0 or v > 1 then return nil end
+	return MAP_X + u * MAP_S - w / 2, MAP_Y + v * MAP_S - w / 2
+end
+
+function pda_nb:place_mark(w, m, pos, size, tex)
+	local x, y = map_xy(m, pos, size)
+	if x == nil then return false end
+	if tex ~= nil then pcall(function() w:InitTexture(tex) end) end
+	w:SetWndPos(vector2():set(x, y))
+	w:Show(true)
+	return true
+end
+
+function pda_nb:show_map(i)
+	local state = map_state(i)
+	local m = MAPS[i]
+	for k = 1, 3 do
+		local vis = (k == i) and state > 0
+		self.msel[k]:Show(vis)
+		self.mtitle[k]:Show(vis)
+	end
+	self.mdrawp:Show(state == 1)
+	self.mreal:Show(false)
+	for k = 1, N_MARKS do self.mk[k]:Show(false) end
+	self.mk_actor:Show(false)
+	self.ring:Show(false)
+	if state < 2 then return end
+	pcall(function() self.mreal:InitTexture("map\\map_" .. m.level) end)
+	self.mreal:Show(true)
+	--' метки - только на карте того уровня, где сейчас Лазарь
+	if m.level ~= level.name() then return end
+	--' значков нет. У выбранного задания район обведён карандашом
+	local key = diary_compass.active_key()
+	local pos, r = nil, nil
+	if key ~= nil then pos, r = diary_compass.task_area(key) end
+	if pos ~= nil then
+		local w = math.max(40, math.min(120, 2 * r * MAP_S / (m.bound[3] - m.bound[1])))
+		local x, y = map_xy(m, pos, w)
+		if x ~= nil then
+			pcall(function() self.ring:SetWndSize(vector2():set(w, w)) end)
+			self.ring:SetWndPos(vector2():set(x, y))
+			self.ring:Show(true)
+		end
+	end
+end
+
+function pda_nb:go(p)
+	if p < 1 then p = N_PAGES elseif p > N_PAGES then p = 1 end
+	self.page = p
+	self:show_page()
+end
+
+--' клавиша КПК закрывает блокнот. Определяем её тремя способами: по действию движка,
+--' по сохранённым настройкам (user.ltx: "bind active_jobs kP") и - если и это не вышло - клавишей P.
+local file_dik = nil
+local file_dik_read = false
+local function read_file_dik()
+	if file_dik_read then return file_dik end
+	file_dik_read = true
+	for _, path in ipairs({"_appdata_\\user.ltx", "user.ltx"}) do
+		pcall(function()
+			local f = io.open(path, "r")
+			if f ~= nil then
+				for line in f:lines() do
+					local k = string.match(line, "^bind%s+active_jobs%s+k(%S+)")
+					if k ~= nil then
+						local d = DIK_keys["DIK_" .. string.upper(k)]
+						if d ~= nil then file_dik = d end
+					end
+				end
+				f:close()
+			end
+		end)
+		if file_dik ~= nil then break end
+	end
+	return file_dik
+end
+
+local key_logged = 0
+local function log_key(dik, by_bind, by_file)
+	if key_logged >= 8 then return end
+	key_logged = key_logged + 1
+	pcall(function()
+		local f = io.open("diary_errors.log", "a")
+		if f ~= nil then
+			local b = nil
+			pcall(function() b = dik_to_bind(dik) end)
+			f:write(string.format("[pda.key] dik=%s bind=%s kACTIVE_JOBS=%s by_bind=%s by_file=%s file_dik=%s\n",
+				tostring(dik), tostring(b), tostring(key_bindings and key_bindings.kACTIVE_JOBS),
+				tostring(by_bind), tostring(by_file), tostring(file_dik)))
+			f:close()
+		end
+	end)
+end
+
+local function is_pda_key(dik)
+	local by_bind = false
+	pcall(function() by_bind = (dik_to_bind(dik) == key_bindings.kACTIVE_JOBS) end)
+	local fd = read_file_dik()
+	local by_file = (fd ~= nil and dik == fd)
+	log_key(dik, by_bind, by_file)
+	if by_bind or by_file then return true end
+	return fd == nil and dik == DIK_keys.DIK_P
+end
+
+local closed_at = 0      --' когда блокнот закрыли клавишей (см. update)
+
+--' Клавиша обрабатывается до базового окна и поглощается (return true): иначе та же клавиша КПК
+--' доходила до игры, открывала штатный КПК, и update() тут же открывал блокнот снова.
+function pda_nb:OnKeyboard(dik, keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_ESCAPE or is_pda_key(dik) then
+			closed_at = time_global()
+			self:HideDialog()
+			return true
+		elseif dik == DIK_keys.DIK_LEFT then
+			self:go(self.page - 1)
+			return true
+		elseif dik == DIK_keys.DIK_RIGHT then
+			self:go(self.page + 1)
+			return true
+		end
+	end
+	local ok, res = pcall(CUIScriptWnd.OnKeyboard, self, dik, keyboard_action)
+	return ok and res or false
+end
+
+local ui_cur = nil
+local open_at = nil
+
+local function nb_shown()
+	return ui_cur ~= nil and ui_cur:IsShown()
+end
+
+local function open_nb()
+	if nb_shown() then return end
+	ui_cur = pda_nb()
+	ui_cur:ShowDialog(true)
+end
+
+--' F3 в меню паузы: открыть после возврата в игру
+function request()
+	open_at = time_global() + 300
+end
+
+function level_leave()
+	ui_cur = nil
+	open_at = nil
+end
+
+function update()
+	local a = db.actor
+	if a:has_info("ui_pda") then
+		--' штатный КПК невидим: закрываем его и в этот же кадр открываем блокнот
+		a:disable_info_portion("ui_pda")
+		pcall(function() get_hud():HidePdaMenu() end)
+		--' сразу после закрытия клавишей КПК не открываем блокнот снова
+		if nb_shown() then ui_cur:HideDialog()
+		elseif time_global() - closed_at > 500 then open_nb() end
+		open_at = nil
+	end
+	if open_at ~= nil and time_global() >= open_at then
+		open_at = nil
+		open_nb()
+	end
+end

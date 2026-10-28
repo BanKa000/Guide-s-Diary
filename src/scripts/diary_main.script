@@ -1,0 +1,208 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: главный модуль.
+--' Вызывается из bind_stalker.script (actor_binder): net_spawn, net_destroy, update,
+--' on_item_take, on_item_drop, use_inventory_item; из xr_statistic - убийства актёром.
+--'
+--' Каждый модуль из MODULES может объявить:
+--'   levels            - таблица уровней, на которых модуль работает (nil - везде)
+--'   period            - как часто вызывать update, мс (nil - каждый кадр)
+--'   level_enter(lvl)  - вход на уровень (загрузка, переход)
+--'   level_leave()     - уход с уровня: модуль обязан освободить всё тяжёлое
+--'   update(delta)     - работа модуля
+--'   on_item_take(obj), on_item_drop(obj), on_item_use(obj), on_actor_kill(victim)
+--'
+--' Любой вызов идёт через safe(): ошибка пишется в лог один раз и игру не роняет.
+--------------------------------------------------------------------------------
+
+--' Порядок важен: сюжет раньше интерфейса, интерфейс последним (видит свежие данные).
+local MODULES = {
+	{name = "diary_cleanup", levels = {zaton = true, jupiter = true}, period = 200},
+	{name = "diary_story",   levels = {zaton = true, jupiter = true}, period = 250},
+	{name = "diary_sawmill", levels = {zaton = true}, period = 250},
+	{name = "diary_debts",   levels = {zaton = true}, period = 500},
+	{name = "diary_jobs",    levels = {zaton = true, jupiter = true}, period = 1000},
+	{name = "diary_trade",   period = 2000},
+	{name = "diary_world",   period = 200},
+	{name = "diary_arms",    period = 3000},
+	{name = "diary_toughness", period = 100},
+	{name = "diary_zone",    period = 2000},
+	{name = "diary_reader",  period = 300},
+	{name = "diary_map"},
+	{name = "diary_pda"},
+	{name = "diary_compass"},
+}
+
+local DEV_SCRIPT = "diary_dev.script"
+
+local active = {}       --' модули, загруженные на текущем уровне
+local next_t = {}
+local errors = {}
+local cur_level = nil
+local dev = nil         --' модуль разработчика (только в сборке разработчика)
+
+--' Ошибки пишутся в diary_errors.log в папке игры (printf в ЗП отключён, в xray-лог они не попадают),
+--' в сборке разработчика - ещё и на экран.
+local ERROR_LOG = "diary_errors.log"
+
+local function report(tag, msg)
+	pcall(function()
+		local f = io.open(ERROR_LOG, "a")
+		if f ~= nil then
+			local stamp = ""
+			pcall(function() stamp = os.date("%Y-%m-%d %H:%M:%S") end)
+			f:write(string.format("[%s] [%s] %s\n", stamp, tostring(tag), tostring(msg)))
+			f:close()
+		end
+	end)
+	--' экранных оповещений об ошибках нет: всё пишется только в diary_errors.log
+end
+
+local function trace(e)
+	if debug ~= nil and debug.traceback ~= nil then return debug.traceback(tostring(e), 2) end
+	return tostring(e)
+end
+
+--' Безопасный вызов: ошибка не роняет игру
+function safe(tag, fn, ...)
+	if fn == nil then return nil end
+	local args = {...}
+	local n = select("#", ...)
+	local ok, r = xpcall(function() return fn(unpack(args, 1, n)) end, trace)
+	if not ok then
+		if not errors[tag] then
+			errors[tag] = true
+			report(tag, r)
+		end
+		return nil
+	end
+	return r
+end
+
+local function module_of(m)
+	local ok, t = pcall(function() return _G[m.name] end)
+	if ok then return t end
+	return nil
+end
+
+local function call(m, fn_name, ...)
+	local t = module_of(m)
+	if t == nil then
+		--' скрипт не загрузился (обычно синтаксическая ошибка) - модуль молча пропал бы
+		if not errors[m.name] then
+			errors[m.name] = true
+			report(m.name, "script not loaded (syntax error?)")
+		end
+		return nil
+	end
+	if t[fn_name] == nil then return nil end
+	return safe(m.name .. "." .. fn_name, t[fn_name], ...)
+end
+
+--' ---- Режим разработчика ------------------------------------------------------
+--' diary_dev.script лежит только в сборке разработчика (_src\dev). В релизе его нет,
+--' поэтому отладочные команды (телепорты, перескок этапов) недоступны игроку.
+local function detect_dev()
+	local ok, ex = pcall(function() return getFS():exist("$game_scripts$", DEV_SCRIPT) end)
+	if ok and ex then
+		dev = _G["diary_dev"]
+	else
+		dev = false
+	end
+end
+
+function is_dev()
+	if dev == nil then detect_dev() end
+	return dev ~= false and dev ~= nil
+end
+
+--' Клавиши в меню паузы (ui_main_menu): F3 - блокнот Лазаря, F4 - блокнот Компаса, остальное - разработчику
+function on_menu_key(dik)
+	if dik == DIK_keys.DIK_F3 then
+		safe("pda.request", diary_pda.request)
+		return true
+	elseif dik == DIK_keys.DIK_F4 then
+		safe("reader.request", diary_reader.request_menu)
+		return true
+	end
+	if is_dev() then
+		return safe("dev.on_menu_key", dev.on_menu_key, dik) == true
+	end
+	return false
+end
+
+--' ---- Уровни: загрузка и выгрузка модулей ------------------------------------------
+local function enter_level(lvl)
+	cur_level = lvl
+	active = {}
+	next_t = {}
+	for i, m in ipairs(MODULES) do
+		if m.levels == nil or m.levels[lvl] then
+			table.insert(active, m)
+			call(m, "level_enter", lvl)
+		end
+	end
+	if is_dev() then safe("dev.level_enter", dev.level_enter, lvl) end
+end
+
+local function leave_level()
+	for _, m in ipairs(active) do call(m, "level_leave") end
+	if is_dev() then safe("dev.level_leave", dev.level_leave) end
+	active = {}
+	next_t = {}
+	cur_level = nil
+end
+
+--' ---- Вызовы из actor_binder --------------------------------------------------------
+function on_actor_spawn()
+	diary_cfg.reset()
+	safe("inject", inject)
+	--' сам вход на уровень - в первом update, когда level.name() уже известен
+	cur_level = nil
+end
+
+function on_actor_destroy()
+	leave_level()
+end
+
+function update(delta)
+	local a = db.actor
+	if a == nil then return end
+	local lvl = level.name()
+	if cur_level ~= lvl then
+		if cur_level ~= nil then leave_level() end
+		enter_level(lvl)
+	end
+	local t = time_global()
+	for i, m in ipairs(active) do
+		if m.period == nil or t >= (next_t[i] or 0) then
+			if m.period ~= nil then next_t[i] = t + m.period end
+			call(m, "update", delta)
+		end
+	end
+	if is_dev() then safe("dev.update", dev.update, delta) end
+end
+
+local function broadcast(fn_name, ...)
+	for _, m in ipairs(active) do call(m, fn_name, ...) end
+	if is_dev() and dev[fn_name] then safe("dev." .. fn_name, dev[fn_name], ...) end
+end
+
+function on_item_take(obj) broadcast("on_item_take", obj) end
+function on_item_drop(obj) broadcast("on_item_drop", obj) end
+function on_item_use(obj)  broadcast("on_item_use", obj) end
+function on_actor_kill(victim) broadcast("on_actor_kill", victim) end
+
+--' ---- Функции для логики (condlist): %=diary_*% и {=diary_*} ---------------------------
+--' xr_effects и xr_conditions не копируются в мод: нужные функции добавляются в них при загрузке.
+function inject()
+	xr_effects.diary_give_money = function(actor, npc, p)
+		--' деньги без оповещения "получено"
+		db.actor:give_money(tonumber(p[1]) or 0)
+	end
+	xr_conditions.diary_timer = function(actor, npc, p)
+		return diary_lib.timer_done(p[1])
+	end
+	xr_conditions.diary_job_done = function(actor, npc, p)
+		return db.actor:has_info("dj_" .. p[1] .. "_done")
+	end
+end

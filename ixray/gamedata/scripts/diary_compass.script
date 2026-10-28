@@ -1,0 +1,354 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: компас вверху по центру экрана.
+--' Стороны света, важные NPC, цель активного задания, трупы и враги.
+--' Элементы - custom static diary_cmp_* (ui_custom_msgs.xml). Активное задание выбирается в блокноте.
+--' Компас прячется, когда открыто любое окно (КПК, торговля, диалог), и выгружается при уходе с уровня.
+--------------------------------------------------------------------------------
+local CX, HALF = 512, 78             --' центр и полуширина шкалы (px), шкала = +-FOV
+local FOV = math.pi / 2              --' видимый сектор в каждую сторону (90 градусов)
+local NPC_RANGE = 500                --' дальше этого NPC не показываются, м
+local CORPSE_RANGE, ENEMY_RANGE = 120, 200
+local LETTER_Y, ICON_Y, DOT_Y = 6, 24, 28
+local LETTER_W, ICON_W, DOT_W = 30, 14, 6
+local LETTERS = {"С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"}   --' через 45 градусов от севера (+z)
+local N_ICONS, N_DOTS = 16, 12
+
+local ICON = {
+	vip       = "ui_inGame2_PDA_icon_Stalker_VIP",
+	trader    = "ui_inGame2_PDA_icon_Stalker_Trader",
+	mech      = "ui_inGame2_PDA_icon_Stalker_machanik",
+	medic     = "ui_inGame2_PDA_icon_Stalker_Medic",
+	guide     = "ui_inGame2_PDA_icon_Stalker_guide",
+	story     = "ui_inGame2_PDA_icon_Primary_mission",
+	secondary = "ui_inGame2_PDA_icon_Secondary_mission",
+}
+--' story id -> иконка
+local NPC = {
+	{sid = "zat_a2_stalker_barmen",          icon = "trader"},
+	{sid = "zat_a2_stalker_mechanic",        icon = "mech"},
+	{sid = "zat_b30_owl_stalker_trader_id",  icon = "trader"},
+	{sid = "zat_b22_stalker_medic",          icon = "medic"},
+	{sid = "zat_b215_stalker_guide_zaton",   icon = "guide"},
+	{sid = "zat_b7_bandit_boss_sultan",      icon = "vip"},
+	{sid = "diary_krim",                     icon = "vip"},
+	{sid = "diary_trader_b5",                icon = "trader"},
+	{sid = "diary_tech_b5",                  icon = "mech"},
+	{sid = "diary_medic_b5",                 icon = "medic"},
+	{sid = "diary_trader_b103",              icon = "trader"},
+	{sid = "diary_tech_b103",                icon = "mech"},
+	{sid = "diary_medic_b103",               icon = "medic"},
+	{sid = "jup_a6_stalker_barmen",          icon = "trader"},
+	{sid = "jup_a6_stalker_medik",           icon = "medic"},
+	{sid = "jup_b217_stalker_tech",          icon = "mech"},
+	{sid = "zat_b215_stalker_guide_jupiter", icon = "guide"},
+}
+
+--' Важные NPC для карты блокнота: {id, текстура иконки}
+function npc_marks()
+	local out = {}
+	for _, v in ipairs(NPC) do
+		local id = get_story_object_id(v.sid)
+		if id ~= nil then table.insert(out, {id = id, tex = ICON[v.icon]}) end
+	end
+	return out
+end
+
+--' Иконки цели задания: основное / дополнительное
+function task_icon(key)
+	return ICON[string.find(key, "^dj_") and "secondary" or "story"]
+end
+
+--' Цели сюжетных заданий: story id, точка {x, y, z} или функция -> id
+local STORY_TARGET = {
+	diary_q1 = "zat_a2_stalker_barmen", diary_q2 = "diary_cave", diary_q3 = {-327.98, 8.46, 386.50},
+	diary_q6 = "zat_a2_stalker_barmen", diary_q10 = "zat_a2_stalker_barmen",
+	diary_q7 = "zat_a2_stalker_mechanic", diary_q8 = "zat_b30_owl_stalker_trader_id",
+	diary_q9 = "zat_b215_stalker_guide_zaton",
+	diary_d1 = "zat_b7_bandit_boss_sultan", diary_d2 = "diary_krim",
+	diary_d3 = function() return diary_debts.debtor_id() end,
+}
+
+--' ---- Активное задание: то, что выбрано в КПК ("Задания и карта") ---------------------------------
+local function engine_task(key)
+	local t = nil
+	pcall(function() t = db.actor:get_task(key, true) end)
+	return t
+end
+
+function get_active()
+	return diary_lib.load_var("diary_active_task", nil)
+end
+
+--' сделать задание активным и в КПК (новое задание мода сразу ведёт компас)
+function set_active(key)
+	diary_lib.save_var("diary_active_task", key)
+	local t = engine_task(key)
+	if t ~= nil then pcall(function() db.actor:set_active_task(t) end) end
+end
+
+local function current_task()
+	local list = diary_pda.task_list()
+	if list[1] ~= nil and list[1].key == "hide_from_surge" then return list[1] end   --' выброс важнее всего
+	for _, t in ipairs(list) do
+		local et = engine_task(t.key)
+		if et ~= nil and db.actor:is_active_task(et) then return t end
+	end
+	local key = get_active()
+	for _, t in ipairs(list) do
+		if t.key == key then return t end
+	end
+	return list[1]
+end
+
+--' Ключ задания, которое сейчас ведёт компас (для блокнота)
+function active_key()
+	local t = current_task()
+	return t and t.key
+end
+
+--' Цель задания - id объекта (для карты КПК, task_functor.diary_target) или nil
+function task_target_id(key)
+	--' "Расшифровка": до сна идти некуда
+	if key == "diary_q10" and not diary_lib.has("diary_decoded") then return nil end
+	local t = STORY_TARGET[key]
+	if type(t) == "string" then return get_story_object_id(t) end
+	if type(t) == "function" then return t() end
+	local jid = string.match(key, "^dj_(.+)$")
+	if jid ~= nil then return diary_jobs.target_id(jid) end
+	return nil
+end
+
+local function target_pos(key)
+	if key == "hide_from_surge" then return diary_lib.obj_pos(surge_manager.get_task_target()) end
+	local t = STORY_TARGET[key]
+	if type(t) == "table" then return vector():set(t[1], t[2], t[3]) end
+	return diary_lib.obj_pos(task_target_id(key))
+end
+
+--' Точка цели задания на текущем уровне (для карты блокнота) или nil
+function task_pos(key)
+	return target_pos(key)
+end
+
+--' Район задания для обводки на карте блокнота: центр и радиус (м). У заданий на поиск центр сдвинут,
+--' а радиус большой: предмет где-то внутри обводки, но не в её центре. Компас ведёт в центр ключевого места.
+function task_area(key)
+	local pos = target_pos(key)
+	if pos == nil then return nil end
+	local jid = string.match(key, "^dj_(.+)$")
+	if jid ~= nil and diary_jobs.is_search(jid) then
+		local h = 0
+		for i = 1, string.len(key) do h = (h * 31 + string.byte(key, i)) % 9973 end
+		local a = h / 9973 * 6.2832
+		local d = 15 + (h % 20)
+		return vector():set(pos.x + math.cos(a) * d, pos.y, pos.z + math.sin(a) * d), 100
+	end
+	return pos, 60
+end
+
+--' ---- Статики (после загрузки HUD создаётся заново - тогда init() повторяется) ---------------------
+local statics = nil
+local STATIC_IDS = nil
+
+local function cs(id)
+	local hud = get_hud()
+	local s = hud:GetCustomStatic(id)
+	if s == nil then
+		hud:AddCustomStatic(id, true)
+		s = hud:GetCustomStatic(id)
+	end
+	table.insert(STATIC_IDS, id)
+	return s:wnd()
+end
+
+local function init()
+	STATIC_IDS = {}
+	statics = {}
+	statics.bg = cs("diary_cmp_bg")          --' фон первым, чтобы рисовался под остальным
+	statics.line = cs("diary_cmp_line")
+	statics.tick = cs("diary_cmp_tick")
+	statics.l, statics.m, statics.d, statics.e = {}, {}, {}, {}
+	for i = 1, 8 do
+		statics.l[i] = cs("diary_cmp_l" .. i)
+		statics.l[i]:TextControl():SetText(LETTERS[i])
+	end
+	for i = 1, N_DOTS do
+		statics.d[i] = cs("diary_cmp_d" .. i)
+		statics.e[i] = cs("diary_cmp_e" .. i)
+	end
+	for i = 1, N_ICONS do statics.m[i] = cs("diary_cmp_m" .. i) end
+	statics.task = cs("diary_cmp_task")
+	statics.icon_tex = {}
+	statics.shown = true
+end
+
+local function show_all(on)
+	if statics == nil or statics.shown == on then return end
+	statics.shown = on
+	for _, w in ipairs({statics.bg, statics.line, statics.tick, statics.task}) do w:Show(on) end
+	if not on then
+		for i = 1, 8 do statics.l[i]:Show(false) end
+		for i = 1, N_DOTS do statics.d[i]:Show(false) statics.e[i]:Show(false) end
+		for i = 1, N_ICONS do statics.m[i]:Show(false) end
+	end
+end
+
+--' угол направления на точку относительно взгляда, -pi..pi
+local function rel_angle(yaw, dx, dz)
+	local a = math.atan2(dx, dz) - yaw
+	while a > math.pi do a = a - 2 * math.pi end
+	while a < -math.pi do a = a + 2 * math.pi end
+	return a
+end
+
+--' clamp = true: цель за краем шкалы рисуется у края (видно, в какую сторону повернуться)
+local function place(w, a, y, width, clamp)
+	if math.abs(a) > FOV then
+		if not clamp then
+			w:Show(false)
+			return
+		end
+		a = (a > 0) and FOV or -FOV
+	end
+	w:SetWndPos(vector2():set(CX + a / FOV * HALF - width / 2, y))
+	w:Show(true)
+end
+
+local function place_at(w, yaw, ap, p, y, width, clamp)
+	place(w, rel_angle(yaw, p.x - ap.x, p.z - ap.z), y, width, clamp)
+end
+
+local function set_icon(i, icon)
+	if statics.icon_tex[i] ~= icon then
+		statics.m[i]:InitTexture(ICON[icon])
+		statics.icon_tex[i] = icon
+	end
+end
+
+--' ---- Трупы и враги: список раз в 300 мс ------------------------------------------------------------
+--' Враг показывается, только если он видит Лазаря или Лазарь видит его: компас не "просвечивает" стены.
+local corpses, enemies = {}, {}
+local function scan(a, ap)
+	corpses, enemies = {}, {}
+	for id, st in pairs(db.storage) do
+		local o = st.object
+		if o ~= nil and id ~= a:id() and (IsStalker(o) or IsMonster(o)) then
+			local d = o:position():distance_to(ap)
+			if not o:alive() then
+				if d <= CORPSE_RANGE and #corpses < N_DOTS then table.insert(corpses, id) end
+			elseif d <= ENEMY_RANGE and #enemies < N_DOTS and o:relation(a) == game_object.enemy
+				and (o:see(a) or a:see(o)) then
+				table.insert(enemies, id)
+			end
+		end
+	end
+end
+
+local function show_dots(list, ws, yaw, ap)
+	local n = 0
+	for _, id in ipairs(list) do
+		local o = level.object_by_id(id)
+		if o ~= nil then
+			n = n + 1
+			place_at(ws[n], yaw, ap, o:position(), DOT_Y, DOT_W)
+		end
+	end
+	for i = n + 1, N_DOTS do ws[i]:Show(false) end
+end
+
+--' ---- NPC: id по story id раз в 2 секунды ------------------------------------------------------------
+local npc_ids = {}
+local function resolve_npcs()
+	npc_ids = {}
+	for _, v in ipairs(NPC) do
+		local id = get_story_object_id(v.sid)
+		if id ~= nil then table.insert(npc_ids, {id = id, icon = v.icon}) end
+	end
+end
+
+local next_task_t, next_scan_t, next_npc_t = 0, 0, 0
+local task_cache = nil
+
+local function ui_busy()
+	local ok, rcv = pcall(function() return level.main_input_receiver() end)
+	return ok and rcv ~= nil
+end
+
+--' ---- Модуль ---------------------------------------------------------------------------------------------
+function level_leave()
+	if STATIC_IDS ~= nil then
+		local hud = get_hud()
+		for _, id in ipairs(STATIC_IDS) do pcall(function() hud:RemoveCustomStatic(id) end) end
+	end
+	statics, STATIC_IDS = nil, nil
+	corpses, enemies, npc_ids = {}, {}, {}
+	task_cache = nil
+	next_task_t, next_scan_t, next_npc_t = 0, 0, 0
+end
+
+function update()
+	local a = db.actor
+	if statics == nil or get_hud():GetCustomStatic("diary_cmp_bg") == nil then init() end
+	if ui_busy() then
+		show_all(false)
+		return
+	end
+	show_all(true)
+	local d = device().cam_dir
+	local yaw = math.atan2(d.x, d.z)
+	local ap = a:position()
+	local t = time_global()
+
+	for i = 1, 8 do
+		local ang = (i - 1) * math.pi / 4
+		place(statics.l[i], rel_angle(yaw, math.sin(ang), math.cos(ang)), LETTER_Y, LETTER_W)
+	end
+
+	if t >= next_scan_t then
+		next_scan_t = t + 300
+		scan(a, ap)
+	end
+	show_dots(corpses, statics.d, yaw, ap)
+	show_dots(enemies, statics.e, yaw, ap)
+
+	if t >= next_npc_t then
+		next_npc_t = t + 2000
+		resolve_npcs()
+	end
+
+	--' задание: раз в секунду
+	if t >= next_task_t then
+		next_task_t = t + 1000
+		local task = current_task()
+		task_cache = task and {name = task.name, pos = target_pos(task.key),
+			icon = string.find(task.key, "^dj_") and "secondary" or "story"} or nil
+	end
+
+	local n = 0
+	local text = ""
+	if task_cache ~= nil then
+		text = task_cache.name
+		local p = task_cache.pos
+		if p ~= nil then
+			n = n + 1
+			set_icon(n, task_cache.icon)
+			place_at(statics.m[n], yaw, ap, p, ICON_Y, ICON_W, true)
+			text = text .. "  " .. math.floor(p:distance_to(ap)) .. " м"
+		end
+	end
+	statics.task:TextControl():SetText(text)
+
+	for _, v in ipairs(npc_ids) do
+		if n >= N_ICONS then break end
+		local o = level.object_by_id(v.id)
+		if o ~= nil and o:alive() then
+			local p = o:position()
+			if p:distance_to(ap) <= NPC_RANGE then
+				n = n + 1
+				set_icon(n, v.icon)
+				place_at(statics.m[n], yaw, ap, p, ICON_Y, ICON_W)
+			end
+		end
+	end
+	for i = n + 1, N_ICONS do statics.m[i]:Show(false) end
+end

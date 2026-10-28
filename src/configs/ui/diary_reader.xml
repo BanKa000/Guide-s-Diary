@@ -1,0 +1,47 @@
+<w>
+	<rd_bg_paper x="256" y="64" width="512" height="640" stretch="1"><texture>ui_diary_paper</texture></rd_bg_paper>
+	<rd_bg_cave x="256" y="64" width="512" height="640" stretch="1"><texture>ui_diary_cave</texture></rd_bg_cave>
+	<rd_bg_nb x="0" y="128" width="1024" height="512" stretch="1"><texture>ui_diary_notebook</texture></rd_bg_nb>
+	<rd_title_logs x="296" y="108" width="430" height="32"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_doc_logs_title</text></rd_title_logs>
+	<rd_body_logs x="296" y="160" width="430" height="460"><text font="letterica16" complex_mode="1" r="45" g="35" b="30">diary_doc_logs_body</text></rd_body_logs>
+	<rd_title_attic x="296" y="108" width="430" height="32"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_doc_attic_title</text></rd_title_attic>
+	<rd_body_attic x="296" y="160" width="430" height="460"><text font="letterica16" complex_mode="1" r="45" g="35" b="30">diary_doc_attic_body</text></rd_body_attic>
+	<rd_title_tower x="296" y="108" width="430" height="32"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_doc_tower_title</text></rd_title_tower>
+	<rd_body_tower x="296" y="160" width="430" height="460"><text font="letterica16" complex_mode="1" r="45" g="35" b="30">diary_doc_tower_body</text></rd_body_tower>
+	<rd_title_cave x="296" y="100" width="430" height="32"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_doc_cave_title</text></rd_title_cave>
+	<rd_body_cave x="296" y="630" width="430" height="64"><text font="letterica16" complex_mode="1" r="45" g="35" b="30">diary_doc_cave_body</text></rd_body_cave>
+	<rd_body_notebook x="72" y="165" width="395" height="360"><text font="letterica18" complex_mode="1" r="40" g="35" b="55">diary_doc_notebook_body</text></rd_body_notebook>
+	<rd_body_notebook2 x="556" y="165" width="395" height="360"><text font="letterica18" complex_mode="1" r="120" g="30" b="25">diary_doc_notebook_body2</text></rd_body_notebook2>
+	<rd_btn_close x="372" y="710" width="280" height="26" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c">diary_docs_close</text></rd_btn_close>
+	<dm_bg x="312" y="200" width="400" height="320"><texture>ui_inGame2_screen_4</texture></dm_bg>
+	<dm_title x="322" y="212" width="380" height="24"><text font="letterica18" align="c" vert_align="c" r="220" g="220" b="220">diary_docs_menu_title</text></dm_title>
+	<dm_btn_1 x="332" y="250" width="360" height="30" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c"/></dm_btn_1>
+	<dm_btn_2 x="332" y="288" width="360" height="30" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c"/></dm_btn_2>
+	<dm_btn_3 x="332" y="326" width="360" height="30" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c"/></dm_btn_3>
+	<dm_btn_4 x="332" y="364" width="360" height="30" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c"/></dm_btn_4>
+	<dm_btn_5 x="332" y="402" width="360" height="30" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c"/></dm_btn_5>
+	<dm_btn_close x="332" y="470" width="360" height="30" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c">diary_docs_close</text></dm_btn_close>
+	<nb_map x="100" y="200" width="313" height="392" stretch="1"><texture>ui_diary_cave</texture></nb_map>
+	<nb_t_logs x="556" y="160" width="395" height="30"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_doc_logs_title</text></nb_t_logs>
+	<nb_b_logs x="556" y="198" width="395" height="380"><text font="letterica16" complex_mode="1" r="40" g="35" b="55">diary_doc_logs_body</text></nb_b_logs>
+	<nb_t_attic x="72" y="160" width="395" height="30"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_doc_attic_title</text></nb_t_attic>
+	<nb_b_attic x="72" y="198" width="395" height="380"><text font="letterica16" complex_mode="1" r="40" g="35" b="55">diary_doc_attic_body</text></nb_b_attic>
+	<nb_t_tower x="556" y="160" width="395" height="30"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_doc_tower_title</text></nb_t_tower>
+	<nb_b_tower x="556" y="198" width="395" height="380"><text font="letterica16" complex_mode="1" r="40" g="35" b="55">diary_doc_tower_body</text></nb_b_tower>
+	<nb_blank_1 x="100" y="330" width="395" height="30"><text font="letterica16" align="c" vert_align="c" r="130" g="120" b="110">diary_nb_blank</text></nb_blank_1>
+	<nb_blank_2 x="556" y="330" width="395" height="30"><text font="letterica16" align="c" vert_align="c" r="130" g="120" b="110">diary_nb_blank</text></nb_blank_2>
+	<nb_blank_3 x="72" y="330" width="395" height="30"><text font="letterica16" align="c" vert_align="c" r="130" g="120" b="110">diary_nb_blank</text></nb_blank_3>
+	<nb_blank_4 x="556" y="330" width="395" height="30"><text font="letterica16" align="c" vert_align="c" r="130" g="120" b="110">diary_nb_blank</text></nb_blank_4>
+	<nb_pg x="462" y="604" width="100" height="24"><text font="letterica16" align="c" vert_align="c" r="200" g="190" b="170"></text></nb_pg>
+	<nb_btn_prev x="214" y="655" width="180" height="26" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c">diary_nb_prev</text></nb_btn_prev>
+	<nb_btn_close x="422" y="655" width="180" height="26" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c">diary_docs_close</text></nb_btn_close>
+	<nb_btn_next x="630" y="655" width="180" height="26" stretch="1"><texture>ui_inGame2_inventory_button</texture><text font="letterica16" align="c">diary_nb_next</text></nb_btn_next>
+	<nb_cipher x="556" y="330" width="395" height="60"><text font="letterica16" complex_mode="1" align="c" r="130" g="60" b="50">diary_nb_cipher</text></nb_cipher>
+	<nb_dt_sheet x="318" y="118" width="400" height="500" stretch="1"><texture>ui_diary_debts</texture></nb_dt_sheet>
+	<nb_dt_title x="400" y="150" width="240" height="32"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_nb_debt_title</text></nb_dt_title>
+	<nb_dt_body x="368" y="196" width="330" height="230"><text font="letterica16" complex_mode="1" r="40" g="35" b="55"> </text></nb_dt_body>
+	<nb_dl_sheet x="318" y="118" width="400" height="500" stretch="1"><texture>ui_diary_debts</texture></nb_dl_sheet>
+	<nb_dl_title x="400" y="150" width="240" height="32"><text font="letterica18" align="c" vert_align="c" r="60" g="35" b="20">diary_nb_deb_title</text></nb_dl_title>
+	<nb_dl_body x="368" y="196" width="330" height="360"><text font="letterica16" complex_mode="1" r="40" g="35" b="55"> </text></nb_dl_body>
+	<nb_dt_torn x="368" y="500" width="330" height="60"><text font="letterica16" complex_mode="1" r="90" g="70" b="60">diary_nb_debt_torn</text></nb_dt_torn>
+</w>

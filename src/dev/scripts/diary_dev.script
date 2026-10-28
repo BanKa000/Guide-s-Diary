@@ -1,0 +1,217 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: инструменты разработчика. ТОЛЬКО ДЛЯ СБОРКИ РАЗРАБОТЧИКА.
+--' В релиз не входит: вместе с pos_logger.script и diary_tp.script лежит в _src\dev.
+--' Если файла нет в gamedata\scripts, diary_main не вызывает ничего отсюда - игрок не может
+--' ни телепортироваться, ни перескочить этап.
+--'
+--' Клавиши в меню паузы: F1 - маркер точек (pos_logger), F2 - телепорты (diary_tp),
+--'                      F5 - перескок этапа сюжета (jump_to_quest_stage), F6 - взять любое задание линий.
+--------------------------------------------------------------------------------
+
+--' Этапы сюжета Затона. Перескок на этап выдаёт инфопорции и предметы этого этапа и всех предыдущих;
+--' дальше сюжет сам выдаёт задания и ставит тайники, как при обычной игре.
+STAGES = {
+	{name = "1. Старт пройден",        infos = {"diary_zat_start", "diary_q1_given"}},
+	{name = "2. Блокнот у Лазаря",     infos = {"diary_notebook_given"}, items = {"jup_a9_power_info"}},
+	{name = "3. Пещера пройдена",      infos = {"diary_cache_spawned", "diary_noted_cave", "diary_q2_done"},
+	                                   items = {"af_compass", "wpn_toz34"}},
+	{name = "4. Три записи лесопилки", infos = {"diary_chain_spawned", "diary_noted_logs", "diary_noted_attic", "diary_noted_tower",
+	                                   "diary_q3_done", "diary_q4_done", "diary_q5_done", "diary_saw_reached",
+	                                   "diary_saw_notes_1", "diary_saw_notes_2", "diary_saw_notes_3"}, items = {"jup_a9_delivery_info"}},
+	{name = "5. Труп упал",            infos = {"diary_corpse_dropped"}},
+	{name = "6. Записка у Бороды",     infos = {"diary_q6_given", "diary_cipher_taken", "diary_debts_given"}},
+	{name = "7. Расшифровано (3 ч)",   infos = {"diary_q10_given", "diary_decoded"}},
+	{name = "8. Записка прочитана",    infos = {"diary_cipher_read"}},
+	{name = "9. Долги закрыты",        infos = {"diary_debt_c_done", "diary_debt_c_paid", "diary_debt_s_done", "diary_debt_s_paid",
+	                                   "diary_deb_1_done", "diary_deb_1_paid", "diary_deb_2_done", "diary_deb_2_paid"}},
+	{name = "10. Поставки: Борода",    infos = {"diary_supply_bor_ready"}},
+	{name = "11. Юпитер: кража",       infos = {"diary_jup_arrived", "diary_gav_stopped", "diary_gav_theft"}},
+	{name = "+5000 RU",                money = 5000},
+}
+
+function jump_to_quest_stage(n)
+	local a = db.actor
+	local last = STAGES[n]
+	if last == nil then return end
+	if last.money ~= nil then
+		a:give_money(last.money)
+		return
+	end
+	for i = 1, n do
+		local s = STAGES[i]
+		if s.money == nil then
+			for _, info in ipairs(s.infos or {}) do diary_lib.give(info) end
+			for _, sec in ipairs(s.items or {}) do
+				if a:object(sec) == nil then diary_lib.give_items(sec, 1) end
+			end
+		end
+	end
+	printf("DIARY_DEV: jump to stage %d [%s]", n, last.name)
+end
+
+--' ---- Панель этапов (разметка diary_tp.xml) ----------------------------------------------------
+class "stage_panel" (CUIScriptWnd)
+
+function stage_panel:__init() super()
+	self:SetWndRect(Frect():set(0, 0, 1024, 768))
+	self:Enable(true)
+	local xml = CScriptXmlInit()
+	xml:ParseFile("diary_tp.xml")
+	xml:InitStatic("tp_bg", self)
+	local title = xml:InitStatic("tp_title", self)
+	title:TextControl():SetText("Этапы сюжета (dev)")
+	for i = 1, 12 do
+		local name = "tp_btn_" .. i
+		local b = xml:Init3tButton(name, self)
+		self:Register(b, name)
+		local st = STAGES[i]
+		if st ~= nil then
+			b:TextControl():SetText(st.name)
+			local idx = i
+			self:AddCallback(name, ui_events.BUTTON_CLICKED, function() jump_to_quest_stage(idx) self:HideDialog() end, self)
+		else
+			b:Show(false)
+			b:Enable(false)
+		end
+	end
+	local c = xml:Init3tButton("tp_btn_close", self)
+	self:Register(c, "tp_btn_close")
+	self:AddCallback("tp_btn_close", ui_events.BUTTON_CLICKED, function() self:HideDialog() end, self)
+end
+
+function stage_panel:OnKeyboard(dik, keyboard_action)
+	local res = CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+	if res == false and keyboard_action == ui_events.WINDOW_KEY_PRESSED and dik == DIK_keys.DIK_ESCAPE then
+		self:HideDialog()
+	end
+	return res
+end
+
+--' ---- Панель заданий линий (F6): взять любое задание текущего уровня ---------------------------
+--' Задание выдаётся сразу, без заказчика и без условий (prev, gate, доверие): ставятся отряды,
+--' тайники и метки, как при обычном взятии. Сдавать - заказчику, как обычно.
+local PER_PAGE = 12
+
+local function job_label(id)
+	local mark = ""
+	if diary_jobs.state(id, "done") then mark = "  [сдано]"
+	elseif diary_jobs.state(id, "given") then mark = "  [взято]" end
+	return id .. ". " .. game.translate_string("dj_" .. id .. "_name") .. mark
+end
+
+class "job_panel" (CUIScriptWnd)
+
+function job_panel:__init(page) super()
+	self:SetWndRect(Frect():set(0, 0, 1024, 768))
+	self:Enable(true)
+	self.list = {}
+	for _, id in ipairs(diary_jobs.all()) do
+		if diary_jobs.get(id).level == level.name() then table.insert(self.list, id) end
+	end
+	self.pages = math.max(1, math.ceil(#self.list / PER_PAGE))
+	self.page = math.min(page or 1, self.pages)
+	local xml = CScriptXmlInit()
+	xml:ParseFile("diary_tp.xml")
+	xml:InitStatic("tp_bg", self)
+	self.title = xml:InitStatic("tp_title", self)
+	self.btns = {}
+	for i = 1, PER_PAGE do
+		local name = "tp_btn_" .. i
+		local b = xml:Init3tButton(name, self)
+		self:Register(b, name)
+		local idx = i
+		self:AddCallback(name, ui_events.BUTTON_CLICKED, function() self:take(idx) end, self)
+		self.btns[i] = b
+	end
+	for _, nm in ipairs({"tp_btn_prev", "tp_btn_next", "tp_btn_close"}) do
+		self:Register(xml:Init3tButton(nm, self), nm)
+	end
+	self:AddCallback("tp_btn_prev", ui_events.BUTTON_CLICKED, function() self:flip(-1) end, self)
+	self:AddCallback("tp_btn_next", ui_events.BUTTON_CLICKED, function() self:flip(1) end, self)
+	self:AddCallback("tp_btn_close", ui_events.BUTTON_CLICKED, function() self:HideDialog() end, self)
+	self:fill()
+end
+
+function job_panel:fill()
+	self.title:TextControl():SetText(string.format("Задания линий (dev) %d / %d", self.page, self.pages))
+	for i = 1, PER_PAGE do
+		local id = self.list[(self.page - 1) * PER_PAGE + i]
+		local b = self.btns[i]
+		b:Show(id ~= nil)
+		b:Enable(id ~= nil and not diary_jobs.state(id, "given"))
+		if id ~= nil then b:TextControl():SetText(job_label(id)) end
+	end
+end
+
+function job_panel:flip(d)
+	self.page = self.page + d
+	if self.page < 1 then self.page = self.pages elseif self.page > self.pages then self.page = 1 end
+	self:fill()
+end
+
+function job_panel:take(i)
+	local id = self.list[(self.page - 1) * PER_PAGE + i]
+	if id == nil or diary_jobs.state(id, "given") then return end
+	diary_jobs.accept(id)
+	printf("DIARY_DEV: job %s given", id)
+	self:HideDialog()
+end
+
+function job_panel:OnKeyboard(dik, keyboard_action)
+	local res = CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+	if res == false and keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_ESCAPE then self:HideDialog()
+		elseif dik == DIK_keys.DIK_LEFT then self:flip(-1)
+		elseif dik == DIK_keys.DIK_RIGHT then self:flip(1) end
+	end
+	return res
+end
+
+local stage_wanted = nil
+local jobs_wanted = nil
+
+--' ---- Вызовы из diary_main -------------------------------------------------------------------------
+function on_menu_key(dik)
+	if dik == DIK_keys.DIK_F1 then
+		pos_logger.request_panel()
+		return true
+	elseif dik == DIK_keys.DIK_F2 then
+		diary_tp.request()
+		return true
+	elseif dik == DIK_keys.DIK_F5 then
+		stage_wanted = time_global() + 300
+		return true
+	elseif dik == DIK_keys.DIK_F6 then
+		jobs_wanted = time_global() + 300
+		return true
+	end
+	return false
+end
+
+--' окно открывается, когда меню паузы уже закрылось
+local function menu_closed()
+	local ok, rcv = pcall(function() return level.main_input_receiver() end)
+	return not (ok and rcv ~= nil)
+end
+
+function update()
+	pos_logger.update()      --' внутри же тикает и панель телепортов diary_tp
+	if stage_wanted ~= nil and time_global() >= stage_wanted and menu_closed() then
+		stage_wanted = nil
+		stage_panel():ShowDialog(true)
+	end
+	if jobs_wanted ~= nil and time_global() >= jobs_wanted and menu_closed() then
+		jobs_wanted = nil
+		job_panel(1):ShowDialog(true)
+	end
+end
+
+function on_item_drop(obj)
+	pos_logger.on_drop(obj)
+end
+
+function level_enter(lvl) end
+function level_leave()
+	stage_wanted = nil
+	jobs_wanted = nil
+end

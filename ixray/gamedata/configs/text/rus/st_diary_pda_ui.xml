@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="diary_nbui_t1"><text>Задания</text></string>
+	<string id="diary_nbui_t2"><text>Люди</text></string>
+	<string id="diary_nbui_t3"><text>Аномалии</text></string>
+	<string id="diary_nbui_t4"><text>Карта</text></string>
+</string_table>

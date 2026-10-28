@@ -1,0 +1,324 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: долговая книга Компаса.
+--'   c, s  - Компас должен Кардану и Сычу: Лазарь отдаёт долг в диалоге (целиком, половиной, вещью или присваивает).
+--'   1, 2  - Компас должен Султану и Криму: отдаётся в диалоге, в любой момент, даже после конца их линий (правка 26).
+--'   3     - случайный наёмник должен Компасу. Он нейтрален; с ним надо поговорить:
+--'           забрать деньги, простить или убить. Убийство не портит отношений с наёмниками (правка 18).
+--------------------------------------------------------------------------------
+local has, give = diary_lib.has, diary_lib.give
+
+--' ---- c, s: долги Компаса Кардану и Сычу --------------------------------------------------
+local DEBT = {
+	c = {cfg = "c_amount", item = "medkit", done = "diary_debt_c_done", st = "diary_debt_c"},
+	s = {cfg = "s_amount", item = "vodka",  done = "diary_debt_s_done", st = "diary_debt_s"},
+}
+
+function amount(k) return diary_cfg.num("debts", DEBT[k].cfg, 1000) end
+
+local function rep(n)
+	pcall(function() db.actor:change_character_reputation(n) end)
+end
+
+local function close(k, result, rep_delta)
+	give(DEBT[k].done)
+	give(DEBT[k].st .. "_" .. result)
+	rep(rep_delta)
+end
+
+function is_open(k)  return has("diary_debts_given") and not has(DEBT[k].done) end
+function fresh(k)    return is_open(k) and not has(DEBT[k].st .. "_half") end
+function rest_open(k) return is_open(k) and has(DEBT[k].st .. "_half") end
+function can_full(k) return db.actor:money() >= amount(k) end
+function can_half(k) return db.actor:money() >= math.floor(amount(k) / 2) end
+--' залог из схрона Компаса ("Последний схрон") принимается Кардану вместо вещи
+local PLEDGE = {c = "dj_item_n4_pledge"}
+
+function has_item(k)
+	if PLEDGE[k] ~= nil and db.actor:object(PLEDGE[k]) ~= nil then return true end
+	return db.actor:object(DEBT[k].item) ~= nil
+end
+
+function pay_full(k)
+	db.actor:give_money(-amount(k))
+	close(k, "paid", 10)
+end
+
+function pay_half(k)
+	db.actor:give_money(-math.floor(amount(k) / 2))
+	give(DEBT[k].st .. "_half")
+	rep(3)
+end
+
+function pay_rest(k)
+	db.actor:give_money(-(amount(k) - math.floor(amount(k) / 2)))
+	close(k, "paid", 7)
+end
+
+function pay_item(k)
+	if PLEDGE[k] ~= nil and db.actor:object(PLEDGE[k]) ~= nil then
+		diary_lib.take_items(PLEDGE[k], 1)
+	else
+		diary_lib.take_items(DEBT[k].item, 1)
+	end
+	close(k, "item", 5)
+end
+
+function steal(k)
+	close(k, "steal", -15)
+end
+
+function status_text(k)
+	if not has("diary_debts_given") then return game.translate_string("diary_nb_st_unknown") end
+	local st = DEBT[k].st
+	for _, r in ipairs({"paid", "half", "item", "steal"}) do
+		if has(st .. "_" .. r) then return game.translate_string("diary_nb_st_" .. r) end
+	end
+	return game.translate_string("diary_nb_st_open")
+end
+
+--' строка долгового листа: [x] / [ ]
+function sheet_text(k)
+	local mark = has(DEBT[k].done) and "[x] " or "[ ] "
+	return mark .. game.translate_string("diary_nb_debt_" .. k) .. status_text(k)
+end
+
+--' ---- 1..3: должники и кредиторы Компаса --------------------------------------------------
+local ROLE = {
+	{sid = "zat_b7_bandit_boss_sultan", owe = true,  cfg = "sultan_amount"},
+	{sid = "diary_krim",                owe = true,  cfg = "krim_amount"},
+	{comm = "killer",                   owe = false, cfg = "merc_amount"},
+}
+local RANDOM = 3
+--' имена, которых нельзя назначить должником: торговцы, техники, главари, сюжетные
+local BAD = {"trader", "mechanic", "barmen", "medic", "tech", "owl", "guide", "leader", "boss", "sultan",
+	"chief", "bar_", "dolg", "sidor", "hip", "diary", "dj_"}
+
+function deb_amount(k) return diary_cfg.num("debts", ROLE[k].cfg, 1000) end
+
+local function candidate(se)
+	if se == nil or not IsStalker(se) or not se:alive() then return false end
+	if get_object_story_id(se.id) ~= nil then return false end
+	if game_graph():vertex(se.m_game_vertex_id):level_id() ~= alife():level_id() then return false end
+	local nm = string.lower(se:name())
+	for _, b in ipairs(BAD) do
+		if string.find(nm, b, 1, true) then return false end
+	end
+	return se:community() == ROLE[RANDOM].comm
+end
+
+--' должник-наёмник живёт в лагере Цехов подстанции (отряд diary_merc_camp)
+local function in_camp(se)
+	if se.group_id == nil or se.group_id == 65535 then return false end
+	local sq = alife():object(se.group_id)
+	return sq ~= nil and sq:section_name() == "diary_merc_camp"
+end
+
+local function name_of(se)
+	local ok, n = pcall(function() return se:character_name() end)
+	if ok and n ~= nil and n ~= "" then return n end
+	return game.translate_string("diary_nb_deb_noname")
+end
+
+--' id и имя участника k
+function deb_get(k)
+	local r = ROLE[k]
+	if r.sid ~= nil then
+		local id = get_story_object_id(r.sid)
+		local se = id and alife():object(id)
+		return id, se and name_of(se) or nil
+	end
+	return diary_lib.load_var("diary_deb_id" .. k, nil), diary_lib.load_var("diary_deb_nm" .. k, nil)
+end
+
+--' цель компаса для задания diary_d3
+function debtor_id()
+	if not has("diary_deb_ready") or has("diary_deb_3_done") then return nil end
+	return (deb_get(RANDOM))
+end
+
+local function deb_close(k, res)
+	give("diary_deb_" .. k .. "_done")
+	give("diary_deb_" .. k .. "_" .. res)
+end
+
+--' поиск должника-наёмника: порциями по id, чтобы не было фриза
+local scan = nil        --' {cur, cand, wait}
+
+local function find_debtor()
+	if has("diary_deb_ready") then return end
+	scan = scan or {cur = 0, cand = {}, camp = {}, wait = 0}
+	if time_global() < scan.wait then return end
+	for i = 1, 3000 do
+		scan.cur = scan.cur + 1
+		if scan.cur > 65535 then
+			local ok = false
+			local pool = #scan.camp > 0 and scan.camp or scan.cand
+			for tries = 1, 50 do
+				if #pool == 0 then break end
+				local id = pool[math.random(#pool)]
+				local se = alife():object(id)
+				local okc, good = pcall(candidate, se)
+				if se ~= nil and okc and good then
+					diary_lib.save_var("diary_deb_id" .. RANDOM, id)
+					diary_lib.save_var("diary_deb_nm" .. RANDOM, name_of(se))
+					ok = true
+					break
+				end
+			end
+			scan = {cur = 0, cand = {}, camp = {}, wait = ok and 0 or time_global() + 60000}
+			if ok then
+				give("diary_deb_ready")
+				diary_story.give_task("diary_d" .. RANDOM)
+			end
+			return
+		end
+		local se = alife():object(scan.cur)
+		if se ~= nil then
+			local ok, r = pcall(candidate, se)
+			if ok and r then
+				table.insert(scan.cand, scan.cur)
+				local okc, inc = pcall(in_camp, se)
+				if okc and inc then table.insert(scan.camp, scan.cur) end
+			end
+		end
+	end
+end
+
+--' ---- должник-наёмник: диалог и смерть ---------------------------------------------------
+local goodwill = nil    --' снимок отношения наёмников к актёру, пока должник жив
+
+local function killer_goodwill()
+	local v = nil
+	pcall(function() v = relation_registry.community_goodwill("killer", db.actor:id()) end)
+	return v
+end
+
+--' NPC в диалоге - должник Компаса?
+function is_debtor(npc)
+	if not has("diary_deb_ready") or has("diary_deb_3_done") then return false end
+	return npc:id() == diary_lib.load_var("diary_deb_id" .. RANDOM, -1)
+end
+
+function deb3_can_pay() return true end
+
+function deb3_take()
+	db.actor:give_money(deb_amount(RANDOM))
+	deb_close(RANDOM, "paid")
+end
+
+function deb3_forgive()
+	deb_close(RANDOM, "forgiven")
+	rep(diary_cfg.num("debts", "merc_forgive_rep", 10))
+end
+
+--' "убить": должник становится врагом сам по себе - отношения группировки не страдают
+function deb3_fight(npc)
+	goodwill = killer_goodwill()
+	give("diary_deb_3_fight")
+	pcall(function() npc:set_relation(game_object.enemy, db.actor) end)
+	diary_lib.squad_relation(diary_lib.npc_squad(npc), "enemy")
+end
+
+local function debtor_check()
+	if not has("diary_deb_ready") or has("diary_deb_3_done") then return end
+	local id = diary_lib.load_var("diary_deb_id" .. RANDOM, nil)
+	if id == nil then return end
+	local se = alife():object(id)
+	if se == nil or not se:alive() then
+		deb_close(RANDOM, "dead")
+		--' убийство должника - безнаказанно: вернуть отношение наёмников к актёру
+		if goodwill ~= nil then
+			pcall(function() relation_registry.set_community_goodwill("killer", db.actor:id(), goodwill) end)
+		end
+		goodwill = nil
+		return
+	end
+	--' пока не дрались, держим снимок отношения
+	if not has("diary_deb_3_fight") then
+		local o = level.object_by_id(id)
+		if o == nil or not o:best_enemy() then goodwill = killer_goodwill() end
+	end
+end
+
+--' С должником можно говорить, чем бы он ни был занят (пока не в бою). Схема NPC (meet) может сама
+--' отключать разговор, поэтому должник заговаривает с игроком сам, когда тот подходит.
+local talk_t = 0
+local talked = false      --' заговорил в этот подход; сбрасывается, когда игрок отошёл
+local function debtor_talk()
+	if not has("diary_deb_ready") or has("diary_deb_3_done") or has("diary_deb_3_fight") then return end
+	if time_global() < talk_t then return end
+	talk_t = time_global() + 500
+	local id = diary_lib.load_var("diary_deb_id" .. RANDOM, nil)
+	local o = id and level.object_by_id(id)
+	if o == nil or not o:alive() then return end
+	local a = db.actor
+	local d = o:position():distance_to(a:position())
+	if d > 14 then talked = false end
+	if d >= 8 then return end
+	local enemy = false
+	pcall(function() enemy = o:best_enemy() ~= nil end)
+	if enemy then return end
+	pcall(function() o:enable_talk() end)
+	--' до боя с игроком должник нейтрален, иначе разговор не откроется
+	pcall(function()
+		if o:relation(a) == game_object.enemy then o:set_relation(game_object.neutral, a) end
+	end)
+	if talked or d > 4 or a:is_talking() then return end
+	talked = true
+	pcall(function() a:run_talk_dialog(o, false) end)
+end
+
+--' ---- Диалоги Султана (1) и Крима (2): "Я насчёт долга Компаса" ----------------------------
+function deb_open(k) return has("diary_debts_given") and not has("diary_deb_" .. k .. "_done") end
+function deb_can_pay(k) return db.actor:money() >= deb_amount(k) end
+function deb_pay(k)
+	db.actor:give_money(-deb_amount(k))
+	deb_close(k, "paid")
+end
+
+--' второй лист блокнота: все участники
+function deb_sheet_text()
+	local out = ""
+	for k = 1, #ROLE do
+		local id, nm = deb_get(k)
+		local r = ROLE[k]
+		local mark = "[ ] "
+		local st = game.translate_string("diary_nb_deb_open")
+		if id == nil then
+			st = game.translate_string("diary_nb_deb_none")
+			nm = "???"
+		else
+			for _, res in ipairs({"paid", "forgiven", "dead"}) do
+				if has("diary_deb_" .. k .. "_" .. res) then
+					mark = "[x] "
+					st = game.translate_string("diary_nb_deb_" .. res)
+				end
+			end
+		end
+		local who = game.translate_string(r.owe and "diary_nb_deb_owe" or "diary_nb_deb_owed")
+		out = out .. mark .. tostring(nm) .. "\n" .. who .. " " .. deb_amount(k) .. " "
+			.. game.translate_string("diary_nb_deb_cur") .. "\n" .. st .. "\n\n"
+	end
+	return out
+end
+
+--' ---- Модуль ----------------------------------------------------------------------------------
+function level_leave()
+	scan = nil
+end
+
+function update()
+	--' второй лист - после того, как сюжет выдал долги Кардану и Сычу (diary_story)
+	if not has("diary_q7_given") then return end
+	if not has("diary_deb_fixed") then
+		give("diary_deb_fixed")
+		diary_news.thought("diary_news_deb")
+		diary_news.record("debtors")
+		diary_story.give_task("diary_d1")
+		diary_story.give_task("diary_d2")
+		return
+	end
+	find_debtor()
+	debtor_check()
+	debtor_talk()
+end

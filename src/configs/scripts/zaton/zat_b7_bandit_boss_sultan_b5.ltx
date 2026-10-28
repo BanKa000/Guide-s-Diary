@@ -1,0 +1,15 @@
+; Diary: Sultan stoit strogo na svoem meste v Lesnichestve (points_named_zaton: "Mesto sultana").
+; remark nikuda ne vedet NPC; na tochku ego stavit diary_world.pin_tick.
+[logic@zat_b7_bandit_boss_sultan]
+active = remark@diary_place
+suitable = {=check_npc_name(zat_b7_bandit_boss_sultan)} true
+prior = 200
+level_spot = quest_npc
+
+[remark@diary_place]
+anim = guard_na
+meet = meet
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+combat_ignore_cond = {=check_enemy_name(sim_default) =fighting_dist_ge(30)} true

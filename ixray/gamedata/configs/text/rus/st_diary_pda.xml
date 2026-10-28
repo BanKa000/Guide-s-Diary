@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<!-- Записи КПК. Заголовок _t, текст _x. Тексты пишет заказчик. -->
+	<string id="diary_pda_bor_t"><text>Люди: Борода</text></string>
+	<string id="diary_pda_bor_x"><text>Хозяин бара на «Скадовске». Держал Компаса при себе до самого конца и знает о нём больше, чем говорит. Наливает в долг, но помнит каждую рюмку.</text></string>
+	<string id="diary_pda_card_t"><text>Люди: Кардан</text></string>
+	<string id="diary_pda_card_x"><text>Техник на «Скадовске». Руки золотые, когда трезвый. Возьмётся за любое снаряжение, был бы материал и деньги. Компас остался ему должен.</text></string>
+	<string id="diary_pda_sych_t"><text>Люди: Сыч</text></string>
+	<string id="diary_pda_sych_x"><text>Торговец на «Скадовске». Покупает всё, продаёт дорого и записывает каждую мелочь. Запись долга Компаса тоже у него.</text></string>
+	<string id="diary_pda_med_t"><text>Люди: Тремор</text></string>
+	<string id="diary_pda_med_x"><text>Медик на «Скадовске». Руки у него и правда дрожат, но шьёт ровно. Лишних вопросов не задаёт, лишнего не берёт.</text></string>
+	<string id="diary_pda_sult_t"><text>Люди: Султан</text></string>
+	<string id="diary_pda_sult_x"><text>Главный у бандитов, сидит в Лесничестве. Вежлив, пока ему выгодно. Компас был ему должен полторы тысячи.</text></string>
+	<string id="diary_pda_iron_t"><text>Аномалии: Железный лес</text></string>
+	<string id="diary_pda_iron_x"><text>Старая подстанция, опоры стоят частоколом. Повсюду «электры», немного фонит, водятся полтергейсты. После выброса здесь находят артефакты.</text></string>
+</string_table>

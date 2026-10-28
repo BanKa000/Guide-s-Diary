@@ -1,0 +1,79 @@
+--------------------------------------------------------------------------------
+--' Diary: oruzhie NPC po etapam. Do pervogo perehoda igroka na Yupiter stalkery nosyat
+--' tolko oruzhie T1: oruzhie T2/T3 (spisok BAN, tiers_pack_weapons) menyaetsya na prostoe.
+--' Mercs/Aegis: oruzhie T2 zadano v loadout-fajlah i sekciyah personazhej.
+--------------------------------------------------------------------------------
+local BAN = {
+	wpn_abakan = true, wpn_abakan_1p78 = true, wpn_ace52 = true, wpn_aek971 = true,
+	wpn_ak101 = true, wpn_ak103 = true, wpn_ak104 = true, wpn_ak105 = true,
+	wpn_ak12 = true, wpn_ak74_1p78 = true, wpn_akm = true, wpn_aug_a3 = true,
+	wpn_cz75 = true, wpn_dvl10 = true, wpn_fal = true, wpn_famas = true,
+	wpn_famas_f1 = true, wpn_fn57 = true, wpn_fnx45 = true, wpn_g3 = true,
+	wpn_galil = true, wpn_gauss = true, wpn_glock = true, wpn_groza = true,
+	wpn_groza_wpn_addon_scope = true, wpn_hk21 = true, wpn_hk416 = true, wpn_kriss_vector = true,
+	wpn_l85 = true, wpn_l85_ac10632 = true, wpn_l96 = true, wpn_lr300 = true,
+	wpn_lr300_ac10632 = true, wpn_m16 = true, wpn_m24 = true, wpn_m3super90 = true,
+	wpn_m4 = true, wpn_m4_tac = true, wpn_m60 = true, wpn_m98b = true,
+	wpn_mk14 = true, wpn_mr153 = true, wpn_p90 = true, wpn_pkp = true,
+	wpn_protecta = true, wpn_protecta_ac10632 = true, wpn_rpd = true, wpn_rpk = true,
+	wpn_rpk203 = true, wpn_rpk74 = true, wpn_saiga = true, wpn_scar = true,
+	wpn_sig550 = true, wpn_sig550_ac10632 = true, wpn_sig552 = true, wpn_sr25 = true,
+	wpn_sv98 = true, wpn_svd = true, wpn_svd_1p78 = true, wpn_svu = true,
+	wpn_svu_1p78 = true, wpn_ump45 = true, wpn_val = true, wpn_val_1p78 = true,
+	wpn_vepr = true, wpn_vihr = true, wpn_vintorez = true, wpn_vintorez_1p78 = true,
+	wpn_vsk94 = true, wpn_vssk = true
+}
+
+--' zamena: oruzhie -> patrony
+local FALLBACK = {
+	{"wpn_ak74u", "ammo_5.45x39_fmj"},
+	{"wpn_sks", "ammo_7.62x39_fmj"},
+	{"wpn_toz34", "ammo_12x70_buck"},
+	{"wpn_pm", "ammo_9x18_fmj"},
+	{"wpn_bm16", "ammo_12x70_buck"},
+}
+
+local done = {}
+
+local function active()
+	return not diary_lib.has("diary_jup_seen")
+end
+
+function level_enter(lvl)
+	done = {}
+	if lvl == "jupiter" then diary_lib.give("diary_jup_seen") end
+end
+
+function level_leave() done = {} end
+
+local function fix(npc)
+	local bad = {}
+	npc:iterate_inventory(function(owner, item)
+		if BAN[item:section()] then table.insert(bad, item:id()) end
+	end, npc)
+	if #bad == 0 then return end
+	local sim = alife()
+	for _, id in ipairs(bad) do
+		local se = sim:object(id)
+		if se ~= nil then sim:release(se, true) end
+	end
+	for i = 1, #bad do
+		local f = FALLBACK[math.random(#FALLBACK)]
+		local pos, lv, gv = npc:position(), npc:level_vertex_id(), npc:game_vertex_id()
+		sim:create(f[1], pos, lv, gv, npc:id())
+		sim:create_ammo(f[2], pos, lv, gv, npc:id(), 30)
+	end
+end
+
+function update()
+	if not active() or db.storage == nil then return end
+	for id, st in pairs(db.storage) do
+		if not done[id] and st.object ~= nil then
+			local npc = st.object
+			done[id] = true
+			if IsStalker(npc) and npc:alive() and npc:character_community() == "stalker" then
+				fix(npc)
+			end
+		end
+	end
+end

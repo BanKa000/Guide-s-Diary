@@ -1,0 +1,48 @@
+<w>
+	<main x="0" y="0" width="1024" height="768"/>
+	<background_static x="-3000" y="0" width="1024" height="768" stretch="1">
+		<texture>ui_nb_base</texture>
+		<auto_frameline x="-3000" y="0" width="200" height="200"><texture>ui_inGame2_pda_buttons_leftside</texture></auto_frameline>
+		<auto_frameline x="-3000" y="0" width="200" height="200"><texture>ui_inGame2_pda_buttons_rightside</texture></auto_frameline>
+	</background_static>
+
+	<noice_static x="-3000" y="0" width="1" height="1"/>
+
+	<caption_static x="-3000" y="0" width="10" height="10">
+		<text font="letterica16" align="l" x="0" y="0"/>
+	</caption_static>
+
+	<close_button x="-3000" y="0" width="16" height="20" hint="pda_btn_close" stretch="1">
+		<texture_t>ui_task_bt_close_t</texture_t>
+		<texture_e>ui_task_bt_close_e</texture_e>
+		<texture_h>ui_task_bt_close_h</texture_h>
+	</close_button>
+
+	<clock_wnd x="-3000" y="0" width="10" height="10" alignment="c">
+		<text font="letterica16" align="c" vert_align="c"/>
+	</clock_wnd>
+
+	<hint_wnd x="0" y="0" width="210" height="120">
+		<background x="0" y="0" width="210" height="100" border="5">
+			<texture a="100">ui_icons_PDA_tooltips</texture>
+		</background>
+		<text x="10" y="10" width="190" height="100">
+			<text font="letterica16" color="ui_6" complex_mode="1" align="l" vert_align="t"/>
+		</text>
+	</hint_wnd>
+
+	<tab x="-3000" y="0" width="30" height="10">
+		<button x="0" y="0" width="10" height="10" id="eptTasks" frame_mode="0">
+			<text align="c" vert_align="c" x="0" y="0" font="letterica16"></text>
+			<texture>ui_nb_tab</texture>
+		</button>
+		<button x="10" y="0" width="10" height="10" id="eptRanking" frame_mode="0">
+			<text align="c" vert_align="c" x="0" y="0" font="letterica16"></text>
+			<texture>ui_nb_tab</texture>
+		</button>
+		<button x="20" y="0" width="10" height="10" id="eptLogs" frame_mode="0">
+			<text align="c" vert_align="c" x="0" y="0" font="letterica16"></text>
+			<texture>ui_nb_tab</texture>
+		</button>
+	</tab>
+</w>

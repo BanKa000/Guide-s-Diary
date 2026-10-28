@@ -1,0 +1,275 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: Зона (механики из "Обдумать").
+--'  - настроение Зоны: пока только оповещение раз в period часов;
+--'  - аномальное затишье: после выброса поля аномалий гаснут на duration часов, мутанты срываются с точек;
+--'  - кровная месть: за убитого Лазарем приходит друг убитого, а за мстителем иногда - отряд с запиской;
+--'  - торговля слухами: обычные сталкеры продают слухи (тайник, артефакт, засада), у слуха есть срок годности.
+--' Не сделано (в "Обдумать" помечено "пока не добавлять" или не решено): погодные явления, обратная инженерия,
+--' артефактный резонанс, временная мутация, союзы мутантов, чёрный рынок Припяти, квест у бетонной ванны.
+--------------------------------------------------------------------------------
+local has, give = diary_lib.has, diary_lib.give
+
+--' ---- Настроение Зоны -----------------------------------------------------------------------------
+local MOODS = {"calm", "uneasy", "angry"}
+
+local function mood_tick()
+	if not has("diary_notebook_given") then return end
+	if not diary_lib.timer_set("diary_mood_t") or diary_lib.timer_done("diary_mood_t") then
+		local prev = diary_lib.load_var("diary_mood", "")
+		local m = MOODS[math.random(#MOODS)]
+		diary_lib.save_var("diary_mood", m)
+		diary_lib.start_timer("diary_mood_t", diary_cfg.num("zone_mood", "period", 12))
+		if prev ~= "" and prev ~= m then diary_news.send("diary_mood_cap", "diary_mood_" .. m, 10000) end
+	end
+end
+
+function mood()
+	return diary_lib.load_var("diary_mood", "calm")
+end
+
+--' ---- Аномальное затишье ----------------------------------------------------------------------------
+local surge_was = false
+local calm_applied = false
+
+function calm_active()
+	return diary_lib.timer_set("diary_calm_t") and not diary_lib.timer_done("diary_calm_t")
+end
+
+local function set_fields(on)
+	for name, zone in pairs(db.anomaly_by_name) do
+		pcall(function()
+			if on then zone:turn_on(false) else zone:turn_off() end
+		end)
+	end
+end
+
+local function calm_tick()
+	local sm = surge_manager.get_surge_manager()
+	local surge = sm ~= nil and sm.started
+	--' выброс закончился -> может наступить затишье
+	if surge_was and not surge then
+		if math.random(100) <= diary_cfg.num("surge_calm", "chance", 50) then
+			diary_lib.start_timer("diary_calm_t", diary_cfg.num("surge_calm", "duration", 3))
+			diary_news.send("diary_calm_cap", "diary_calm_start", 10000)
+		end
+	end
+	surge_was = surge
+	local active = calm_active()
+	if active and not calm_applied then
+		set_fields(false)
+		calm_applied = true
+	elseif not active and calm_applied then
+		set_fields(true)
+		calm_applied = false
+		diary_news.send("diary_calm_cap", "diary_calm_end", 8000)
+	end
+end
+
+--' ---- Кровная месть -----------------------------------------------------------------------------------
+--' за кого мстят: сталкеры группировок; сюжетные - всегда, остальные - с шансом
+local AVENGE_COMM = {stalker = true, dolg = true, freedom = true, killer = true, bandit = true, army = true, csky = true, ecolog = true}
+local AVENGER_SQUAD = {stalker = "diary_avenger_stalker", dolg = "diary_avenger_dolg", freedom = "diary_avenger_freedom",
+	killer = "diary_avenger_killer", bandit = "diary_avenger_bandit", army = "diary_avenger_army",
+	csky = "diary_avenger_stalker", ecolog = "diary_avenger_stalker"}
+local HUNT_SQUADS = {"diary_hunt_stalker", "diary_hunt_dolg", "diary_hunt_freedom", "diary_hunt_killer"}
+--' рядом с базами мстители не появляются
+local BASES = {"zat_stalker_base_smart", "zat_b5_smart_terrain", "zat_b103_merc_smart", "jup_a6", "jup_b41"}
+
+function on_actor_kill(victim)
+	if victim == nil or not IsStalker(victim) then return end
+	local comm = victim:character_community()
+	if not AVENGE_COMM[comm] then return end
+	local story = get_object_story_id(victim:id()) ~= nil
+	if not story and math.random(100) > diary_cfg.num("vendetta", "kill_chance", 25) then return end
+	if diary_lib.load_var("diary_vend_comm", nil) ~= nil then return end   --' одна месть за раз
+	diary_lib.save_var("diary_vend_comm", comm)
+	diary_lib.save_var("diary_vend_name", victim:character_name())
+	local lo = diary_cfg.num("vendetta", "delay_min", 48)
+	local hi = diary_cfg.num("vendetta", "delay_max", 96)
+	diary_lib.start_timer("diary_vend_t", lo + math.random() * (hi - lo))
+	give("diary_vend_marked")
+end
+
+local function near_base(pos)
+	for _, name in ipairs(BASES) do
+		local sm = diary_lib.smart(name)
+		if sm ~= nil and game_graph():vertex(sm.m_game_vertex_id):level_id() == alife():level_id()
+			and sm.position:distance_to(pos) < 150 then return true end
+	end
+	return false
+end
+
+--' ближайший смарт в 60-200 м от игрока, не у базы
+local function ambush_smart()
+	local ap = db.actor:position()
+	local lid = alife():level_id()
+	local best, bd = nil, 1e9
+	for id, s in pairs(sim_board.get_sim_board().smarts) do
+		local sm = s.smrt
+		if game_graph():vertex(sm.m_game_vertex_id):level_id() == lid then
+			local d = sm.position:distance_to(ap)
+			if d > 60 and d < 200 and d < bd and not near_base(sm.position) then best, bd = sm, d end
+		end
+	end
+	return best
+end
+
+local function spawn_hunters(squad_sec, note)
+	local sm = ambush_smart()
+	if sm == nil then return nil end
+	local sq = sim_board.get_sim_board():create_squad(sm, squad_sec)
+	if sq == nil then return nil end
+	diary_lib.squad_relation(sq.id, "enemy")
+	if note ~= nil then
+		local m = diary_lib.squad_leader(sq.id)
+		if m ~= nil then alife():create(note, vector():set(0, 0, 0), 0, 0, m) end
+	end
+	return sq.id
+end
+
+--' подземелья: ни мстителей, ни слухов
+local UNDERGROUND = {jupiter_underground = true, labx8 = true}
+
+local function vendetta_tick()
+	if UNDERGROUND[level.name()] then return end
+	local comm = diary_lib.load_var("diary_vend_comm", nil)
+	--' мститель: ждём срока, игрок не у базы, не в выброс, не в разговоре
+	if comm ~= nil and not diary_lib.load_var("diary_vend_sq", nil) and diary_lib.timer_done("diary_vend_t") then
+		local sm = surge_manager.get_surge_manager()
+		if not (sm and sm.started) and not db.actor:is_talking() and not near_base(db.actor:position()) then
+			local sq = spawn_hunters(AVENGER_SQUAD[comm] or "diary_avenger_stalker", nil)
+			if sq ~= nil then
+				diary_lib.save_var("diary_vend_sq", sq)
+				diary_news.thought("diary_vend_feel")
+				diary_news.record("vendetta")
+			end
+		end
+		return
+	end
+	--' мститель убит: иногда за Лазарем выходит отряд с запиской (у наёмников - КПК с контрактом)
+	local sq = diary_lib.load_var("diary_vend_sq", nil)
+	if sq ~= nil and diary_lib.squad_alive(sq) == 0 then
+		diary_lib.save_var("diary_vend_sq", nil)
+		diary_lib.save_var("diary_vend_comm", nil)
+		diary_lib.take("diary_vend_marked")
+		if math.random(100) <= diary_cfg.num("vendetta", "squad_chance", 30) then
+			local sec = HUNT_SQUADS[math.random(#HUNT_SQUADS)]
+			local note = sec == "diary_hunt_killer" and "diary_vendetta_pda" or "diary_vendetta_note"
+			spawn_hunters(sec, note)
+		end
+	end
+end
+
+--' подобрал записку охотников - имя друга убитого
+function on_item_take(obj)
+	local sec = obj:section()
+	if sec == "diary_vendetta_note" or sec == "diary_vendetta_pda" then
+		local name = diary_lib.load_var("diary_vend_name", "?")
+		diary_news.send(sec .. "_name", string.format(game.translate_string("diary_vendetta_read"), name), 12000)
+	end
+end
+
+--' ---- Торговля слухами --------------------------------------------------------------------------------
+--' Слух покупается у обычного сталкера (не торговца, медика, техника, главаря, сюжетного).
+--' Виды: тайник с хабаром, артефакт у аномалии, предупреждение о засаде. Через life часов слух протухает:
+--' не забранный тайник исчезает, метка снимается.
+local RUMOR_BAD = {"trader", "mechanic", "barmen", "medic", "tech", "owl", "guide", "leader", "boss", "sultan",
+	"chief", "diary", "dj_", "scientist", "commander"}
+local STASH_LOOT = {"medkit", "bandage", "antirad", "conserva", "vodka", "ammo_9x18_fmj", "ammo_5.45x39_fmj", "drug_coagulant"}
+local ARTS = {"af_medusa", "af_cristall_flower", "af_blood", "af_electra_sparkler", "af_soul"}
+
+function rumor_seller(npc)
+	if npc == nil or not IsStalker(npc) or get_object_story_id(npc:id()) ~= nil then return false end
+	local nm = string.lower(npc:name())
+	for _, b in ipairs(RUMOR_BAD) do
+		if string.find(nm, b, 1, true) then return false end
+	end
+	if npc:character_community() == "zombied" or npc:character_community() == "monolith" then return false end
+	return diary_lib.load_var("diary_rumor_id", nil) == nil
+end
+
+function rumor_price() return diary_cfg.num("rumors", "price", 300) end
+function rumor_can_pay() return db.actor:money() >= rumor_price() end
+
+--' случайный смарт уровня в 150-600 м
+local function rumor_smart()
+	local ap = db.actor:position()
+	local lid = alife():level_id()
+	local list = {}
+	for id, s in pairs(sim_board.get_sim_board().smarts) do
+		local sm = s.smrt
+		if game_graph():vertex(sm.m_game_vertex_id):level_id() == lid then
+			local d = sm.position:distance_to(ap)
+			if d > 150 and d < 600 and not near_base(sm.position) then table.insert(list, sm) end
+		end
+	end
+	if #list == 0 then return nil end
+	return list[math.random(#list)]
+end
+
+function rumor_buy()
+	db.actor:give_money(-rumor_price())
+	local sm = not UNDERGROUND[level.name()] and rumor_smart() or nil
+	if sm == nil then
+		diary_news.thought("diary_rumor_empty")
+		return
+	end
+	local kind = math.random(3)
+	local id = nil
+	if kind == 1 then
+		local box = diary_lib.create_at_smart("diary_rumor_box", sm)
+		for i = 1, math.random(2, 4) do
+			alife():create(STASH_LOOT[math.random(#STASH_LOOT)], vector():set(0, 0, 0), 0, 0, box.id)
+		end
+		id = box.id
+	elseif kind == 2 then
+		id = diary_lib.create_at_smart(ARTS[math.random(#ARTS)], sm).id
+	else
+		--' предупреждение: на точке засада, метка на точку
+		local sq = sim_board.get_sim_board():create_squad(sm, "diary_rumor_ambush")
+		if sq ~= nil then diary_lib.squad_relation(sq.id, "enemy") end
+		id = sm.id
+	end
+	diary_lib.save_var("diary_rumor_id", id)
+	diary_lib.save_var("diary_rumor_kind", kind)
+	diary_lib.start_timer("diary_rumor_t", diary_cfg.num("rumors", "life", 24))
+	pcall(level.map_add_object_spot_ser, id, "red_location", "diary_rumor_spot_" .. kind)
+	diary_news.send("diary_rumor_cap", "diary_rumor_news_" .. kind, 12000)
+end
+
+local function rumor_tick()
+	local id = diary_lib.load_var("diary_rumor_id", nil)
+	if id == nil then return end
+	local kind = diary_lib.load_var("diary_rumor_kind", 1)
+	local gone = alife():object(id) == nil
+	local taken = false
+	if kind == 2 and not gone then
+		taken = alife():object(id).parent_id ~= 65535
+	end
+	if gone or taken or diary_lib.timer_done("diary_rumor_t") then
+		pcall(level.map_remove_object_spot, id, "red_location")
+		--' протухший тайник исчезает, если игрок его не видит
+		if kind == 1 and not gone and diary_lib.timer_done("diary_rumor_t") and level.object_by_id(id) == nil then
+			diary_lib.release(id)
+		end
+		diary_lib.save_var("diary_rumor_id", nil)
+	end
+end
+
+--' ---- Модуль ---------------------------------------------------------------------------------------------
+function level_enter(lvl)
+	surge_was = false
+	calm_applied = false
+end
+
+function level_leave()
+	if calm_applied then set_fields(true) end
+	calm_applied = false
+end
+
+function update()
+	mood_tick()
+	calm_tick()
+	vendetta_tick()
+	rumor_tick()
+end

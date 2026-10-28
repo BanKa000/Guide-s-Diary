@@ -1,0 +1,240 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: общие функции (инфопорции, хранилище, инвентарь, спавн, время).
+--' Только вспомогательный код: ни состояния квестов, ни баланса здесь нет.
+--------------------------------------------------------------------------------
+
+--' ---- Инфопорции -------------------------------------------------------------
+function has(info)
+	return db.actor ~= nil and db.actor:has_info(info)
+end
+
+function give(info)
+	if db.actor ~= nil and not db.actor:has_info(info) then
+		db.actor:give_info_portion(info)
+		return true
+	end
+	return false
+end
+
+function take(info)
+	if db.actor ~= nil and db.actor:has_info(info) then
+		db.actor:disable_info_portion(info)
+	end
+end
+
+--' ---- Хранилище (pstor актёра, сохраняется в сейве) ---------------------------
+function load_var(name, def)
+	local v = nil
+	pcall(function() v = xr_logic.pstor_retrieve(db.actor, name, nil) end)
+	if v == nil then return def end
+	return v
+end
+
+function save_var(name, v)
+	pcall(function() xr_logic.pstor_store(db.actor, name, v) end)
+end
+
+--' ---- Время ------------------------------------------------------------------
+local MDAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+
+--' Абсолютное игровое время в часах (дробное). Сохраняется числом в pstor.
+function game_hours()
+	local Y, M, D, h, m, s, ms = 0, 0, 0, 0, 0, 0, 0
+	Y, M, D, h, m, s, ms = game.get_game_time():get(Y, M, D, h, m, s, ms)
+	local leap = (Y % 4 == 0)
+	local days = (Y - 2000) * 365 + math.floor((Y - 2000 + 3) / 4)
+	for i = 1, M - 1 do days = days + MDAYS[i] end
+	if leap and M > 2 then days = days + 1 end
+	days = days + D
+	return days * 24 + h + m / 60
+end
+
+--' Таймер в игровых часах: start_timer("x", 5) ... timer_done("x")
+function start_timer(name, hours)
+	save_var(name, game_hours() + hours)
+end
+
+function timer_done(name)
+	local t = load_var(name, nil)
+	return t ~= nil and game_hours() >= t
+end
+
+function timer_set(name)
+	return load_var(name, nil) ~= nil
+end
+
+function clear_timer(name)
+	save_var(name, nil)
+end
+
+--' ---- Инвентарь актёра ---------------------------------------------------------
+function count_item(sec)
+	local n = 0
+	db.actor:iterate_inventory(function(owner, item)
+		if item:section() == sec then n = n + 1 end
+	end, db.actor)
+	return n
+end
+
+--' как в оригинале: сообщение "отдал/получил предмет" (иконка и название) на каждый переданный предмет
+local function relocate_news(kind, sec, n)
+	for i = 1, n do
+		pcall(news_manager.relocate_item, db.actor, kind, sec)
+	end
+end
+
+function take_items(sec, cnt)
+	local ids = {}
+	db.actor:iterate_inventory(function(owner, item)
+		if item:section() == sec and #ids < cnt then table.insert(ids, item:id()) end
+	end, db.actor)
+	for _, id in ipairs(ids) do
+		local se = alife():object(id)
+		if se ~= nil then alife():release(se, true) end
+	end
+	relocate_news("out", sec, #ids)
+	return #ids
+end
+
+function give_items(sec, cnt)
+	local a = db.actor
+	for i = 1, cnt or 1 do
+		alife():create(sec, a:position(), a:level_vertex_id(), a:game_vertex_id(), a:id())
+	end
+	relocate_news("in", sec, cnt or 1)
+end
+
+--' Название предмета для текста
+function item_name(sec)
+	local name = sec
+	pcall(function() name = game.translate_string(system_ini():r_string(sec, "inv_name")) end)
+	return name
+end
+
+--' ---- Объекты и смарты -----------------------------------------------------------
+function smart(name)
+	local sb = sim_board.get_sim_board()
+	return sb and sb.smarts_by_names[name]
+end
+
+--' Позиция серверного объекта на текущем уровне или nil
+function obj_pos(id)
+	if id == nil then return nil end
+	local o = level.object_by_id(id)
+	if o ~= nil then return o:position() end
+	local se = alife():object(id)
+	if se ~= nil and se.parent_id == 65535 and game_graph():vertex(se.m_game_vertex_id):level_id() == alife():level_id() then
+		return se.position
+	end
+	return nil
+end
+
+function story_obj(sid)
+	local id = get_story_object_id(sid)
+	return id and alife():object(id)
+end
+
+function release(id)
+	local se = id and alife():object(id)
+	if se ~= nil then alife():release(se, true) end
+end
+
+--' Создать объект на смарте (с вертексами смарта) или в точке pos рядом со смартом
+--' Переставить NPC (как sim_squad_scripted:set_squad_position, но по одному): онлайн - сразу,
+--' офлайн - он появится в этой точке, когда выйдет в онлайн
+function place_npc(id, pos, lv)
+	pcall(function()
+		local off = db.offline_objects[id]
+		if off ~= nil then off.level_vertex_id = lv or level.vertex_id(pos) end
+	end)
+	local o = level.object_by_id(id)
+	if o ~= nil then
+		pcall(function() o:set_npc_position(pos) end)
+	else
+		local se = alife():object(id)
+		if se ~= nil then se.position = pos end
+	end
+end
+
+function create_at_smart(sec, sm, pos, lv, gv)
+	return alife():create(sec, pos or sm.position, lv or sm.m_level_vertex_id, gv or sm.m_game_vertex_id)
+end
+
+--' Отряд на смарте; id отряда или nil
+function create_squad(squad_sec, smart_name)
+	local sm = smart(smart_name)
+	if sm == nil then return nil end
+	local sq = sim_board.get_sim_board():create_squad(sm, squad_sec)
+	return sq and sq.id
+end
+
+function remove_squad(id)
+	local sq = id and alife():object(id)
+	if sq ~= nil then pcall(function() sim_board.get_sim_board():remove_squad(sq) end) end
+end
+
+--' Живых в отряде
+function squad_alive(id)
+	local sq = id and alife():object(id)
+	if sq == nil then return 0 end
+	local n = 0
+	pcall(function() n = sq:npc_count() end)
+	return n
+end
+
+--' Первый член отряда (id) или nil
+function squad_leader(id)
+	local sq = id and alife():object(id)
+	if sq == nil then return nil end
+	for m in sq:squad_members() do return m.id end
+	return nil
+end
+
+--' Отношение всего отряда к актёру: "enemy", "neutral", "friend"
+function squad_relation(id, rel)
+	local sq = id and alife():object(id)
+	if sq == nil then return end
+	sq.relationship = rel
+	pcall(function() sq:set_squad_relation(rel) end)
+end
+
+--' NPC из диалога, который не актёр
+function npc_of(first_speaker, second_speaker)
+	if first_speaker:id() == db.actor:id() then return second_speaker end
+	return first_speaker
+end
+
+--' Номер отряда, в котором стоит NPC (или nil)
+function npc_squad(npc)
+	local se = alife():object(npc:id())
+	if se == nil or se.group_id == nil or se.group_id == 65535 then return nil end
+	return se.group_id
+end
+
+--' ---- Экран и телепорт -------------------------------------------------------------
+local FADE_ID = 7741
+
+function fade_out()
+	level.add_pp_effector("black.ppe", FADE_ID, true)
+	pcall(xr_effects.disable_ui, db.actor, nil)
+end
+
+function fade_in()
+	level.remove_pp_effector(FADE_ID)
+	pcall(xr_effects.enable_ui, db.actor, nil)
+	level.add_pp_effector("fade_in.ppe", FADE_ID + 1, false)
+end
+
+function teleport_actor(pos)
+	db.actor:set_actor_position(pos)
+end
+
+--' Перемотать время до ближайшего часа hh:00
+function skip_to_hour(hh)
+	local now = level.get_time_hours()
+	local mins = level.get_time_minutes()
+	local dh = (hh - now) % 24
+	local total = dh * 60 - mins
+	if total <= 0 then total = total + 24 * 60 end
+	level.change_game_time(0, math.floor(total / 60), total % 60)
+end

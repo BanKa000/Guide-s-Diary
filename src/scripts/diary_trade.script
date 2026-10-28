@@ -1,0 +1,226 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: экономика.
+--'  - события поставок: Борода жалуется на Затоне, кража со склада Гавайца на Юпитере;
+--'  - склад торговцев: точные лимиты (configs\misc\trade\diary_stock.ltx), патроны - поштучно;
+--'  - цены улучшений и ремонта по техникам (inventory_upgrades.script).
+--' Цены продажи (+50%, наёмники x4) и скидки - в trade_*.ltx, штатно, через trade_manager.
+--------------------------------------------------------------------------------
+local has, give = diary_lib.has, diary_lib.give
+
+--' ---- События поставок -------------------------------------------------------------------------
+--' Затон: после блокнота Борода заговаривает о поставках, когда игрок зашёл к нему в торговлю (on_trade_open).
+--' Если за bor_fallback часов так и не зашёл - разговор открывается сам.
+local function zaton_supply()
+	if not has("diary_notebook_given") or has("diary_supply_bor_ready") then return end
+	if diary_lib.load_var("diary_bor_trade_seen", false) == true then
+		give("diary_supply_bor_ready")
+		return
+	end
+	if not diary_lib.timer_set("diary_supply_bor_t") then
+		diary_lib.start_timer("diary_supply_bor_t", diary_cfg.num("supply_zaton", "bor_fallback", 72))
+	elseif diary_lib.timer_done("diary_supply_bor_t") then
+		give("diary_supply_bor_ready")
+	end
+end
+
+--' Окно торговли открылось (actor_menu.trade_wnd_opened): торгует ли игрок с Бородой?
+function on_trade_open()
+	if level.name() ~= "zaton" or not has("diary_notebook_given") or has("diary_supply_bor_ready") then return end
+	local id = get_story_object_id("zat_a2_stalker_barmen")
+	local o = id and level.object_by_id(id)
+	if o == nil or not o:alive() then return end
+	--' торгует именно с Бородой: он в разговоре с героем (или герой стоит вплотную к стойке)
+	local talks = db.actor:is_talking() and o:is_talking()
+	if talks or (o:position():distance_to(db.actor:position()) < 4 and db.actor:is_talking()) then
+		diary_lib.save_var("diary_bor_trade_seen", true)
+	end
+end
+
+--' Подмена actor_menu.trade_wnd_opened (движок зовёт её при открытии окна торговли); отдельного файла actor_menu.script
+--' мод не поставляет. Если функции нет, остаётся запасной срок bor_fallback.
+local orig_trade_opened = nil
+local wrapped_trade_opened = nil
+local function hook_trade_window()
+	pcall(function()
+		local cur = actor_menu.trade_wnd_opened
+		if cur == nil or cur == wrapped_trade_opened then return end
+		orig_trade_opened = cur
+		wrapped_trade_opened = function(...)
+			orig_trade_opened(...)
+			pcall(on_trade_open)
+		end
+		actor_menu.trade_wnd_opened = wrapped_trade_opened
+	end)
+end
+
+--' Юпитер: через 3 дня Гаваец перестаёт продавать оружие, броню и патроны, ещё через 2 - кража.
+local function jupiter_supply()
+	if not has("diary_jup_arrived") then return end
+	if not diary_lib.timer_set("diary_gav_stop_t") then
+		diary_lib.start_timer("diary_gav_stop_t", diary_cfg.num("supply_jupiter", "gav_stop", 72))
+		return
+	end
+	if not has("diary_gav_stopped") and diary_lib.timer_done("diary_gav_stop_t") then
+		give("diary_gav_stopped")
+		diary_lib.start_timer("diary_gav_theft_t", diary_cfg.num("supply_jupiter", "gav_theft", 48))
+		return
+	end
+	if has("diary_gav_stopped") and not has("diary_gav_theft") and diary_lib.timer_done("diary_gav_theft_t") then
+		give("diary_gav_theft")
+	end
+end
+
+--' ---- Склад торговцев -------------------------------------------------------------------------------
+--' [traders] story_id = condlist состояний; секция состояния: предмет = мин, макс (патроны - в патронах)
+local stock_ini = nil
+local traders = nil     --' story_id -> {cond = condlist, all = {секции всех состояний}}
+
+local function load_stock()
+	if traders ~= nil then return end
+	traders = {}
+	stock_ini = ini_file("misc\\trade\\diary_stock.ltx")
+	local n = stock_ini:line_count("traders")
+	for i = 0, n - 1 do
+		local _, sid, cond = stock_ini:r_line("traders", i, "", "")
+		local t = {cond = xr_logic.parse_condlist(db.actor, "diary_stock", sid, cond), all = {}}
+		--' все секции предметов, которые этот торговец может держать: чтобы убрать старый склад
+		for _, c in ipairs(t.cond) do
+			local sec = c.section
+			if sec ~= nil and sec ~= "" and stock_ini:section_exist(sec) then
+				for k = 0, stock_ini:line_count(sec) - 1 do
+					local _, item = stock_ini:r_line(sec, k, "", "")
+					t.all[item] = true
+				end
+			end
+		end
+		traders[sid] = t
+	end
+end
+
+local function restock(npc, sid, t, state)
+	--' старый склад: только то, чем торговец торгует (своё оружие и одежда не трогаются)
+	local kill = {}
+	local active = npc:active_item()
+	local outfit = npc:get_current_outfit()
+	npc:iterate_inventory(function(owner, item)
+		if t.all[item:section()] and (active == nil or item:id() ~= active:id()) and (outfit == nil or item:id() ~= outfit:id()) then
+			table.insert(kill, item:id())
+		end
+	end, npc)
+	for _, id in ipairs(kill) do diary_lib.release(id) end
+	--' новый склад
+	local pos, lv, gv, pid = npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id()
+	for k = 0, stock_ini:line_count(state) - 1 do
+		local _, item, v = stock_ini:r_line(state, k, "", "")
+		local lo, hi = string.match(v or "", "^%s*(%d+)%s*,%s*(%d+)")
+		lo, hi = tonumber(lo) or 0, tonumber(hi) or tonumber(lo) or 0
+		local cnt = lo
+		if hi > lo then cnt = math.random(lo, hi) end
+		if cnt > 0 then
+			if string.sub(item, 1, 5) == "ammo_" then
+				--' неполные пачки: лимит в патронах, а не в пачках
+				create_ammo(item, pos, lv, gv, pid, cnt)
+			else
+				for i = 1, cnt do alife():create(item, pos, lv, gv, pid) end
+			end
+		end
+	end
+end
+
+local function stock_tick()
+	load_stock()
+	local now = diary_lib.game_hours()
+	local period = 24
+	for sid, t in pairs(traders) do
+		local id = get_story_object_id(sid)
+		local npc = id and level.object_by_id(id)
+		if npc ~= nil and npc:alive() and not npc:is_talking() then
+			local state = xr_logic.pick_section_from_condlist(db.actor, npc, t.cond)
+			local key = "diary_stock_" .. sid
+			local last_state = diary_lib.load_var(key .. "_s", "")
+			local last_t = diary_lib.load_var(key .. "_t", -1000)
+			if state ~= nil and state ~= "" and (state ~= last_state or now - last_t >= period) then
+				diary_main.safe("restock." .. sid, restock, npc, sid, t, state)
+				diary_lib.save_var(key .. "_s", state)
+				diary_lib.save_var(key .. "_t", now)
+			end
+		end
+	end
+end
+
+--' ---- Улучшения и ремонт ---------------------------------------------------------------------------
+--' Множитель цены техника: у всех +50%, у наёмников ещё x4
+local MERC_TECH = {diary_tech_b103 = true}
+local BANDIT_TECH = {diary_tech_b5 = true}
+
+function upgrade_mult(mechanic)
+	local m = diary_cfg.num("prices", "upgrade_mult", 1.5)
+	if MERC_TECH[mechanic] then m = m * diary_cfg.num("prices", "merc_mult", 4) end
+	return m
+end
+
+--' Техники бандитов (Шуруп) и наёмников только чинят: улучшений у них нет.
+function upgrade_allowed(mechanic, section)
+	return not (BANDIT_TECH[mechanic] or MERC_TECH[mechanic])
+end
+
+--' Кардан: улучшает и чинит. Шуруп и наёмники: только ремонт.
+function can_upgrade(mechanic)
+	return not (BANDIT_TECH[mechanic] or MERC_TECH[mechanic])
+end
+
+--' Оружие и броня Т1 (стартовый уровень, склад Сыча без заданий-открытий); всё остальное - Т2 и Т3.
+local TIER1 = {}
+for s in string.gmatch("wpn_pm wpn_fort wpn_pb wpn_beretta wpn_bm16 wpn_toz34 wpn_mp5 novice_outfit stalker_outfit helm_respirator helm_hardhat", "%S+") do
+	TIER1[s] = true
+end
+
+local CARDAN = "zat_a2_stalker_mechanic"
+
+--' Кардану помогли: принесены все три набора инструментов
+local function cardan_helped()
+	return has("zat_b3_tech_instrument_1_brought") and has("zat_b3_tech_instrument_2_brought")
+		and has("zat_b3_tech_instrument_3_brought")
+end
+
+--' Во сколько раз дороже ремонт предмета Т2 и Т3 (оружие и броня): Кардан и Шуруп x5,
+--' Кардан после помощи x2, наёмники тоже x5 (сверх своей наценки). Т1 - без добавки.
+function repair_mult(mechanic, item_name)
+	if TIER1[item_name] then return 1 end
+	if mechanic == CARDAN then
+		if cardan_helped() then return diary_cfg.num("prices", "repair_t23_cardan_helped", 2) end
+		return diary_cfg.num("prices", "repair_t23", 5)
+	end
+	if BANDIT_TECH[mechanic] then return diary_cfg.num("prices", "repair_t23", 5) end
+	if MERC_TECH[mechanic] then return diary_cfg.num("prices", "repair_t23_merc", 5) end
+	return 1
+end
+
+--' Кардан всегда может улучшать (на старых сохранениях кнопку могла выключить старая логика)
+local function cardan_upgrade_tick()
+	local id = get_story_object_id(CARDAN)
+	local o = id and level.object_by_id(id)
+	if o ~= nil then pcall(function() o:enable_inv_upgrade() end) end
+end
+
+--' ---- Модуль -------------------------------------------------------------------------------------------
+function level_enter(lvl)
+	if lvl == "jupiter" then give("diary_jup_arrived") end
+	hook_trade_window()
+end
+
+function level_leave()
+	traders = nil
+	stock_ini = nil
+end
+
+function update()
+	local lvl = level.name()
+	if lvl == "zaton" then
+		zaton_supply()
+	elseif lvl == "jupiter" then
+		jupiter_supply()
+	end
+	stock_tick()
+	cardan_upgrade_tick()
+end

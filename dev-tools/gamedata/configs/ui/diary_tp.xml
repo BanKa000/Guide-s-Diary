@@ -1,0 +1,68 @@
+<w>
+	<tp_bg x="262" y="105" width="500" height="560">
+		<texture>ui_inGame2_screen_4</texture>
+	</tp_bg>
+	<tp_title x="282" y="118" width="460" height="24">
+		<text font="letterica18" align="c" vert_align="c" r="220" g="220" b="220">Телепорты</text>
+	</tp_title>
+	<tp_btn_1 x="282" y="150" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_1>
+	<tp_btn_2 x="282" y="181" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_2>
+	<tp_btn_3 x="282" y="212" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_3>
+	<tp_btn_4 x="282" y="243" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_4>
+	<tp_btn_5 x="282" y="274" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_5>
+	<tp_btn_6 x="282" y="305" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_6>
+	<tp_btn_7 x="282" y="336" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_7>
+	<tp_btn_8 x="282" y="367" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_8>
+	<tp_btn_9 x="282" y="398" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_9>
+	<tp_btn_10 x="282" y="429" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_10>
+	<tp_btn_11 x="282" y="460" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_11>
+	<tp_btn_12 x="282" y="491" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c"/>
+	</tp_btn_12>
+	<tp_btn_prev x="282" y="561" width="225" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c">&lt; Назад</text>
+	</tp_btn_prev>
+	<tp_btn_next x="517" y="561" width="225" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c">Дальше &gt;</text>
+	</tp_btn_next>
+	<tp_btn_close x="282" y="530" width="460" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c">Закрыть</text>
+	</tp_btn_close>
+</w>

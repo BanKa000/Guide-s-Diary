@@ -1,0 +1,10 @@
+<w>
+	<file name="ui\ui_nb_marks">
+		<texture id="ui_nb_mk_x" x="0" y="0" width="64" height="64"/>
+		<texture id="ui_nb_mk_ring" x="64" y="0" width="64" height="64"/>
+		<texture id="ui_nb_mk_dot" x="128" y="0" width="64" height="64"/>
+	</file>
+	<file name="ui\ui_nb_part">
+		<texture id="ui_nb_m_draw_1p" x="0" y="0" width="882" height="649"/>
+	</file>
+</w>

@@ -1,0 +1,163 @@
+-- Temporary scanner for design work (position + dump of all alife objects on the current level).
+-- Delete this file and the bind_stalker.script copy afterwards.
+local last_pos = 0
+local n = 0
+local scan_started = nil
+local scan_next = 0
+local scan_done = true
+local scan_count = 0
+local scan_file = nil
+
+local function cur_level_id()
+	local a = alife()
+	if a == nil then return nil end
+	local act = a:actor()
+	if act == nil then return nil end
+	return game_graph():vertex(act.m_game_vertex_id):level_id()
+end
+
+local function scan_step()
+	local a = alife()
+	local lid = cur_level_id()
+	if a == nil or lid == nil then return end
+	local last = math.min(scan_next + 500, 65535)
+	for i = scan_next, last do
+		local o = a:object(i)
+		if o ~= nil then
+			local ok, line = pcall(function()
+				if game_graph():vertex(o.m_game_vertex_id):level_id() ~= lid then return nil end
+				local p = o.position
+				return string.format("%d|%s|%s|%.2f|%.2f|%.2f", o.id, o:section_name(), o:name(), p.x, p.y, p.z)
+			end)
+			if ok and line ~= nil then
+				scan_count = scan_count + 1
+				printf("SCAN %s", line)
+				if scan_file ~= nil then scan_file:write(line .. "\n") end
+			end
+		end
+	end
+	scan_next = last + 1
+	if scan_next > 65535 then
+		scan_done = true
+		printf("SCAN_DONE lvl=%s objects=%d", level.name(), scan_count)
+		if scan_file ~= nil then scan_file:close() scan_file = nil end
+	end
+end
+
+function update()
+	panel_tick()
+	pcall(diary_tp.tick)
+	local t = time_global()
+	local a = db.actor
+	if a == nil then return end
+	if t - last_pos >= 3000 then
+		last_pos = t
+		local p = a:position()
+		n = n + 1
+		printf("POSLOG %d lvl=%s x=%.2f y=%.2f z=%.2f", n, level.name(), p.x, p.y, p.z)
+	end
+	if false then
+		if scan_next == 0 then
+			printf("SCAN_START lvl=%s", level.name())
+			pcall(function() scan_file = io.open("scan_" .. level.name() .. ".txt", "w") end)
+		end
+		scan_step()
+	end
+end
+
+-- Point marker panel.
+-- Drop one "bandage" from the inventory, then close the inventory: the panel opens.
+-- It shows the current position and lets you type a name. Save appends to points_named_<level>.txt.
+class "pos_panel" (CUIScriptWnd)
+
+function pos_panel:__init() super()
+	self:SetWndRect(Frect():set(0,0,1024,768))
+	self:Enable(true)
+	local xml = CScriptXmlInit()
+	xml:ParseFile("pos_panel.xml")
+	xml:InitStatic("pos_bg", self)
+	xml:InitStatic("pos_title", self)
+	self.coords = xml:InitStatic("pos_coords", self)
+	xml:InitStatic("pos_hint", self)
+	self.status = xml:InitStatic("pos_status", self)
+	self.edit = xml:InitEditBox("pos_edit", self)
+	self:Register(self.edit, "pos_edit")
+	local b1 = xml:Init3tButton("pos_btn_save", self)
+	self:Register(b1, "pos_btn_save")
+	local b2 = xml:Init3tButton("pos_btn_close", self)
+	self:Register(b2, "pos_btn_close")
+	self:AddCallback("pos_btn_save", ui_events.BUTTON_CLICKED, self.on_save, self)
+	self:AddCallback("pos_btn_close", ui_events.BUTTON_CLICKED, self.on_close, self)
+	self.x, self.y, self.z, self.lvid, self.gvid = 0, 0, 0, 0, 0
+end
+
+function pos_panel:set_position(p, lvid, gvid)
+	self.x, self.y, self.z, self.lvid, self.gvid = p.x, p.y, p.z, lvid, gvid
+	self.coords:TextControl():SetText(string.format("x=%.2f  y=%.2f  z=%.2f", p.x, p.y, p.z))
+end
+
+function pos_panel:on_save()
+	local name = self.edit:GetText()
+	if name == nil or name == "" then name = "unnamed" end
+	local line = string.format("%s|%.2f|%.2f|%.2f|lvid=%d|gvid=%d", name, self.x, self.y, self.z, self.lvid, self.gvid)
+	printf("NAMEDPOINT %s %s", level.name(), line)
+	local ok = pcall(function()
+		local f = io.open("points_named_" .. level.name() .. ".txt", "a")
+		if f ~= nil then f:write(line .. "\n") f:close() end
+	end)
+	self.status:TextControl():SetText("Saved: " .. name)
+	self.edit:SetText("")
+end
+
+function pos_panel:on_close()
+	self:HideDialog()
+end
+
+function pos_panel:OnKeyboard(dik, keyboard_action)
+	local res = CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+	if res == false then
+		if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+			if dik == DIK_keys.DIK_ESCAPE then
+				self:HideDialog()
+			end
+		end
+	end
+	return res
+end
+
+local panel_wanted = nil
+local panel_ui = nil
+
+function on_drop(obj)
+	if obj == nil then return end
+	if obj:section() ~= "bandage" then return end
+	panel_wanted = time_global()
+end
+
+function panel_tick()
+	if panel_wanted == nil then return end
+	local a = db.actor
+	if a == nil then return end
+	local busy = false
+	local ok, rcv = pcall(function() return level.main_input_receiver() end)
+	if ok then
+		busy = (rcv ~= nil)
+	else
+		busy = (time_global() - panel_wanted < 2500)
+	end
+	if busy then return end
+	panel_wanted = nil
+	local p = a:position()
+	panel_ui = pos_panel()
+	panel_ui:set_position(p, a:level_vertex_id(), a:game_vertex_id())
+	panel_ui:ShowDialog(true)
+end
+
+function request_panel()
+	pcall(diary_tp.cancel)
+	panel_wanted = time_global()
+end
+
+function cancel_panel()
+	panel_wanted = nil
+end

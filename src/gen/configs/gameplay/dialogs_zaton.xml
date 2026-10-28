@@ -1,0 +1,4331 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+    <dialog id="zat_b51_stalker_nimble_get_order">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_place_order">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_about">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_first_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_third_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_arc">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_catastrophe">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_dog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_maps">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_about_himself">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_refuse_af_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_detectors_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor3">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor2">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_vampire_actor4">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_compass_give_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_compass_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_compass_revert_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_compass_revert_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_compass_double_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_compass_give_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_about_new_detector">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_take_business_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_oasis_art_sell">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b52_about_snag">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_about">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_apologies_joker">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_apologies_both">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_apologies_barge">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_pda">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_come_with_me">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_bunker_guarding">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_start_last_chance_end">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_b30_actor_after_barmen">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b57_barmen_about_bloodsucker_lair_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_employ_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalker_squad_leader_come_with_me">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_killed_self_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_leader_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_about_anomalies">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_about_surge">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_second_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_medic_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_medic_info_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_medic_bloodsucker_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_task_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_b52_about_snag">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_about_sci_helpers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_about_sci_helpers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b53_artefact_hunter_2_gathering_artefacts">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_lost_merc_leader_b40_about_merc_camp">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_about_toolkit">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_share_package_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_refuse_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b57_barman_reward_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_barmen_under_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_about_supplies">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b103_merc_dialog_find_supplies">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_pripyat_no_way">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_start">
+        <phrase_list>
+            <phrase id="31">
+                <text>zat_b215_stalker_guide_start_31</text>
+            </phrase>
+            <phrase id="41">
+                <text>zat_b215_stalker_guide_start_41</text>
+            </phrase>
+            <phrase id="51">
+                <text>zat_b215_stalker_guide_start_51</text>
+            </phrase>
+            <phrase id="3">
+                <text />
+                <precondition>dialogs.level_zaton</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <has_info>zat_b215_gave_maps</has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>31</next>
+            </phrase>
+            <phrase id="4">
+                <text />
+                <precondition>dialogs.level_jupiter</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <dont_has_info>zat_b215_gave_maps</dont_has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>41</next>
+            </phrase>
+            <phrase id="5">
+                <text />
+                <precondition>dialogs.level_jupiter</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <has_info>zat_b215_gave_maps</has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>51</next>
+            </phrase>
+            <phrase id="1">
+                <text />
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <dont_has_info>zat_b215_first_meet</dont_has_info>
+                <next>11</next>
+            </phrase>
+            <phrase id="7">
+                <text />
+                <precondition>dialogs.is_surge_running</precondition>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>71</next>
+            </phrase>
+            <phrase id="21">
+                <text>zat_b215_stalker_guide_start_21</text>
+            </phrase>
+            <phrase id="2">
+                <text />
+                <precondition>dialogs.level_zaton</precondition>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <dont_has_info>zat_b215_gave_maps</dont_has_info>
+                <has_info>zat_b215_first_meet</has_info>
+                <next>21</next>
+            </phrase>
+            <phrase id="6">
+                <text />
+                <precondition>dialogs.is_surge_running</precondition>
+                <dont_has_info>zat_b215_first_meet</dont_has_info>
+                <next>61</next>
+            </phrase>
+            <phrase id="11">
+                <text>zat_b215_stalker_guide_start_11</text>
+                <give_info>zat_b215_first_meet</give_info>
+            </phrase>
+            <phrase id="61">
+                <text>zat_b215_stalker_guide_start_61</text>
+                <give_info>zat_b215_first_meet</give_info>
+            </phrase>
+            <phrase id="71">
+                <text>zat_b215_stalker_guide_start_71</text>
+            </phrase>
+            <phrase id="0">
+                <text />
+                <next>1</next>
+                <next>2</next>
+                <next>3</next>
+                <next>4</next>
+                <next>5</next>
+                <next>6</next>
+                <next>7</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_zaton">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_pripyat">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b18_noah_plateau_way">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_cop_about_himself_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_about_sci_guards">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_hunt_himera">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_to_jupiter">
+        <precondition>dialogs.level_zaton</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_guide_ask</text>
+                <next>1</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_guide_price</text>
+                <precondition>dialogs.is_surge_not_running</precondition>
+                <next>21</next>
+                <next>22</next>
+                <next>23</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_guide_surge</text>
+                <precondition>dialogs.is_surge_running</precondition>
+            </phrase>
+            <phrase id="21">
+                <text>zat_b215_stalker_guide_to_jupiter_21</text>
+                <precondition>dialogs_zaton.zat_b215_actor_has_money_poor</precondition>
+                <action>dialogs.save_uni_travel_zat_to_jup</action>
+                <next>211</next>
+            </phrase>
+            <phrase id="211">
+                <text />
+                <action>dialogs_zaton.zat_b215_relocate_money_poor</action>
+                <action>dialogs.break_dialog</action>
+                <give_info>zat_b215_guide_to_jupiter</give_info>
+            </phrase>
+            <phrase id="22">
+                <precondition>dialogs_zaton.zat_b215_actor_has_no_money_poor</precondition>
+                <text>zat_b215_stalker_guide_to_jupiter_22</text>
+            </phrase>
+            <phrase id="23">
+                <text>zat_b215_stalker_guide_to_jupiter_23</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_stalker_medic_dialog_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_stalker_medic_need_health_care">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b29_rivals_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b29_stalker_rival_exchange_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_ufo_memory_repair">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_buy_info">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_come_with_me">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_employ_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_info_about_soroka">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_info_about_soroka_gone">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_trapper_send">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_info_about_soroka_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_b22_about_stalker_vampire">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_army">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalker_squad_leader_bunker_guarding">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_ruin_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b29_actor_info">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_intro">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_about_sci_guards">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_where_to">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_about_after_quest_b5_dealer_actor4">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_barmen_b5_daring_quest_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_stages">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_stalker_rival_1_about_detector">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_take_money_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b53_artefact_hunter_1_gathering_artefacts">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_tech_buddies_about">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_return_access_card">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_b207_about_dealer_pda">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_b33_about_snags_container">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_drink_1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_show">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_repair_gauss">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_stalker_rival_2_about_detector">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_himself">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_mutants">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_soroka_actor_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_about_soroka_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_about_cache_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b38_stalker_cop_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b33_stalker_snag_b52_my_gun_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b7_actor_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_about_compass">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_actor_choose_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b51_stalker_nimble_b52_about_gun_questions">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_choose_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_init">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_sell_artefact">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_strange_item">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_wrong">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b29_actor_get_adv_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_sell_items">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b215_stalker_guide_leave_zone">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalker_squad_leader_employ_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_raiders_actor_choose_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b30_about_halfart_jup_b1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b52_robbery_port_bandits_1">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_raiders_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_victims_actor_start_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_robbery">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_start_last_chance">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b14_stalker_at_bar_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b29_actor_give_adv_task">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b30_owl_stalker_trader_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b22_stalker_medic_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b5_illicit_dealer_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b5_bandit_hide_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_drink_3">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_end">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_instruments">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_drink_2">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b7_give_task_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b5_give_task_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b52_about_snag">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_bandit_boss_sultan_b30_start_actor_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_tech_produce_62_make_battery">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b5_stalker_commander_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_start">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_actor_info">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_after_fight">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_garmata_b106_after_hunt">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_linker_b14_quest_done">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b7_stalkers_raiders_actor_teleport_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_a2_stalker_barmen_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_electro_toolkit_dialog">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b3_stalker_mechanic_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="zat_b106_stalker_gonta_b52_about_nimble">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_barmen_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_bor_0</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_bor_1</text>
+                <dont_has_info>diary_notebook_given</dont_has_info>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>diary_bor_11</text>
+                <next>12</next>
+            </phrase>
+            <phrase id="12">
+                <text>diary_bor_12</text>
+                <next>13</next>
+            </phrase>
+            <phrase id="13">
+                <text>diary_bor_13</text>
+                <next>14</next>
+                <next>15</next>
+                <next>17</next>
+            </phrase>
+            <phrase id="14">
+                <text>diary_bor_14</text>
+                <next>141</next>
+            </phrase>
+            <phrase id="141">
+                <text>diary_bor_141</text>
+                <next>142</next>
+                <next>143</next>
+            </phrase>
+            <phrase id="142">
+                <text>diary_bor_142</text>
+                <next>1421</next>
+            </phrase>
+            <phrase id="1421">
+                <text>diary_bor_1421</text>
+                <next>143</next>
+            </phrase>
+            <phrase id="15">
+                <text>diary_bor_15</text>
+                <next>151</next>
+            </phrase>
+            <phrase id="151">
+                <text>diary_bor_151</text>
+                <next>143</next>
+            </phrase>
+            <phrase id="17">
+                <text>diary_bor_17</text>
+                <next>171</next>
+            </phrase>
+            <phrase id="171">
+                <text>diary_bor_171</text>
+                <next>142</next>
+                <next>143</next>
+            </phrase>
+            <phrase id="143">
+                <text>diary_bor_143</text>
+                <next>16</next>
+            </phrase>
+            <phrase id="16">
+                <text>diary_bor_16</text>
+                <give_info>diary_notebook_given</give_info>
+                <action>diary_zat.give_notebook</action>
+                <next>161</next>
+                <next>165</next>
+            </phrase>
+            <phrase id="161">
+                <text>diary_bor_161</text>
+                <next>162</next>
+            </phrase>
+            <phrase id="162">
+                <text>diary_bor_162</text>
+                <next>163</next>
+                <next>164</next>
+            </phrase>
+            <phrase id="163">
+                <text>diary_bor_163</text>
+                <next>1631</next>
+            </phrase>
+            <phrase id="1631">
+                <text>diary_bor_1631</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="164">
+                <text>diary_bor_164</text>
+                <next>1641</next>
+            </phrase>
+            <phrase id="1641">
+                <text>diary_bor_1641</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="165">
+                <text>diary_bor_165</text>
+                <next>1651</next>
+            </phrase>
+            <phrase id="1651">
+                <text>diary_bor_1651</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="2">
+                <text>diary_bor_2</text>
+                <has_info>diary_notebook_given</has_info>
+                <action>diary_zat.bor_roll</action>
+                <next>41</next>
+            </phrase>
+            <phrase id="41">
+                <text>diary_bor_41</text>
+                <script_text>diary_zat.bor_line</script_text>
+                <next>2</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="6">
+                <text>diary_bor_6</text>
+                <precondition>diary_zat.bor_can_tell</precondition>
+                <next>61</next>
+            </phrase>
+            <phrase id="61">
+                <text>diary_bor_61</text>
+                <next>62</next>
+            </phrase>
+            <phrase id="62">
+                <text>diary_bor_62</text>
+                <next>63</next>
+            </phrase>
+            <phrase id="63">
+                <text>diary_bor_63</text>
+                <next>64</next>
+            </phrase>
+            <phrase id="64">
+                <text>diary_bor_64</text>
+                <next>65</next>
+            </phrase>
+            <phrase id="65">
+                <text>diary_bor_65</text>
+                <next>66</next>
+            </phrase>
+            <phrase id="66">
+                <text>diary_bor_66</text>
+                <next>67</next>
+            </phrase>
+            <phrase id="67">
+                <text>diary_bor_67</text>
+                <give_info>diary_cipher_taken</give_info>
+                <action>diary_zat.bor_take_cipher</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="7">
+                <text>diary_bor_7</text>
+                <precondition>diary_zat.bor_can_decoded</precondition>
+                <next>71</next>
+            </phrase>
+            <phrase id="71">
+                <text>diary_bor_71</text>
+                <next>72</next>
+            </phrase>
+            <phrase id="72">
+                <text>diary_bor_72</text>
+                <next>73</next>
+            </phrase>
+            <phrase id="73">
+                <text>diary_bor_73</text>
+                <give_info>diary_debts_given</give_info>
+                <action>diary_zat.bor_debts_given</action>
+                <next>74</next>
+                <next>75</next>
+            </phrase>
+            <phrase id="74">
+                <text>diary_bor_74</text>
+                <next>741</next>
+            </phrase>
+            <phrase id="741">
+                <text>diary_bor_741</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="75">
+                <text>diary_bor_75</text>
+                <next>751</next>
+            </phrase>
+            <phrase id="751">
+                <text>diary_bor_751</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9000">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b1</precondition>
+                <next>9001</next>
+            </phrase>
+            <phrase id="9001">
+                <text>dj_b1_offer</text>
+                <next>9002</next>
+                <next>9003</next>
+            </phrase>
+            <phrase id="9002">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b1</action>
+                <next>9004</next>
+            </phrase>
+            <phrase id="9003">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9004">
+                <text>dj_b1_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9008">
+                <text>dj_b1_rep</text>
+                <precondition>diary_jobs.r_b1</precondition>
+                <next>9009</next>
+            </phrase>
+            <phrase id="9009">
+                <text>dj_b1_done</text>
+                <action>diary_jobs.d_b1</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9020">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b2</precondition>
+                <next>9021</next>
+            </phrase>
+            <phrase id="9021">
+                <text>dj_b2_offer</text>
+                <next>9022</next>
+                <next>9023</next>
+            </phrase>
+            <phrase id="9022">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b2</action>
+                <next>9024</next>
+            </phrase>
+            <phrase id="9023">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9024">
+                <text>dj_b2_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9028">
+                <text>dj_b2_rep</text>
+                <precondition>diary_jobs.r_b2</precondition>
+                <next>9029</next>
+            </phrase>
+            <phrase id="9029">
+                <text>dj_b2_done</text>
+                <action>diary_jobs.d_b2</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9040">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b3</precondition>
+                <next>9041</next>
+            </phrase>
+            <phrase id="9041">
+                <text>dj_b3_offer</text>
+                <next>9042</next>
+                <next>9043</next>
+            </phrase>
+            <phrase id="9042">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b3</action>
+                <next>9044</next>
+            </phrase>
+            <phrase id="9043">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9044">
+                <text>dj_b3_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9048">
+                <text>dj_b3_rep</text>
+                <precondition>diary_jobs.r_b3</precondition>
+                <next>9049</next>
+            </phrase>
+            <phrase id="9049">
+                <text>dj_b3_done</text>
+                <action>diary_jobs.d_b3</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9060">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b4</precondition>
+                <next>9061</next>
+            </phrase>
+            <phrase id="9061">
+                <text>dj_b4_offer</text>
+                <next>9062</next>
+                <next>9063</next>
+            </phrase>
+            <phrase id="9062">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b4</action>
+                <next>9064</next>
+            </phrase>
+            <phrase id="9063">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9064">
+                <text>dj_b4_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9068">
+                <text>dj_b4_c0_a</text>
+                <precondition>diary_jobs.r_b4</precondition>
+                <next>9069</next>
+            </phrase>
+            <phrase id="9069">
+                <text>dj_b4_c0_r</text>
+                <action>diary_jobs.d_b4_0</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9070">
+                <text>dj_b4_c1_a</text>
+                <precondition>diary_jobs.r_b4</precondition>
+                <next>9071</next>
+            </phrase>
+            <phrase id="9071">
+                <text>dj_b4_c1_r</text>
+                <action>diary_jobs.d_b4_1</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9080">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b5</precondition>
+                <next>9081</next>
+            </phrase>
+            <phrase id="9081">
+                <text>dj_b5_offer</text>
+                <next>9082</next>
+                <next>9083</next>
+            </phrase>
+            <phrase id="9082">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b5</action>
+                <next>9084</next>
+            </phrase>
+            <phrase id="9083">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9084">
+                <text>dj_b5_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9088">
+                <text>dj_b5_rep</text>
+                <precondition>diary_jobs.r_b5</precondition>
+                <next>9089</next>
+            </phrase>
+            <phrase id="9089">
+                <text>dj_b5_done</text>
+                <action>diary_jobs.d_b5</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9100">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b6</precondition>
+                <next>9101</next>
+            </phrase>
+            <phrase id="9101">
+                <text>dj_b6_offer</text>
+                <next>9102</next>
+                <next>9103</next>
+            </phrase>
+            <phrase id="9102">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b6</action>
+                <next>9104</next>
+            </phrase>
+            <phrase id="9103">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9104">
+                <text>dj_b6_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9108">
+                <text>dj_b6_rep</text>
+                <precondition>diary_jobs.r_b6</precondition>
+                <next>9109</next>
+            </phrase>
+            <phrase id="9109">
+                <text>dj_b6_done</text>
+                <action>diary_jobs.d_b6</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9120">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b7</precondition>
+                <next>9121</next>
+            </phrase>
+            <phrase id="9121">
+                <text>dj_b7_offer</text>
+                <next>9122</next>
+                <next>9123</next>
+            </phrase>
+            <phrase id="9122">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b7</action>
+                <next>9124</next>
+            </phrase>
+            <phrase id="9123">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9124">
+                <text>dj_b7_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9128">
+                <text>dj_b7_rep</text>
+                <precondition>diary_jobs.r_b7</precondition>
+                <next>9129</next>
+            </phrase>
+            <phrase id="9129">
+                <text>dj_b7_done</text>
+                <action>diary_jobs.d_b7</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9140">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_b8</precondition>
+                <next>9141</next>
+            </phrase>
+            <phrase id="9141">
+                <text>dj_b8_offer</text>
+                <next>9142</next>
+                <next>9143</next>
+            </phrase>
+            <phrase id="9142">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_b8</action>
+                <next>9144</next>
+            </phrase>
+            <phrase id="9143">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9144">
+                <text>dj_b8_ok</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9148">
+                <text>dj_b8_rep</text>
+                <precondition>diary_jobs.r_b8</precondition>
+                <next>9149</next>
+            </phrase>
+            <phrase id="9149">
+                <text>dj_b8_done</text>
+                <action>diary_jobs.d_b8</action>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="98">
+                <text>diary_later_r</text>
+                <next>1</next>
+                <next>2</next>
+                <next>6</next>
+                <next>7</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9070</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="99">
+                <text>actor_break_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+                <is_final>1</is_final>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_medic_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_zat_medic_greet</text>
+                <next>100</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="100">
+                <text>zat_b22_stalker_medic_need_health_care_0</text>
+                <next>1</next>
+                <next>2</next>
+            </phrase>
+            <phrase id="1">
+                <text>zat_b22_stalker_medic_need_health_care_1</text>
+                <precondition>dialogs.actor_needs_bless</precondition>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>zat_b22_stalker_medic_need_health_care_11</text>
+                <action>dialogs.medic_magic_potion</action>
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text>zat_b22_stalker_medic_need_health_care_111</text>
+                <next>100</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="2">
+                <text>zat_b22_stalker_medic_need_health_care_2</text>
+                <precondition>dialogs.actor_is_damn_healthy</precondition>
+                <next>100</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="98">
+                <text>diary_later_r</text>
+                <next>100</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="99">
+                <text>actor_break_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+                <is_final>1</is_final>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_mechanic_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_zat_mechanic_greet</text>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_c_1</text>
+                <precondition>diary_zat.c_fresh</precondition>
+                <next>11</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_c_3</text>
+                <precondition>diary_zat.c_rest_open</precondition>
+                <next>31</next>
+            </phrase>
+            <phrase id="31">
+                <text>diary_c_31</text>
+                <next>32</next>
+                <next>33</next>
+            </phrase>
+            <phrase id="32">
+                <text>diary_c_32</text>
+                <precondition>diary_zat.c_can_rest</precondition>
+                <next>321</next>
+            </phrase>
+            <phrase id="321">
+                <text>diary_c_321</text>
+                <action>diary_zat.c_pay_rest</action>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="33">
+                <text>diary_c_33</text>
+                <next>331</next>
+            </phrase>
+            <phrase id="331">
+                <text>diary_c_331</text>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="11">
+                <text>diary_c_11</text>
+                <next>12</next>
+                <next>13</next>
+                <next>14</next>
+                <next>15</next>
+                <next>16</next>
+            </phrase>
+            <phrase id="12">
+                <text>diary_c_12</text>
+                <precondition>diary_zat.c_can_full</precondition>
+                <next>121</next>
+            </phrase>
+            <phrase id="121">
+                <text>diary_c_121</text>
+                <action>diary_zat.c_pay_full</action>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="13">
+                <text>diary_c_13</text>
+                <precondition>diary_zat.c_can_half</precondition>
+                <next>131</next>
+            </phrase>
+            <phrase id="131">
+                <text>diary_c_131</text>
+                <action>diary_zat.c_pay_half</action>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="14">
+                <text>diary_c_14</text>
+                <precondition>diary_zat.c_has_item</precondition>
+                <next>141</next>
+            </phrase>
+            <phrase id="141">
+                <text>diary_c_141</text>
+                <action>diary_zat.c_pay_item</action>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="15">
+                <text>diary_c_15</text>
+                <next>151</next>
+            </phrase>
+            <phrase id="151">
+                <text>diary_c_151</text>
+                <action>diary_zat.c_steal</action>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="16">
+                <text>diary_c_16</text>
+                <next>161</next>
+            </phrase>
+            <phrase id="161">
+                <text>diary_c_161</text>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="98">
+                <text>diary_later_r</text>
+                <next>1</next>
+                <next>3</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="99">
+                <text>actor_break_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+                <is_final>1</is_final>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_zat_trader_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_zat_trader_greet</text>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_s_1</text>
+                <precondition>diary_zat.s_fresh</precondition>
+                <next>11</next>
+            </phrase>
+            <phrase id="3">
+                <text>diary_s_3</text>
+                <precondition>diary_zat.s_rest_open</precondition>
+                <next>31</next>
+            </phrase>
+            <phrase id="31">
+                <text>diary_s_31</text>
+                <next>32</next>
+                <next>33</next>
+            </phrase>
+            <phrase id="32">
+                <text>diary_s_32</text>
+                <precondition>diary_zat.s_can_rest</precondition>
+                <next>321</next>
+            </phrase>
+            <phrase id="321">
+                <text>diary_s_321</text>
+                <action>diary_zat.s_pay_rest</action>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="33">
+                <text>diary_s_33</text>
+                <next>331</next>
+            </phrase>
+            <phrase id="331">
+                <text>diary_s_331</text>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="11">
+                <text>diary_s_11</text>
+                <next>12</next>
+                <next>13</next>
+                <next>14</next>
+                <next>15</next>
+                <next>16</next>
+            </phrase>
+            <phrase id="12">
+                <text>diary_s_12</text>
+                <precondition>diary_zat.s_can_full</precondition>
+                <next>121</next>
+            </phrase>
+            <phrase id="121">
+                <text>diary_s_121</text>
+                <action>diary_zat.s_pay_full</action>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="13">
+                <text>diary_s_13</text>
+                <precondition>diary_zat.s_can_half</precondition>
+                <next>131</next>
+            </phrase>
+            <phrase id="131">
+                <text>diary_s_131</text>
+                <action>diary_zat.s_pay_half</action>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="14">
+                <text>diary_s_14</text>
+                <precondition>diary_zat.s_has_item</precondition>
+                <next>141</next>
+            </phrase>
+            <phrase id="141">
+                <text>diary_s_141</text>
+                <action>diary_zat.s_pay_item</action>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="15">
+                <text>diary_s_15</text>
+                <next>151</next>
+            </phrase>
+            <phrase id="151">
+                <text>diary_s_151</text>
+                <action>diary_zat.s_steal</action>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="16">
+                <text>diary_s_16</text>
+                <next>161</next>
+            </phrase>
+            <phrase id="161">
+                <text>diary_s_161</text>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9900">
+                <text>dj_parcel_a</text>
+                <precondition>diary_jobs.parcel_here</precondition>
+                <next>9901</next>
+            </phrase>
+            <phrase id="9901">
+                <text>dj_parcel_r</text>
+                <action>diary_jobs.parcel_deliver</action>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="98">
+                <text>diary_later_r</text>
+                <next>1</next>
+                <next>3</next>
+                <next>9900</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="99">
+                <text>actor_break_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+                <is_final>1</is_final>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_krim_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_krim_greet</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="1">
+                <text>diary_krim_ask</text>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>diary_krim_nowork</text>
+            </phrase>
+            <phrase id="9000">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k1</precondition>
+                <next>9001</next>
+            </phrase>
+            <phrase id="9001">
+                <text>dj_k1_offer</text>
+                <next>9002</next>
+                <next>9003</next>
+            </phrase>
+            <phrase id="9002">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k1</action>
+                <next>9004</next>
+            </phrase>
+            <phrase id="9003">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9004">
+                <text>dj_k1_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9008">
+                <text>dj_k1_rep</text>
+                <precondition>diary_jobs.r_k1</precondition>
+                <next>9009</next>
+            </phrase>
+            <phrase id="9009">
+                <text>dj_k1_done</text>
+                <action>diary_jobs.d_k1</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9020">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k2</precondition>
+                <next>9021</next>
+            </phrase>
+            <phrase id="9021">
+                <text>dj_k2_offer</text>
+                <next>9022</next>
+                <next>9023</next>
+            </phrase>
+            <phrase id="9022">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k2</action>
+                <next>9024</next>
+            </phrase>
+            <phrase id="9023">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9024">
+                <text>dj_k2_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9028">
+                <text>dj_k2_rep</text>
+                <precondition>diary_jobs.r_k2</precondition>
+                <next>9029</next>
+            </phrase>
+            <phrase id="9029">
+                <text>dj_k2_done</text>
+                <action>diary_jobs.d_k2</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9032">
+                <text>dj_k2_alt_a</text>
+                <precondition>diary_jobs.l_k2</precondition>
+                <next>9033</next>
+            </phrase>
+            <phrase id="9033">
+                <text>dj_k2_alt_r</text>
+                <action>diary_jobs.p_k2</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9040">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k3</precondition>
+                <next>9041</next>
+            </phrase>
+            <phrase id="9041">
+                <text>dj_k3_offer</text>
+                <next>9042</next>
+                <next>9043</next>
+            </phrase>
+            <phrase id="9042">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k3</action>
+                <next>9044</next>
+            </phrase>
+            <phrase id="9043">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9044">
+                <text>dj_k3_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9048">
+                <text>dj_k3_rep</text>
+                <precondition>diary_jobs.r_k3</precondition>
+                <next>9049</next>
+            </phrase>
+            <phrase id="9049">
+                <text>dj_k3_done</text>
+                <action>diary_jobs.d_k3</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9060">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k4</precondition>
+                <next>9061</next>
+            </phrase>
+            <phrase id="9061">
+                <text>dj_k4_offer</text>
+                <next>9062</next>
+                <next>9063</next>
+            </phrase>
+            <phrase id="9062">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k4</action>
+                <next>9064</next>
+            </phrase>
+            <phrase id="9063">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9064">
+                <text>dj_k4_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9068">
+                <text>dj_k4_rep</text>
+                <precondition>diary_jobs.r_k4</precondition>
+                <next>9069</next>
+            </phrase>
+            <phrase id="9069">
+                <text>dj_k4_done</text>
+                <action>diary_jobs.d_k4</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9080">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k5</precondition>
+                <next>9081</next>
+            </phrase>
+            <phrase id="9081">
+                <text>dj_k5_offer</text>
+                <next>9082</next>
+                <next>9083</next>
+            </phrase>
+            <phrase id="9082">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k5</action>
+                <next>9084</next>
+            </phrase>
+            <phrase id="9083">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9084">
+                <text>dj_k5_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9088">
+                <text>dj_k5_rep</text>
+                <precondition>diary_jobs.r_k5</precondition>
+                <next>9089</next>
+            </phrase>
+            <phrase id="9089">
+                <text>dj_k5_done</text>
+                <action>diary_jobs.d_k5</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9100">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k6</precondition>
+                <next>9101</next>
+            </phrase>
+            <phrase id="9101">
+                <text>dj_k6_offer</text>
+                <next>9102</next>
+                <next>9103</next>
+            </phrase>
+            <phrase id="9102">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k6</action>
+                <next>9104</next>
+            </phrase>
+            <phrase id="9103">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9104">
+                <text>dj_k6_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9108">
+                <text>dj_k6_rep</text>
+                <precondition>diary_jobs.r_k6</precondition>
+                <next>9109</next>
+            </phrase>
+            <phrase id="9109">
+                <text>dj_k6_done</text>
+                <action>diary_jobs.d_k6</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9120">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k7</precondition>
+                <next>9121</next>
+            </phrase>
+            <phrase id="9121">
+                <text>dj_k7_offer</text>
+                <next>9122</next>
+                <next>9123</next>
+            </phrase>
+            <phrase id="9122">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k7</action>
+                <next>9124</next>
+            </phrase>
+            <phrase id="9123">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9124">
+                <text>dj_k7_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9128">
+                <text>dj_k7_c0_a</text>
+                <precondition>diary_jobs.r_k7</precondition>
+                <next>9129</next>
+            </phrase>
+            <phrase id="9129">
+                <text>dj_k7_c0_r</text>
+                <action>diary_jobs.d_k7_0</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9130">
+                <text>dj_k7_c1_a</text>
+                <precondition>diary_jobs.r_k7</precondition>
+                <next>9131</next>
+            </phrase>
+            <phrase id="9131">
+                <text>dj_k7_c1_r</text>
+                <action>diary_jobs.d_k7_1</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9140">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k8</precondition>
+                <next>9141</next>
+            </phrase>
+            <phrase id="9141">
+                <text>dj_k8_offer</text>
+                <next>9142</next>
+                <next>9143</next>
+            </phrase>
+            <phrase id="9142">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k8</action>
+                <next>9144</next>
+            </phrase>
+            <phrase id="9143">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9144">
+                <text>dj_k8_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9148">
+                <text>dj_k8_rep</text>
+                <precondition>diary_jobs.r_k8</precondition>
+                <next>9149</next>
+            </phrase>
+            <phrase id="9149">
+                <text>dj_k8_done</text>
+                <action>diary_jobs.d_k8</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9160">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k9</precondition>
+                <next>9161</next>
+            </phrase>
+            <phrase id="9161">
+                <text>dj_k9_offer</text>
+                <next>9162</next>
+                <next>9163</next>
+            </phrase>
+            <phrase id="9162">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k9</action>
+                <next>9164</next>
+            </phrase>
+            <phrase id="9163">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9164">
+                <text>dj_k9_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9168">
+                <text>dj_k9_c0_a</text>
+                <precondition>diary_jobs.r_k9</precondition>
+                <next>9169</next>
+            </phrase>
+            <phrase id="9169">
+                <text>dj_k9_c0_r</text>
+                <action>diary_jobs.d_k9_0</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9170">
+                <text>dj_k9_c1_a</text>
+                <precondition>diary_jobs.r_k9</precondition>
+                <next>9171</next>
+            </phrase>
+            <phrase id="9171">
+                <text>dj_k9_c1_r</text>
+                <action>diary_jobs.d_k9_1</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9180">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_k10</precondition>
+                <next>9181</next>
+            </phrase>
+            <phrase id="9181">
+                <text>dj_k10_offer</text>
+                <next>9182</next>
+                <next>9183</next>
+            </phrase>
+            <phrase id="9182">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_k10</action>
+                <next>9184</next>
+            </phrase>
+            <phrase id="9183">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9184">
+                <text>dj_k10_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9188">
+                <text>dj_k10_rep</text>
+                <precondition>diary_jobs.r_k10</precondition>
+                <next>9189</next>
+            </phrase>
+            <phrase id="9189">
+                <text>dj_k10_done</text>
+                <action>diary_jobs.d_k10</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="80">
+                <text>diary_dk_1</text>
+                <precondition>diary_zat.deb2_open</precondition>
+                <next>801</next>
+            </phrase>
+            <phrase id="801">
+                <text>diary_dk_11</text>
+                <next>802</next>
+                <next>803</next>
+            </phrase>
+            <phrase id="802">
+                <text>diary_dk_12</text>
+                <precondition>diary_zat.deb2_can_pay</precondition>
+                <next>8021</next>
+            </phrase>
+            <phrase id="8021">
+                <text>diary_dk_121</text>
+                <action>diary_zat.deb2_pay</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="803">
+                <text>diary_dk_13</text>
+                <next>8031</next>
+            </phrase>
+            <phrase id="8031">
+                <text>diary_dk_131</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="98">
+                <text>diary_later_r</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9032</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9130</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>9170</next>
+                <next>9180</next>
+                <next>9188</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="99">
+                <text>actor_break_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+                <is_final>1</is_final>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_sultan_start">
+        <phrase_list>
+            <phrase id="0">
+                <text>diary_sultan_greet</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9000">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s1</precondition>
+                <next>9001</next>
+            </phrase>
+            <phrase id="9001">
+                <text>dj_s1_offer</text>
+                <next>9002</next>
+                <next>9003</next>
+            </phrase>
+            <phrase id="9002">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s1</action>
+                <next>9004</next>
+            </phrase>
+            <phrase id="9003">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9004">
+                <text>dj_s1_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9008">
+                <text>dj_s1_rep</text>
+                <precondition>diary_jobs.r_s1</precondition>
+                <next>9009</next>
+            </phrase>
+            <phrase id="9009">
+                <text>dj_s1_done</text>
+                <action>diary_jobs.d_s1</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9020">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s2</precondition>
+                <next>9021</next>
+            </phrase>
+            <phrase id="9021">
+                <text>dj_s2_offer</text>
+                <next>9022</next>
+                <next>9023</next>
+            </phrase>
+            <phrase id="9022">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s2</action>
+                <next>9024</next>
+            </phrase>
+            <phrase id="9023">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9024">
+                <text>dj_s2_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9028">
+                <text>dj_s2_rep</text>
+                <precondition>diary_jobs.r_s2</precondition>
+                <next>9029</next>
+            </phrase>
+            <phrase id="9029">
+                <text>dj_s2_done</text>
+                <action>diary_jobs.d_s2</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9040">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s3</precondition>
+                <next>9041</next>
+            </phrase>
+            <phrase id="9041">
+                <text>dj_s3_offer</text>
+                <next>9042</next>
+                <next>9043</next>
+            </phrase>
+            <phrase id="9042">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s3</action>
+                <next>9044</next>
+            </phrase>
+            <phrase id="9043">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9044">
+                <text>dj_s3_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9048">
+                <text>dj_s3_rep</text>
+                <precondition>diary_jobs.r_s3</precondition>
+                <next>9049</next>
+            </phrase>
+            <phrase id="9049">
+                <text>dj_s3_done</text>
+                <action>diary_jobs.d_s3</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9060">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s4</precondition>
+                <next>9061</next>
+            </phrase>
+            <phrase id="9061">
+                <text>dj_s4_offer</text>
+                <next>9062</next>
+                <next>9063</next>
+            </phrase>
+            <phrase id="9062">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s4</action>
+                <next>9064</next>
+            </phrase>
+            <phrase id="9063">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9064">
+                <text>dj_s4_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9068">
+                <text>dj_s4_rep</text>
+                <precondition>diary_jobs.r_s4</precondition>
+                <next>9069</next>
+            </phrase>
+            <phrase id="9069">
+                <text>dj_s4_done</text>
+                <action>diary_jobs.d_s4</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9080">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s5</precondition>
+                <next>9081</next>
+            </phrase>
+            <phrase id="9081">
+                <text>dj_s5_offer</text>
+                <next>9082</next>
+                <next>9083</next>
+            </phrase>
+            <phrase id="9082">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s5</action>
+                <next>9084</next>
+            </phrase>
+            <phrase id="9083">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9084">
+                <text>dj_s5_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9088">
+                <text>dj_s5_c0_a</text>
+                <precondition>diary_jobs.r_s5</precondition>
+                <next>9089</next>
+            </phrase>
+            <phrase id="9089">
+                <text>dj_s5_c0_r</text>
+                <action>diary_jobs.d_s5_0</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9090">
+                <text>dj_s5_c1_a</text>
+                <precondition>diary_jobs.r_s5</precondition>
+                <next>9091</next>
+            </phrase>
+            <phrase id="9091">
+                <text>dj_s5_c1_r</text>
+                <action>diary_jobs.d_s5_1</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9100">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s6</precondition>
+                <next>9101</next>
+            </phrase>
+            <phrase id="9101">
+                <text>dj_s6_offer</text>
+                <next>9102</next>
+                <next>9103</next>
+            </phrase>
+            <phrase id="9102">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s6</action>
+                <next>9104</next>
+            </phrase>
+            <phrase id="9103">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9104">
+                <text>dj_s6_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9108">
+                <text>dj_s6_rep</text>
+                <precondition>diary_jobs.r_s6</precondition>
+                <next>9109</next>
+            </phrase>
+            <phrase id="9109">
+                <text>dj_s6_done</text>
+                <action>diary_jobs.d_s6</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9120">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s7</precondition>
+                <next>9121</next>
+            </phrase>
+            <phrase id="9121">
+                <text>dj_s7_offer</text>
+                <next>9122</next>
+                <next>9123</next>
+            </phrase>
+            <phrase id="9122">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s7</action>
+                <next>9124</next>
+            </phrase>
+            <phrase id="9123">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9124">
+                <text>dj_s7_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9128">
+                <text>dj_s7_rep</text>
+                <precondition>diary_jobs.r_s7</precondition>
+                <next>9129</next>
+            </phrase>
+            <phrase id="9129">
+                <text>dj_s7_done</text>
+                <action>diary_jobs.d_s7</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9140">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s8</precondition>
+                <next>9141</next>
+            </phrase>
+            <phrase id="9141">
+                <text>dj_s8_offer</text>
+                <next>9142</next>
+                <next>9143</next>
+            </phrase>
+            <phrase id="9142">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s8</action>
+                <next>9144</next>
+            </phrase>
+            <phrase id="9143">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9144">
+                <text>dj_s8_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9148">
+                <text>dj_s8_rep</text>
+                <precondition>diary_jobs.r_s8</precondition>
+                <next>9149</next>
+            </phrase>
+            <phrase id="9149">
+                <text>dj_s8_done</text>
+                <action>diary_jobs.d_s8</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9160">
+                <text>dj_ask</text>
+                <precondition>diary_jobs.o_s9</precondition>
+                <next>9161</next>
+            </phrase>
+            <phrase id="9161">
+                <text>dj_s9_offer</text>
+                <next>9162</next>
+                <next>9163</next>
+            </phrase>
+            <phrase id="9162">
+                <text>dj_accept</text>
+                <action>diary_jobs.a_s9</action>
+                <next>9164</next>
+            </phrase>
+            <phrase id="9163">
+                <text>dj_later</text>
+                <next>98</next>
+            </phrase>
+            <phrase id="9164">
+                <text>dj_s9_ok</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="9168">
+                <text>dj_s9_rep</text>
+                <precondition>diary_jobs.r_s9</precondition>
+                <next>9169</next>
+            </phrase>
+            <phrase id="9169">
+                <text>dj_s9_done</text>
+                <action>diary_jobs.d_s9</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="80">
+                <text>diary_ds_1</text>
+                <precondition>diary_zat.deb1_open</precondition>
+                <next>801</next>
+            </phrase>
+            <phrase id="801">
+                <text>diary_ds_11</text>
+                <next>802</next>
+                <next>803</next>
+            </phrase>
+            <phrase id="802">
+                <text>diary_ds_12</text>
+                <precondition>diary_zat.deb1_can_pay</precondition>
+                <next>8021</next>
+            </phrase>
+            <phrase id="8021">
+                <text>diary_ds_121</text>
+                <action>diary_zat.deb1_pay</action>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="803">
+                <text>diary_ds_13</text>
+                <next>8031</next>
+            </phrase>
+            <phrase id="8031">
+                <text>diary_ds_131</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="98">
+                <text>diary_later_r</text>
+                <next>80</next>
+                <next>9000</next>
+                <next>9008</next>
+                <next>9020</next>
+                <next>9028</next>
+                <next>9040</next>
+                <next>9048</next>
+                <next>9060</next>
+                <next>9068</next>
+                <next>9080</next>
+                <next>9088</next>
+                <next>9090</next>
+                <next>9100</next>
+                <next>9108</next>
+                <next>9120</next>
+                <next>9128</next>
+                <next>9140</next>
+                <next>9148</next>
+                <next>9160</next>
+                <next>9168</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="99">
+                <text>actor_break_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+                <is_final>1</is_final>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_k2_ransom">
+        <precondition>diary_jobs.k2_ransom_here</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>dj_k2_r_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>dj_k2_r_1</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>dj_k2_r_2</text>
+                <precondition>diary_jobs.k2_can_pay</precondition>
+                <action>diary_jobs.k2_pay</action>
+                <next>21</next>
+            </phrase>
+            <phrase id="21">
+                <text>dj_k2_r_21</text>
+            </phrase>
+            <phrase id="3">
+                <text>dj_k2_r_3</text>
+                <next>31</next>
+            </phrase>
+            <phrase id="31">
+                <text>dj_k2_r_31</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+</game_dialogs>

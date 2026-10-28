@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.log
+*.mdmp
+*.scop
+*.scop_data
+_appdata*/
+savedgames/
+node_modules/

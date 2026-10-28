@@ -1,0 +1,437 @@
+; Дневник проводника: задания Затона
+[diary_q1]
+target_functor = diary_target
+prior = 100
+storyline = true
+title = diary_q1_name
+descr = diary_q1_text
+condlist_0 = {+diary_notebook_given} complete
+
+[diary_q2]
+target_functor = diary_target
+prior = 101
+storyline = true
+title = diary_q2_name
+descr = diary_q2_text
+condlist_0 = {+diary_q2_done} complete
+on_complete = %=diary_give_money(2000)%
+[diary_q3]
+target_functor = diary_target
+prior = 102
+storyline = true
+title = {+diary_saw_notes_2} diary_q3_name_2, {+diary_saw_notes_1} diary_q3_name_1, {+diary_saw_reached} diary_q3_name_0, diary_q3_name
+descr = diary_q3_text
+condlist_0 = {+diary_saw_notes_3} complete
+
+[diary_q4]
+target_functor = diary_target
+prior = 103
+storyline = true
+title = diary_q4_name
+descr = diary_q4_text
+condlist_0 = {+diary_q4_done} complete
+
+[diary_q5]
+target_functor = diary_target
+prior = 104
+storyline = true
+title = diary_q5_name
+descr = diary_q5_text
+condlist_0 = {+diary_q5_done} complete
+
+[diary_q6]
+target_functor = diary_target
+prior = 105
+storyline = true
+title = diary_q6_name
+descr = diary_q6_text
+condlist_0 = {+diary_cipher_taken} complete
+
+[diary_q10]
+target_functor = diary_target
+prior = 105
+storyline = true
+title = {+diary_decoded} diary_q10_name_2, diary_q10_name
+descr = {+diary_decoded} diary_q10_text_2, diary_q10_text
+condlist_0 = {+diary_cipher_read} complete
+
+[diary_q11]
+target_functor = diary_target
+prior = 105
+storyline = true
+title = diary_q11_name
+descr = diary_q11_text
+condlist_0 = {+diary_debts_given} complete
+on_complete = %=diary_give_money(500)%
+[diary_q7]
+target_functor = diary_target
+prior = 106
+storyline = true
+title = diary_q7_name
+descr = diary_q7_text
+condlist_0 = {+diary_debt_c_done} complete
+
+[diary_q8]
+target_functor = diary_target
+prior = 107
+storyline = true
+title = diary_q8_name
+descr = diary_q8_text
+condlist_0 = {+diary_debt_s_done} complete
+
+[diary_q9]
+target_functor = diary_target
+prior = 108
+storyline = true
+title = diary_q9_name
+descr = diary_q9_text
+condlist_0 = {+diary_exit_done} complete
+on_complete = %=diary_give_money(1500)%
+[diary_d1]
+target_functor = diary_target
+prior = 121
+storyline = true
+title = diary_d1_name
+descr = diary_d1_text
+condlist_0 = {+diary_deb_1_done} complete
+
+[diary_d2]
+target_functor = diary_target
+prior = 122
+storyline = true
+title = diary_d2_name
+descr = diary_d2_text
+condlist_0 = {+diary_deb_2_done} complete
+
+[diary_d3]
+target_functor = diary_target
+prior = 123
+storyline = true
+title = diary_d3_name
+descr = diary_d3_text
+condlist_0 = {+diary_deb_3_done} complete
+
+; Дневник проводника: задания линий (diary_build.py из diary_jobs.ltx)
+[dj_b1]
+prior = 200
+storyline = false
+title = dj_b1_name
+descr = dj_b1_text
+condlist_0 = {+dj_b1_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_b3]
+prior = 201
+storyline = false
+title = dj_b3_name
+descr = dj_b3_text
+condlist_0 = {+dj_b3_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_b4]
+prior = 202
+storyline = false
+title = dj_b4_name
+descr = dj_b4_text
+condlist_0 = {+dj_b4_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_b5]
+prior = 203
+storyline = false
+title = dj_b5_name
+descr = dj_b5_text
+condlist_0 = {+dj_b5_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_b6]
+prior = 204
+storyline = false
+title = dj_b6_name
+descr = dj_b6_text
+condlist_0 = {+dj_b6_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s1]
+prior = 205
+storyline = false
+title = dj_s1_name
+descr = dj_s1_text
+condlist_0 = {+dj_s1_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s3]
+prior = 206
+storyline = false
+title = dj_s3_name
+descr = dj_s3_text
+condlist_0 = {+dj_s3_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s4]
+prior = 207
+storyline = false
+title = dj_s4_name
+descr = dj_s4_text
+condlist_0 = {+dj_s4_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s5]
+prior = 208
+storyline = false
+title = dj_s5_name
+descr = dj_s5_text
+condlist_0 = {+dj_s5_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s6]
+prior = 209
+storyline = false
+title = dj_s6_name
+descr = dj_s6_text
+condlist_0 = {+dj_s6_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s7]
+prior = 210
+storyline = false
+title = dj_s7_name
+descr = dj_s7_text
+condlist_0 = {+dj_s7_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s8]
+prior = 211
+storyline = false
+title = dj_s8_name
+descr = dj_s8_text
+condlist_0 = {+dj_s8_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s9]
+prior = 212
+storyline = false
+title = dj_s9_name
+descr = dj_s9_text
+condlist_0 = {+dj_s9_cancelled} fail, {+dj_s9_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_k1]
+prior = 213
+storyline = false
+title = dj_k1_name
+descr = dj_k1_text
+condlist_0 = {+dj_k1_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_k2]
+prior = 214
+storyline = false
+title = dj_k2_name
+descr = dj_k2_text
+condlist_0 = {+dj_k2_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_k4]
+prior = 215
+storyline = false
+title = dj_k4_name
+descr = dj_k4_text
+condlist_0 = {+dj_k4_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_k5]
+prior = 216
+storyline = false
+title = dj_k5_name
+descr = dj_k5_text
+condlist_0 = {+dj_k5_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_k6]
+prior = 217
+storyline = false
+title = dj_k6_name
+descr = dj_k6_text
+condlist_0 = {+dj_k6_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_k7]
+prior = 218
+storyline = false
+title = dj_k7_name
+descr = dj_k7_text
+condlist_0 = {+dj_k7_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_y1]
+prior = 219
+storyline = false
+title = dj_y1_name
+descr = dj_y1_text
+condlist_0 = {+dj_y1_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_y2]
+prior = 220
+storyline = false
+title = dj_y2_name
+descr = dj_y2_text
+condlist_0 = {+dj_y2_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_y3]
+prior = 221
+storyline = false
+title = dj_y3_name
+descr = dj_y3_text
+condlist_0 = {+dj_y3_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_y4]
+prior = 222
+storyline = false
+title = dj_y4_name
+descr = dj_y4_text
+condlist_0 = {+dj_y4_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_t1]
+prior = 223
+storyline = false
+title = dj_t1_name
+descr = dj_t1_text
+condlist_0 = {+dj_t1_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_t2]
+prior = 224
+storyline = false
+title = dj_t2_name
+descr = dj_t2_text
+condlist_0 = {+dj_t2_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_t3]
+prior = 225
+storyline = false
+title = dj_t3_name
+descr = dj_t3_text
+condlist_0 = {+dj_t3_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_t4]
+prior = 226
+storyline = false
+title = dj_t4_name
+descr = dj_t4_text
+condlist_0 = {+dj_t4_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_g1]
+prior = 227
+storyline = false
+title = dj_g1_name
+descr = dj_g1_text
+condlist_0 = {+dj_g1_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_n1]
+prior = 228
+storyline = false
+title = dj_n1_name
+descr = dj_n1_text
+condlist_0 = {+dj_n1_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_n2]
+prior = 229
+storyline = false
+title = dj_n2_name
+descr = dj_n2_text
+condlist_0 = {+dj_n2_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_n3]
+prior = 230
+storyline = false
+title = dj_n3_name
+descr = dj_n3_text
+condlist_0 = {+dj_n3_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_n4]
+prior = 231
+storyline = false
+title = dj_n4_name
+descr = dj_n4_text
+condlist_0 = {+dj_n4_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_n5]
+prior = 232
+storyline = false
+title = dj_n5_name
+descr = dj_n5_text
+condlist_0 = {+dj_n5_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_n6]
+prior = 233
+storyline = false
+title = dj_n6_name
+descr = dj_n6_text
+condlist_0 = {+dj_n6_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_s10]
+prior = 234
+storyline = false
+title = dj_s10_name
+descr = dj_s10_text
+condlist_0 = {+dj_s10_cancelled} fail, {+dj_s10_done} complete
+target_functor = diary_target
+dont_send_update_news = true
+
+[dj_k8]
+prior = 235
+storyline = false
+title = dj_k8_name
+descr = dj_k8_text
+condlist_0 = {+dj_k8_cancelled} fail, {+dj_k8_done} complete
+target_functor = diary_target
+dont_send_update_news = true

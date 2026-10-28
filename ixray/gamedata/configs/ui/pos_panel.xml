@@ -1,0 +1,29 @@
+<w>
+	<pos_bg x="262" y="240" width="500" height="230">
+		<texture>ui_inGame2_screen_4</texture>
+	</pos_bg>
+	<pos_title x="282" y="255" width="460" height="24">
+		<text font="letterica18" align="c" vert_align="c" r="220" g="220" b="220">Point marker</text>
+	</pos_title>
+	<pos_coords x="282" y="288" width="460" height="22">
+		<text font="letterica16" align="c" vert_align="c" r="255" g="255" b="255">-</text>
+	</pos_coords>
+	<pos_hint x="282" y="316" width="460" height="20">
+		<text font="letterica16" align="c" vert_align="c" r="170" g="170" b="170">Type a name and press Save</text>
+	</pos_hint>
+	<pos_edit x="282" y="342" width="460" height="25" max_symb_count="60">
+		<text x="3" font="letterica16" vert_align="c"/>
+		<texture>ui_inGame2_edit_box_1</texture>
+	</pos_edit>
+	<pos_status x="282" y="372" width="460" height="22">
+		<text font="letterica16" align="c" vert_align="c" r="150" g="220" b="150"> </text>
+	</pos_status>
+	<pos_btn_save x="282" y="410" width="200" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c">Save</text>
+	</pos_btn_save>
+	<pos_btn_close x="542" y="410" width="200" height="26" stretch="1">
+		<texture>ui_inGame2_inventory_button</texture>
+		<text font="letterica16" align="c">Close</text>
+	</pos_btn_close>
+</w>

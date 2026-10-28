@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+    <dialog id="dm_traveler_dialog">
+        <precondition>travel_manager.uni_traveler_precond</precondition>
+        <init_func>travel_manager.init_traveler_dialog</init_func>
+    </dialog>
+    <dialog id="dm_universal_dialog">
+        <precondition>dialog_manager.uni_dialog_precond</precondition>
+        <init_func>dialog_manager.init_new_dialog</init_func>
+    </dialog>
+    <!-- FINAL DIALOGS -->
+    <!-- ALIFE DIALOGS -->
+    <dialog id="actor_break_dialog" priority="-5">
+        <phrase_list>
+            <phrase id="0">
+                <text>actor_break_dialog_0</text>
+                <script_text>dialog_manager.create_bye_phrase</script_text>
+                <action>dialogs.break_dialog</action>
+				<is_final>1</is_final>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="hello_dialog">
+        <init_func>dialog_manager.init_hello_dialogs</init_func>
+        <phrase id="0" />
+    </dialog>
+    <dialog id="about_skadovsk_dialog_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="about_skadovsk_dialog_bandit">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="about_quests_dialog_dolg">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="about_quests_dialog_freedom">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="about_quests_dialog_stalkers">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+    <dialog id="about_quests_dialog_bandit">
+        <has_info>diary_never</has_info>
+        <phrase_list>
+            <phrase id="0" />
+        </phrase_list>
+    </dialog>
+</game_dialogs>

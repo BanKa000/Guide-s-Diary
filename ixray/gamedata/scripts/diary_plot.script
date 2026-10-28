@@ -1,0 +1,854 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: сюжетные задания Бороды, удлиняющие Затон (n1..n6).
+--'   n1 «Хвост на севере»   - сканер и труп наёмника Эгиды с КПК, пока Борода шифрует записку
+--'   n2 «Чужие следы»       - места Компаса, улики наёмников, разговор с Кримом
+--'   n3 «Второй пустой»     - тело, халат, свидетели
+--'   n4 «Последний схрон»   - личный схрон Компаса, залог для Кардана
+--'   n5 «Осложнение»        - Султан и Крим делят точку Компаса
+--'   n6 «Перед дорогой»     - разговор о долгах, после него выдаётся «Дорога на Юпитер»
+--' Это задания движка diary_jobs (kind = scene): HOOKS подключаются в diary_jobs_zat.
+--' Места - смарты из configs\misc\diary_balance.ltx [plot_places] (можно менять без правки кода).
+--------------------------------------------------------------------------------
+local has, give = diary_lib.has, diary_lib.give
+local J = diary_jobs
+
+local function st(id, s) return J.state(id, s) end
+local function set(id, s) J.set_state(id, s) end
+local function upd(id, key) diary_news.task_updated("dj_" .. id, key) end
+
+local function place(key) return diary_cfg.str("plot_places", key, nil) end
+local function psmart(key)
+	local n = place(key)
+	return n and diary_lib.smart(n)
+end
+
+local function step_of(id) return J.var(id, "step", 0) end
+
+local function count(sec) return diary_lib.count_item(sec) end
+
+--' всего патронов данного типа в инвентаре игрока (при подборе пачка может влиться в имеющуюся)
+local function rounds(sec)
+	local n = 0
+	pcall(function()
+		db.actor:iterate_inventory(function(owner, item)
+			if item:section() == sec then n = n + item:ammo_get_count() end
+		end, db.actor)
+	end)
+	return n
+end
+local function have_all(list)
+	for _, sec in ipairs(list) do
+		if count(sec) == 0 then return false end
+	end
+	return true
+end
+
+--' ящик с предметами у смарта (dx, dz - смещение от центра, не больше пары метров)
+local function spawn_box(id, tag, pkey, box_sec, items, dx, dz)
+	local sm = psmart(pkey)
+	if sm == nil then return nil end
+	local p = sm.position
+	local b = diary_lib.create_at_smart(box_sec, sm, vector():set(p.x + (dx or 0), p.y, p.z + (dz or 0)))
+	for _, it in ipairs(items) do alife():create(it, vector():set(0, 0, 0), 0, 0, b.id) end
+	J.set_var(id, tag, b.id)
+	return b
+end
+
+--' предмет прямо на земле у смарта (не в рюкзаке). NPC его подобрать не должны: guard_loose
+--' возвращает предмет на место, если его взял не игрок. Позиция хранится числами.
+local function spawn_loose(id, tag, pkey, sec, dx, dz, cnt)
+	local sm = psmart(pkey)
+	if sm == nil then
+		diary_lib.give_items(sec, 1)
+		return nil
+	end
+	local p = sm.position
+	local pos = vector():set(p.x + (dx or 0), p.y + 0.3, p.z + (dz or 0))
+	local lv, gv = sm.m_level_vertex_id, sm.m_game_vertex_id
+	pcall(function()
+		local v = level.vertex_id(pos)
+		if v ~= nil and v < 4294967295 then lv = v end
+	end)
+	local it
+	if cnt ~= nil then
+		pcall(function() it = create_ammo(sec, pos, lv, gv, 65535, cnt) end)
+		J.set_var(id, tag .. "_n0", rounds(sec))
+		J.set_var(id, tag .. "_cnt", cnt)
+	end
+	if it == nil then it = alife():create(sec, pos, lv, gv) end
+	J.set_var(id, tag, it.id)
+	J.set_var(id, tag .. "_x", pos.x)
+	J.set_var(id, tag .. "_y", pos.y)
+	J.set_var(id, tag .. "_z", pos.z)
+	J.set_var(id, tag .. "_lv", lv)
+	J.set_var(id, tag .. "_gv", gv)
+	J.set_var(id, tag .. "_sec", sec)
+	return it
+end
+
+--' труп у смарта: NPC убивается сразу после создания, в него кладётся предмет (КПК)
+local function spawn_corpse(id, tag, pkey, npc_sec, item_sec, dx, dz)
+	local sm = psmart(pkey)
+	if sm == nil then
+		diary_lib.give_items(item_sec, 1)
+		return nil
+	end
+	local p = sm.position
+	local pos = vector():set(p.x + (dx or 0), p.y + 0.3, p.z + (dz or 0))
+	local lv, gv = sm.m_level_vertex_id, sm.m_game_vertex_id
+	pcall(function()
+		local v = level.vertex_id(pos)
+		if v ~= nil and v < 4294967295 then lv = v end
+	end)
+	local se = alife():create(npc_sec, pos, lv, gv)
+	se.death_droped = true
+	pcall(function() se:kill() end)
+	alife():create(item_sec, vector():set(0, 0, 0), 0, 0, se.id)
+	J.set_var(id, tag, se.id)
+	return se
+end
+
+--' если предмет унёс NPC - убрать у него и вернуть на то же место
+local function guard_loose(id, tag)
+	local iid = J.var(id, tag, nil)
+	if iid == nil then return end
+	local o = level.object_by_id(iid)
+	if o == nil then return end
+	local ok, taken = pcall(function()
+		local par = o:parent()
+		if par == nil then return false end
+		return par:id() ~= db.actor:id() and (IsStalker(par) or IsMonster(par))
+	end)
+	if not (ok and taken) then return end
+	local sec = J.var(id, tag .. "_sec", nil)
+	if sec == nil then return end
+	pcall(function() diary_lib.release(iid) end)
+	local pos = vector():set(J.var(id, tag .. "_x", 0), J.var(id, tag .. "_y", 0), J.var(id, tag .. "_z", 0))
+	local it = alife():create(sec, pos, J.var(id, tag .. "_lv", 0), J.var(id, tag .. "_gv", 0))
+	J.set_var(id, tag, it.id)
+end
+
+--' предмет с id из переменной у игрока
+local function picked(id, tag)
+	local iid = J.var(id, tag, nil)
+	if iid == nil then return false end
+	--' патроны: число патронов у игрока выросло на размер пачки (в т.ч. если пачка влилась в имеющуюся)
+	local n0, cnt, asec = J.var(id, tag .. "_n0", nil), J.var(id, tag .. "_cnt", nil), J.var(id, tag .. "_sec", nil)
+	if n0 ~= nil and cnt ~= nil and asec ~= nil and rounds(asec) >= n0 + cnt then return true end
+	local o = level.object_by_id(iid)
+	if o == nil then
+		--' патроны при подборе вливаются в уже имеющуюся пачку: предмет исчезает целиком, это тоже подбор
+		local sec = J.var(id, tag .. "_sec", "")
+		if type(sec) == "string" and string.sub(sec, 1, 5) == "ammo_" then
+			local se = alife():object(iid)
+			if se == nil then return true end
+		end
+		return false
+	end
+	local ok, r = pcall(function() local p = o:parent(); return p ~= nil and p:id() == db.actor:id() end)
+	return ok and r
+end
+
+--' ложный тупик: рюкзак с обычным лутом рядом с местом (на следах бывает и пустая добыча)
+local function spawn_decoy(id, tag, pkey, items, dx, dz)
+	return spawn_box(id, tag, pkey, "diary_dj_box_cache", items, dx, dz)
+end
+
+local function spot_place(id, pkey)
+	local sm = psmart(pkey)
+	if sm ~= nil then J.add_spot(id, sm.id) end
+end
+
+local function near(pkey, r)
+	local sm = psmart(pkey)
+	return sm ~= nil and db.actor:position():distance_to(sm.position) < r
+end
+
+local function done_obj(id, text)
+	if not st(id, "obj") then
+		set(id, "obj")
+		J.clear_spots(id)
+		upd(id, text or "dj_upd_return")
+	end
+end
+
+local function npc_id(id, tag) return J.var(id, tag, nil) end
+
+local function npc_dead(id, tag)
+	local nid = npc_id(id, tag)
+	if nid == nil then return false end
+	local se = alife():object(nid)
+	return se == nil or not se:alive()
+end
+
+--------------------------------------------------------------------------------
+--' Линейные задания: steps[i] = {enter = function(id), done = function(id) -> bool, text = "строка при входе"}
+--------------------------------------------------------------------------------
+local function enter_step(id, steps, i)
+	J.clear_spots(id)
+	local s = steps[i]
+	if s.text ~= nil and i > 1 then upd(id, s.text) end
+	if s.enter ~= nil then s.enter(id) end
+end
+
+local function begin(id, steps)
+	J.set_var(id, "step", 1)
+	enter_step(id, steps, 1)
+end
+
+local function run(id, steps)
+	local i = step_of(id)
+	if i == 0 or st(id, "obj") then return end
+	local s = steps[i]
+	if s == nil then return end
+	if s.done(id) then
+		if s.after ~= nil then s.after(id) end
+		if steps[i + 1] == nil then
+			done_obj(id, steps.final)
+		else
+			J.set_var(id, "step", i + 1)
+			enter_step(id, steps, i + 1)
+		end
+	end
+end
+
+local function release_var(id, tag)
+	diary_lib.release(J.var(id, tag, nil))
+	J.set_var(id, tag, nil)
+end
+
+HOOKS = {}
+
+--------------------------------------------------------------------------------
+--' n1 «Хвост на севере»
+--------------------------------------------------------------------------------
+--' в трупе должен лежать один КПК - квестовый: лишние device_pda (из набора персонажа / лодаута пака) убираем
+local function n1_single_pda(id)
+	if J.var(id, "pda_clean", nil) ~= nil then return end
+	local cid = J.var(id, "corpse1", nil)
+	local o = cid and level.object_by_id(cid)
+	if o == nil then return end
+	local ids = {}
+	pcall(function()
+		o:iterate_inventory(function(owner, item)
+			local sec = item:section()
+			if sec ~= "dj_item_n1_pda" and string.find(sec, "^device_pda") then table.insert(ids, item:id()) end
+		end, o)
+	end)
+	for _, iid in ipairs(ids) do diary_lib.release(iid) end
+	J.set_var(id, "pda_clean", 1)
+end
+
+local N1 = {
+	final = "dj_n1_u4",
+	{
+		enter = function(id) spot_place(id, "n1_antenna") end,
+		done = function() return near("n1_antenna", 45) end,
+	},
+	{
+		text = "dj_n1_u2",
+		enter = function(id)
+			spawn_loose(id, "loose1", "n1_antenna", "dj_item_n1_module", 3, 0)
+			spawn_corpse(id, "corpse1", "n1_antenna", "diary_aegis_syshch", "dj_item_n1_pda", 5, 3)
+			spot_place(id, "n1_antenna")
+		end,
+		--' сканер лежит на земле, КПК - в трупе наёмника Эгиды: нужны оба предмета
+		done = function(id)
+			guard_loose(id, "loose1")
+			n1_single_pda(id)
+			return count("dj_item_n1_module") > 0 and count("dj_item_n1_pda") > 0
+		end,
+	},
+}
+
+HOOKS.n1 = {
+	--' задание берётся в разговоре main_3 (start_7); отдельного предложения у Бороды нет
+	can_offer = function(q) return false end,
+	accept = function(q) begin(q.id, N1) end,
+	tick = function(q) run(q.id, N1) end,
+	finish = function(q, k)
+		diary_lib.take_items("dj_item_n1_pda", 1)
+		release_var(q.id, "corpse1")
+		release_var(q.id, "loose1")
+		diary_news.record("n1")
+	end,
+}
+
+--------------------------------------------------------------------------------
+--' n2 «Чужие следы»
+--------------------------------------------------------------------------------
+--' патроны 7,62x51 есть только в паке оружия (IX-Ray); в обычной игре - 7,62x54
+--' патроны-улика на земле: отдельная секция-дубликат (только IX-Ray, см. mod_system_diary_boxes.ltx),
+--' чтобы подбор не сливался с обычной пачкой и квест обновлялся
+local function n2_loose_ammo()
+	if system_ini():section_exist("dj_item_n2_ammo") then return "dj_item_n2_ammo" end
+	return nil
+end
+
+local function n2_ammo()
+	local sec = "ammo_7.62x51_fmj"
+	if not system_ini():section_exist(sec) then sec = "ammo_7.62x54_7h1" end
+	return sec
+end
+
+--' M24 есть только в паке оружия (IX-Ray); в обычной игре - СВД
+local function n2_gun()
+	if system_ini():section_exist("wpn_m24") then return "wpn_m24" end
+	return "wpn_svd"
+end
+
+local function n2_case_pos() return diary_cfg.point("job_points", "n2_case") end
+
+--' кейс на координатах [job_points] n2_case; метка-цель для компаса - сам рюкзак
+local function n2_case_box(id)
+	local pos, lv, gv = n2_case_pos()
+	local sm = psmart("n2_crate")
+	local b
+	if pos ~= nil then
+		if sm ~= nil then
+			b = diary_lib.create_at_smart("diary_dj_box_crate", sm, pos, lv, gv)
+		else
+			local a = db.actor
+			b = alife():create("diary_dj_box_crate", pos, lv or a:level_vertex_id(), gv or a:game_vertex_id())
+		end
+	elseif sm ~= nil then
+		b = diary_lib.create_at_smart("diary_dj_box_crate", sm)
+	else
+		return
+	end
+	local bp = b.position
+	for i, it in ipairs({n2_gun(), n2_ammo(), "medkit_army", "medkit_army"}) do
+		local o = alife():create(it, bp, b.m_level_vertex_id, b.m_game_vertex_id, b.id)
+		if i == 1 then J.set_var(id, "case_gun", o.id) end   --' оружие кейса: его подбор закрывает шаг
+	end
+	J.set_var(id, "box4", b.id)
+	J.add_spot(id, b.id)
+end
+
+local N2 = {
+	final = "dj_n2_u5",
+	{
+		enter = function(id)
+			spawn_loose(id, "loose1", "n2_place1", n2_loose_ammo() or n2_ammo(), 4, 3, math.random(12, 40))
+			spot_place(id, "n2_place1")
+		end,
+		done = function(id)
+			guard_loose(id, "loose1")
+			local qa = n2_loose_ammo()
+			if picked(id, "loose1") or (qa ~= nil and count(qa) > 0) then set(id, "ammo_got") end
+			return st(id, "ammo_got")
+		end,
+	},
+	{
+		text = "dj_n2_u2",
+		enter = function(id)
+			spawn_loose(id, "loose2", "n2_place2", "dj_item_n2_radio", -5, 2)
+			spot_place(id, "n2_place2")
+		end,
+		done = function(id) guard_loose(id, "loose2"); return count("dj_item_n2_radio") > 0 end,
+	},
+	{
+		text = "dj_n2_u3",
+		enter = function(id)
+			spawn_loose(id, "loose3", "n2_place3", "dj_item_n2_note", 3, -5)
+			spot_place(id, "n2_place3")
+		end,
+		done = function(id) guard_loose(id, "loose3"); return count("dj_item_n2_note") > 0 end,
+	},
+	{
+		text = "dj_n2_u4",
+		enter = function(id)
+			n2_case_box(id)
+		end,
+		--' шаг закрывается, когда оружие из кейса оказалось у игрока (раньше - по любой армейской аптечке в рюкзаке,
+		--' которая могла быть и до кейса, а подбор одного оружия шаг не закрывал)
+		done = function(id)
+			--' сейвы, где кейс при входе в шаг не создался: создаём сейчас
+			if J.var(id, "box4", nil) == nil then n2_case_box(id) end
+			return picked(id, "case_gun")
+		end,
+	},
+}
+
+HOOKS.n2 = {
+	--' Борода изучает находки: следующий шаг - в следующий календарный день и не раньше чем через 12 игровых часов
+	can_offer = function(q)
+		local t = J.var("n1", "done_t", nil)
+		if t == nil then return true end
+		local now = diary_lib.game_hours()
+		return now - t >= 12 and math.floor(now / 24) > math.floor(t / 24)
+	end,
+	accept = function(q) begin(q.id, N2) end,
+	tick = function(q)
+		--' сборка улики из частей: гильзы + рация -> сведённые улики (+премия при сдаче)
+		if st(q.id, "ammo_got") and count("dj_item_n2_radio") > 0 and count("dj_item_n2_trace") == 0
+				and not st(q.id, "traced") then
+			set(q.id, "traced")
+			diary_lib.give_items("dj_item_n2_trace", 1)
+			diary_news.thought("dj_n2_assembled")
+		end
+		run(q.id, N2)
+	end,
+	choice_ok = function(q, k)
+		if k == 1 then return not st(q.id, "krim") end
+		return st(q.id, "krim")
+	end,
+	finish = function(q, k)
+		local bonus = st(q.id, "traced") and 500 or 0
+		diary_lib.take_items("dj_item_n2_trace", 1)
+		for _, s in ipairs({"dj_item_n2_radio", "dj_item_n2_note"}) do diary_lib.take_items(s, 1) end
+		--' патроны с хутора (улика) тоже забирает Борода
+		local qa = n2_loose_ammo()
+		if qa ~= nil then diary_lib.take_items(qa, diary_lib.count_item(qa)) end
+		for _, t in ipairs({"loose1", "loose2", "loose3", "box4"}) do release_var(q.id, t) end
+		give("diary_merc_trail")
+		diary_news.record("n2")
+		if bonus > 0 then return ((q.choices and q.choices[k]) or q.money) + bonus end
+	end,
+}
+
+function n2_krim_here() return st("n2", "given") and st("n2", "obj") and not st("n2", "krim") end
+function n2_krim_talk() set("n2", "krim") end
+
+--------------------------------------------------------------------------------
+--' n3 «Второй пустой»: тело, халат, свидетели
+--------------------------------------------------------------------------------
+local ROBE = "dj_n3_robe"
+
+local function wearing_robe()
+	local ok, o = pcall(function() return db.actor:get_current_outfit() end)
+	return ok and o ~= nil and o:section() == ROBE
+end
+
+--' крадётся ли игрок: присел (камера низко) и идёт медленно (шагом). Не зависит от того, зажаты клавиши
+--' или включен режим "встать/сесть" - смотрим на фактическое состояние
+local sn_pos, sn_t = nil, 0
+local sn_last, sn_ui_until = false, 0
+local function sneaking()
+	local a = db.actor
+	local now = time_global()
+	--' при открытом инвентаре или сундуке игрок встаёт: пока окно открыто и ещё пару секунд после
+	--' закрытия сохраняем состояние, которое было до этого
+	local ui = false
+	pcall(function() ui = level.main_input_receiver() ~= nil end)
+	if ui then
+		sn_ui_until = now + diary_cfg.num("job_points", "n3_ui_grace", 3) * 1000
+		sn_pos = nil
+		return sn_last
+	end
+	if now < sn_ui_until then
+		sn_pos = nil
+		return sn_last
+	end
+	local p = a:position()
+	local ok, eye = pcall(function() return device().cam_pos.y - p.y end)
+	local speed = 0
+	if sn_pos ~= nil and now > sn_t then
+		speed = p:distance_to(sn_pos) / ((now - sn_t) / 1000)
+	end
+	sn_pos, sn_t = vector():set(p.x, p.y, p.z), now
+	local res = ok and eye < diary_cfg.num("job_points", "n3_crouch_eye", 1.5)
+		and speed < diary_cfg.num("job_points", "n3_sneak_speed", 1.0)
+	sn_last = res
+	return res
+end
+
+--' Пост Эгиды (в снаряжении наёмников): в халате и пригнувшись они игрока не замечают; в халате, но в рост (ближе n3_stand_radius, 3 м),
+--' или без халата (ближе 70 м) - замечают и открывают огонь.
+local function n3_guard()
+	local sq = J.var("n3", "post", nil)
+	if sq == nil or st("n3", "obj") then return end
+	local bid = J.var("n3", "box1", nil)
+	local bse = bid and alife():object(bid)
+	local function dist()
+		local d = 1000
+		local sm = psmart("n3_body")
+		if sm ~= nil then d = math.min(d, db.actor:position():distance_to(sm.position)) end
+		if bse ~= nil then d = math.min(d, db.actor:position():distance_to(bse.position)) end
+		return d
+	end
+	local d = dist()
+	if d >= 70 then return end
+	if st("n3", "exposed") then return end
+	--' ближайший боец поста (радиус считаем до них, а не до сундука: у сундука игрок всегда рядом)
+	local dm = 1000
+	pcall(function()
+		local sqo = alife():object(sq)
+		for m in sqo:squad_members() do
+			local mo = alife():object(m.id)
+			if mo ~= nil then dm = math.min(dm, db.actor:position():distance_to(mo.position)) end
+		end
+	end)
+	local hidden = wearing_robe() and (diary_disguise.disguised() ~= nil or sneaking())
+	if hidden then
+		diary_lib.squad_relation(sq, "neutral")
+	elseif not wearing_robe() or dm < diary_cfg.num("job_points", "n3_stand_radius", 3) then
+		set("n3", "exposed")
+		diary_lib.squad_relation(sq, "enemy")
+	end
+end
+
+local function n3_stash_box(id)
+	local pos, lv, gv = diary_cfg.point("job_points", "n3_stash")
+	local sm = psmart("n3_body")
+	local b
+	if pos ~= nil then
+		if sm ~= nil then
+			b = diary_lib.create_at_smart("diary_dj_box_crate", sm, pos, lv, gv)
+		else
+			local a = db.actor
+			b = alife():create("diary_dj_box_crate", pos, lv or a:level_vertex_id(), gv or a:game_vertex_id())
+		end
+	elseif sm ~= nil then
+		b = diary_lib.create_at_smart("diary_dj_box_crate", sm)
+	else
+		return
+	end
+	alife():create("dj_item_n3_contract", vector():set(0, 0, 0), 0, 0, b.id)
+	J.set_var(id, "box1", b.id)
+end
+
+local N3 = {
+	final = "dj_n3_u4",
+	{
+		enter = function(id) n3_stash_box(id); J.clear_spots(id); spot_place(id, "n3_body") end,
+		done = function(id)
+			local bid = J.var(id, "box1", nil)
+			local se = bid and alife():object(bid)
+			return se ~= nil and db.actor:position():distance_to(se.position) < 40
+		end,
+	},
+	{
+		text = "dj_n3_u2",
+		enter = function(id)
+			J.clear_spots(id)
+			spot_place(id, "n3_body")
+		end,
+		--' два пути: тайник или обыскать пост (контракт при себе у бойца Эгиды) - нужен контракт
+		done = function() return count("dj_item_n3_contract") > 0 end,
+	},
+}
+
+--' у первого бойца поста при себе контракт (запасной путь, если тайник не вскрыт)
+function n3_give_guard_clues(q)
+	if J.var(q.id, "guard_clues", nil) ~= nil then return end
+	local sq = alife():object(J.var(q.id, "post", 0))
+	if sq == nil then return end
+	local k = 0
+	for m in sq:squad_members() do
+		k = k + 1
+		alife():create("dj_item_n3_contract", vector():set(0, 0, 0), 0, 0, m.id)
+		break
+	end
+	if k > 0 then J.set_var(q.id, "guard_clues", 1) end
+end
+
+--' на точке поста остаются только его бойцы: чужие отряды смарта убираются (если не на глазах у игрока)
+local n3_clear_t = 0
+local function n3_clear_point(q)
+	local t = time_global()
+	if t < n3_clear_t then return end
+	n3_clear_t = t + 8000
+	local sm = psmart("n3_body")
+	if sm == nil then return end
+	local sb = sim_board.get_sim_board()
+	local smart = sb.smarts[sm.id]
+	if smart == nil then return end
+	local post = J.var(q.id, "post", 0)
+	local far = db.actor:position():distance_to(sm.position) > 90
+	local drop = {}
+	for _, sq in pairs(smart.squads) do
+		local sec = sq:section_name()
+		if sq.id ~= post and string.sub(sec, 1, 3) ~= "dj_" and string.sub(sec, 1, 6) ~= "diary_" then
+			local online = false
+			for m in sq:squad_members() do
+				if level.object_by_id(m.id) ~= nil then online = true end
+			end
+			if far or not online then table.insert(drop, sq) end
+		end
+	end
+	for _, sq in ipairs(drop) do sb:remove_squad(sq) end
+end
+
+HOOKS.n3 = {
+	accept = function(q)
+		diary_lib.give_items(ROBE, 1)
+		J.add_squad(q.id, "dj_n3_post", place("n3_body"), "post")
+		begin(q.id, N3)
+		pcall(n3_clear_point, q)
+	end,
+	tick = function(q)
+		pcall(n3_clear_point, q)
+		pcall(n3_give_guard_clues, q)
+		pcall(diary_disguise.tick, {J.var(q.id, "post", nil)})
+		n3_guard()
+		run(q.id, N3)
+	end,
+	tick_after = function(q) end,
+	finish = function(q, k)
+		local pay = q.money
+		if st(q.id, "exposed") then pay = math.floor(pay * 0.6) end
+		if count(ROBE) > 0 then
+			diary_lib.take_items(ROBE, 1)
+		else
+			pay = math.max(0, pay - 1500)
+		end
+		diary_lib.take_items("dj_item_n3_contract", 1)
+		release_var(q.id, "box1")
+		diary_disguise.finish()
+		diary_news.record("n3")
+		return pay
+	end,
+}
+
+local function n3_wit(npc, k)
+	return st("n3", "given") and not st("n3", "obj") and not st("n3", "w" .. k) and npc:id() == npc_id("n3", "wit" .. k)
+end
+function n3_wit_ok(npc, k) return n3_wit(npc, k) and wearing_robe() end
+function n3_wit_no(npc, k) return n3_wit(npc, k) and not wearing_robe() end
+function n3_wit_done(k) set("n3", "w" .. k) end
+
+--------------------------------------------------------------------------------
+--' n4 «Последний схрон»
+--------------------------------------------------------------------------------
+--' схрон Компаса: координаты [job_points] n4_stash (рядом с заправкой); без них - смарт n4_stash
+local function n4_pos() return diary_cfg.point("job_points", "n4_stash") end
+
+local N4_ITEMS = {"dj_item_n4_note", "dj_item_n4_pledge", "conserva", "conserva", "bandage", "bandage"}
+
+local function n4_box(id)
+	if J.var(id, "box1", nil) ~= nil then return end
+	local pos, lv, gv = n4_pos()
+	if pos == nil then
+		spawn_box(id, "box1", "n4_stash", "diary_dj_box_cache", N4_ITEMS, 0, 2)
+		spot_place(id, "n4_stash")
+		return
+	end
+	local a = db.actor
+	local b = alife():create("diary_dj_box_cache", pos, lv or a:level_vertex_id(), gv or a:game_vertex_id())
+	for _, it in ipairs(N4_ITEMS) do
+		alife():create(it, pos, lv or a:level_vertex_id(), gv or a:game_vertex_id(), b.id)
+	end
+	J.set_var(id, "box1", b.id)
+	J.add_spot(id, b.id)   --' цель для компаса - сам схрон
+end
+
+local N4 = {
+	final = "dj_n4_u3",
+	{
+		enter = function(id)
+			if n4_pos() ~= nil then n4_box(id) else spot_place(id, "n4_stash") end
+		end,
+		done = function()
+			local pos = n4_pos()
+			if pos ~= nil then return db.actor:position():distance_to(pos) < 35 end
+			return near("n4_stash", 35)
+		end,
+	},
+	{
+		text = "dj_n4_u2",
+		enter = function(id) n4_box(id) end,
+		done = function() return have_all({"dj_item_n4_note", "dj_item_n4_pledge"}) end,
+	},
+}
+
+HOOKS.n4 = {
+	accept = function(q) begin(q.id, N4) end,
+	tick = function(q) run(q.id, N4) end,
+	finish = function(q, k)
+		diary_lib.take_items("dj_item_n4_note", 1)
+		release_var(q.id, "box1")
+		diary_news.record("n4")
+	end,
+}
+
+--------------------------------------------------------------------------------
+--' n5 «Осложнение»: Султан и Крим делят точку Компаса
+--------------------------------------------------------------------------------
+local function squad_gone(id, tag)
+	local sq = J.var(id, tag, nil)
+	return sq == nil or diary_lib.squad_alive(sq) == 0
+end
+
+local function n5_set(outcome, text)
+	if st("n5", "outcome") then return end
+	set("n5", "outcome")
+	set("n5", outcome)
+	give("dj_n5_" .. outcome)
+	done_obj("n5", text)
+end
+
+--' после исхода (задание уже в стадии "вернуться к Бороде"): уходящие с точки отряды и несданные услуги
+local function n5_after(q)
+	--' ушедшие с точки отряды убираем, когда их никто не видит (никого из бойцов нет в онлайне): удаление
+	--' объекта, с которым игрок ещё говорит, роняет игру
+	--' услуги Султана и Крима, не сданные к этому моменту, закрываются (отряды на местах остаются)
+	for _, f in ipairs({"s10", "k8"}) do
+		if st(f, "given") and not st(f, "done") then
+			J.clear_spots(f)
+			set(f, "cancelled")
+			set(f, "done")
+		end
+	end
+	if not st(q.id, "left_done") then
+		--' уходит только та сторона, что согласилась (или сдана её услуга); вторая остаётся на точке
+		local tags = {}
+		if st(q.id, "peace_sul") or st(q.id, "leave_sul") then table.insert(tags, "sulsq") end
+		if st(q.id, "peace_kri") or st(q.id, "leave_kri") then table.insert(tags, "krisq") end
+		if #tags == 0 then
+			set(q.id, "left_done")
+			return
+		end
+		local online = false
+		for _, tag in ipairs(tags) do
+			local sq = J.var(q.id, tag, nil)
+			pcall(function()
+				local so = sq and alife():object(sq)
+				if so ~= nil then
+					for m in so:squad_members() do
+						if level.object_by_id(m.id) ~= nil then online = true end
+					end
+				end
+			end)
+		end
+		if not online then
+			for _, tag in ipairs(tags) do diary_lib.remove_squad(J.var(q.id, tag, nil)) end
+			set(q.id, "left_done")
+		end
+	end
+end
+
+HOOKS.n5 = {
+	--' n5 открывается, только если Лазарь согласился помочь Бороде (развилка в конце n4)
+	can_offer = function(q) return has("diary_n4_help") end,
+	accept = function(q)
+		J.add_squad(q.id, "dj_n5_sul", place("n5_point"), "sulsq")
+		J.add_squad(q.id, "dj_n5_kri", place("n5_point"), "krisq")
+		spawn_box(q.id, "box1", "n5_point", "diary_dj_box_cache", {"dj_item_n5_mark"}, 2, 2)
+		spot_place(q.id, "n5_point")
+	end,
+	tick = function(q)
+		if st(q.id, "outcome") then
+			n5_after(q)
+			return
+		end
+		local sg, kg = squad_gone(q.id, "sulsq"), squad_gone(q.id, "krisq")
+		if count("dj_item_n5_mark") > 0 then
+			n5_set("bypass", "dj_n5_u_bypass")
+		elseif st("s10", "done") then
+			--' услуга Султана сдана: его люди уходят с точки - мирный исход
+			set(q.id, "leave_sul")
+			n5_set("peace", "dj_n5_u_peace_sul")
+		elseif st("k8", "done") then
+			--' услуга Крима сдана: его люди уходят с точки - мирный исход
+			set(q.id, "leave_kri")
+			n5_set("peace", "dj_n5_u_peace_kri")
+		elseif st(q.id, "peace_sul") or st(q.id, "peace_kri") then
+			--' одна из сторон согласилась уйти (долг закрыт или откупились). Если игрок уже выполнил задание
+			--' Султана или Крима - мирный исход (уходит эта сторона). Иначе точка остаётся другой стороне.
+			if J.giver_done("sul") or J.giver_done("kri") then
+				n5_set("peace", st(q.id, "peace_sul") and "dj_n5_u_peace_sul" or "dj_n5_u_peace_kri")
+			elseif st(q.id, "peace_sul") then
+				n5_set("kri", "dj_n5_u_kri_left")
+			else
+				n5_set("sul", "dj_n5_u_sul_left")
+			end
+		elseif sg and kg then
+			n5_set("force", "dj_n5_u_force")
+		elseif kg then
+			n5_set("sul", "dj_n5_u_sul")
+		elseif sg then
+			n5_set("kri", "dj_n5_u_kri")
+		end
+	end,
+	--' obj ставится вместе с исходом: дальше работает только tick_after
+	tick_after = function(q) n5_after(q) end,
+	can_report = function(q) return st(q.id, "outcome") end,
+	finish = function(q, k)
+		local pay = q.money
+		if st(q.id, "peace") then
+			pay = 4500
+		elseif st(q.id, "sul") or st(q.id, "kri") then
+			pay = 3500
+		elseif st(q.id, "bypass") then
+			pay = 3000
+			diary_lib.take_items("dj_item_n5_mark", 1)
+		else
+			pay = 2500
+		end
+		release_var(q.id, "box1")
+		--' кто остался у точки - ушёл
+		diary_lib.remove_squad(J.var(q.id, "sulsq", nil))
+		diary_lib.remove_squad(J.var(q.id, "krisq", nil))
+		return pay
+	end,
+}
+
+--' услуги в споре: у Султана и у Крима по одному заданию, пока спор не улажен
+local function n5_open() return st("n5", "given") and not st("n5", "outcome") end
+HOOKS.s10 = {
+	can_offer = function(q) return n5_open() end,
+	--' самозванцы появляются у точки [job_points] s10_spawn
+	accept = function(q) diary_jobs_zat.squads_at_point(q, "s10_spawn") end,
+}
+HOOKS.k8 = {can_offer = function(q) return n5_open() end}
+
+--' итог n5 для отчёта: делёж точки (отдана бандитам / наёмникам) или остальные исходы
+function n5_split() return st("n5", "sul") or st("n5", "kri") end
+function n5_bandits() return st("n5", "sul") end
+function n5_mercs() return st("n5", "kri") end
+
+local function n5_side(npc, tag)
+	if not st("n5", "given") or st("n5", "outcome") then return false end
+	return diary_lib.npc_squad(npc) == J.var("n5", tag, -1)
+end
+function n5_sul_here(npc) return n5_side(npc, "sulsq") end
+function n5_kri_here(npc) return n5_side(npc, "krisq") end
+
+--' договор: долги перед стороной закрыты, иначе надо заплатить
+local function n5_paid(debt_info)
+	return has(debt_info)
+end
+function n5_sul_free() return has("diary_deb_1_done") end
+function n5_kri_free() return has("diary_deb_2_done") end
+function n5_can_pay() return db.actor:money() >= 1500 end
+function n5_sul_peace(free)
+	if not free then db.actor:give_money(-1500) end
+	set("n5", "peace_sul")
+end
+function n5_kri_peace(free)
+	if not free then db.actor:give_money(-1500) end
+	set("n5", "peace_kri")
+end
+
+--------------------------------------------------------------------------------
+--' n6 «Перед дорогой»: разговор о долгах
+--------------------------------------------------------------------------------
+local function closed_debts()
+	local n = 0
+	for _, info in ipairs({"diary_debt_c_done", "diary_debt_s_done", "diary_deb_1_done", "diary_deb_2_done"}) do
+		if has(info) then n = n + 1 end
+	end
+	return n
+end
+
+HOOKS.n6 = {
+	--' после согласия помочь - только когда спор у точки (n5) улажен; после отказа - сразу
+	can_offer = function(q)
+		if has("diary_n4_help") then return st("n5", "done") end
+		return has("diary_n4_nohelp")
+	end,
+	accept = function(q) done_obj(q.id, "dj_n6_u1") end,
+	choice_ok = function(q, k)
+		local n = closed_debts()
+		if k == 1 then return n >= 2 end
+		return n < 2
+	end,
+	finish = function(q, k)
+		give("dj_n6_calm_" .. (k == 1 and "1" or "0"))
+	end,
+}
+
+function install(H)
+	for k, v in pairs(HOOKS) do H[k] = v end
+end

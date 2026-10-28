@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+--' Дневник проводника: оповещения на экране.
+--' Сообщения о деньгах и наградах мод не показывает (правка 1).
+--------------------------------------------------------------------------------
+local ICON = "ui_iconsTotal_storyline"
+
+local function tr(s)
+	if s == nil or s == "" then return "" end
+	return game.translate_string(s)
+end
+
+--' Простое сообщение: заголовок (строка или nil) и текст
+function send(caption, text, ms)
+	local a = db.actor
+	if a == nil then return end
+	if a:is_talking() then
+		a:give_talk_message2(tr(caption), tr(text), ICON, "iconed_answer_item")
+	else
+		a:give_game_news(tr(caption), tr(text), ICON, 0, ms or 8000)
+	end
+end
+
+--' Мысль Лазаря (без заголовка)
+function thought(text, ms)
+	send(nil, text, ms)
+end
+
+--' Запись Лазаря (страница блокнота "Записи"): тексты diary_rec_<key>_t / _x.
+--' Каждая запись - один раз, в том порядке, в каком игрок до неё дошёл; список ключей - в сейве.
+local REC_LIST = "diary_rec_list"
+
+function record(key)
+	local a = db.actor
+	if a == nil or a:has_info("diary_rec_" .. key) then return end
+	a:give_info_portion("diary_rec_" .. key)
+	local list = diary_lib.load_var(REC_LIST, "")
+	if list ~= "" then list = list .. "," end
+	diary_lib.save_var(REC_LIST, list .. key)
+	send(nil, "diary_rec_new", 5000)
+end
+
+function records()
+	local out = {}
+	for key in string.gmatch(diary_lib.load_var(REC_LIST, ""), "[^,]+") do table.insert(out, key) end
+	return out
+end
+
+--' Новое задание: название и описание
+function task_new(key)
+	xr_sound.set_sound_play(db.actor:id(), "pda_task")
+	send(key .. "_name", key .. "_text", 15000)
+end
+
+--' Задание обновлено (правка 2): такой же вид, как у штатного "Задание обновлено"
+function task_updated(key, text)
+	xr_sound.set_sound_play(db.actor:id(), "pda_task")
+	local a = db.actor
+	local cap = tr("general_update_task")
+	local body = tr(key .. "_name")
+	if text ~= nil then body = body .. ". " .. tr(text) end
+	if a:is_talking() then
+		a:give_talk_message2(cap, body, ICON, "iconed_answer_item")
+	else
+		a:give_game_news(cap, body, ICON, 0, 6000)
+	end
+end

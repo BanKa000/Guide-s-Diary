@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!-- Дневник проводника: особые диалоги. diary_build.py вставляет их в dialogs_zaton.xml как есть. -->
+<!-- attach="..." - кому добавить actor_dialog (id персонажей через запятую; generic - в character_dialogs.xml) -->
+<game_dialogs>
+
+    <!-- Борода: поставки (событие diary_trade, через 1-3 дня) -->
+    <dialog id="diary_bor_supply" attach="zat_a2_stalker_barmen">
+        <precondition>dialogs_diary.bor_supply_ready</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_bor_supply_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_bor_supply_1</text><action>dialogs_diary.bor_supply_tell</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Вынос документов: подмена. Оригинал - Султану, через час копия, потом подбросить ночью или отдать в лоб -->
+    <dialog id="dj_s3_copy" attach="zat_b7_bandit_boss_sultan">
+        <precondition>dialogs_diary.s3_copy_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_c1_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_copy_1</text><action>dialogs_diary.s3_copy_start</action><next>2</next></phrase>
+            <phrase id="2"><text>dj_s3_copy_2</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_s3_copy_3</text></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_take" attach="zat_b7_bandit_boss_sultan">
+        <precondition>dialogs_diary.s3_copy_ready_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_take_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_take_1</text><action>dialogs_diary.s3_copy_take</action></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_front" attach="generic">
+        <precondition>dialogs_diary.s3_front_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_front_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_front_1</text><action>dialogs_diary.s3_front</action></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_s3_copy_done" attach="zat_b7_bandit_boss_sultan">
+        <precondition>dialogs_diary.s3_planted_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s3_copy_done_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s3_copy_done_r</text><action>dialogs_diary.s3_copy_finish</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Эгида: приветствие (у группировки нет общих фраз hello_dialog) -->
+    <dialog id="diary_aegis_start">
+        <phrase_list>
+            <phrase id="0"><text>diary_aegis_greet</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Учёные заданий: приветствие -->
+    <dialog id="diary_sci_start">
+        <phrase_list>
+            <phrase id="0"><text>diary_sci_greet</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Сыч и Тремор: тоже проблемы с поставками. Разговор сразу переходит в первую просьбу;
+         без него просьба не открывается (gate в diary_jobs.ltx). "Позже" - просьба остаётся темой разговора. -->
+    <dialog id="diary_syc_supply" attach="zat_b30_owl_stalker_trader">
+        <precondition>dialogs_diary.syc_supply_hint</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_syc_supply_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_syc_supply_1</text><action>dialogs_diary.syc_supply_tell</action><next>2</next></phrase>
+            <phrase id="2"><text>diary_syc_supply_2</text><precondition>dialogs_diary.y1_free</precondition><next>3</next></phrase>
+            <phrase id="3"><text>dj_y1_offer</text><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_accept</text><action>dialogs_diary.a_y1</action><next>6</next></phrase>
+            <phrase id="5"><text>dj_later</text></phrase>
+            <phrase id="6"><text>dj_y1_ok</text></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="diary_tre_supply" attach="zat_b22_stalker_medic">
+        <precondition>dialogs_diary.tre_supply_hint</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_tre_supply_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_tre_supply_1</text><action>dialogs_diary.tre_supply_tell</action><next>2</next></phrase>
+            <phrase id="2"><text>diary_tre_supply_2</text><precondition>dialogs_diary.t1_free</precondition><next>3</next></phrase>
+            <phrase id="3"><text>dj_t1_offer</text><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_accept</text><action>dialogs_diary.a_t1</action><next>6</next></phrase>
+            <phrase id="5"><text>dj_later</text></phrase>
+            <phrase id="6"><text>dj_t1_ok</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Ложный SOS": игрок сходил к передатчику сам, задания не брал, и рассказывает Бороде -->
+    <dialog id="dj_b3_alone" attach="zat_a2_stalker_barmen">
+        <precondition>dialogs_diary.b3_alone_open</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b3_alone_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b3_q</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_b3_c0_a</text><precondition>dialogs_diary.b3_killed</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_b3_c0_r</text><action>dialogs_diary.b3_alone_1</action></phrase>
+            <phrase id="3"><text>dj_b3_c1_a</text><precondition>dialogs_diary.b3_paid_only</precondition><next>31</next></phrase>
+            <phrase id="31"><text>dj_b3_c1_r</text><action>dialogs_diary.b3_alone_2</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Ложный SOS": бандиты у передатчика требуют деньги (говорит бандит, с которым открылась беседа) -->
+    <dialog id="dj_b3_bandit" attach="generic">
+        <precondition>dialogs_diary.b3_boss_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b3_bandit_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b3_bandit_1</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_b3_bandit_pay_a</text><action>dialogs_diary.b3_pay</action><next>21</next><next>22</next></phrase>
+            <phrase id="21"><text>dj_b3_bandit_pay_r</text><precondition>dialogs_diary.b3_not_poor</precondition></phrase>
+            <phrase id="22"><text>dj_b3_bandit_poor_r</text><precondition>dialogs_diary.b3_poor</precondition></phrase>
+            <phrase id="3"><text>dj_b3_bandit_no_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_b3_bandit_no_r</text><action>dialogs_diary.b3_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Лишний рот": голодный пацан -->
+    <dialog id="dj_b4_thief" attach="diary_b4_thief">
+        <precondition>dialogs_diary.b4_thief_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_b4_thief_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_b4_thief_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_b4_thief_free_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_b4_thief_free_r</text><action>dialogs_diary.b4_free</action></phrase>
+            <phrase id="3"><text>dj_b4_thief_send_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_b4_thief_send_r</text><action>dialogs_diary.b4_send</action></phrase>
+            <phrase id="4"><text>dj_later</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 2": пленный (после боя или выкупа) -->
+    <dialog id="dj_k2_captive" attach="diary_k2_captive">
+        <precondition>dialogs_diary.k2_captive_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k2_captive_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k2_captive_1</text><action>dialogs_diary.k2_tell</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 7": наёмники Крима ждут у леса, идут в лабораторию после разговора -->
+    <dialog id="dj_k7_mercs" attach="generic">
+        <precondition>dialogs_diary.k7_mercs_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k7_mercs_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k7_mercs_1</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_k7_mercs_go</text><action>dialogs_diary.k7_go</action></phrase>
+            <phrase id="3"><text>dj_later</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 7": учёные в лаборатории рассказывают, что там было -->
+    <dialog id="dj_k7_sci" attach="diary_k7_sci_lab">
+        <precondition>dialogs_diary.k7_sci_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k7_sci_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k7_sci_1</text><next>2</next><next>3</next><next>4</next><next>5</next></phrase>
+            <phrase id="2"><text>dj_k7_sci_what_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_k7_sci_what_r</text><next>3</next><next>4</next><next>5</next></phrase>
+            <phrase id="3"><text>dj_k7_sci_drive_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_k7_sci_drive_r</text><next>6</next><next>2</next><next>4</next><next>5</next></phrase>
+            <phrase id="6"><text>dj_k7_sci_give_a</text><precondition>dialogs_diary.k7_drive_left</precondition><next>61</next></phrase>
+            <phrase id="61"><text>dj_k7_sci_give_r</text><action>dialogs_diary.k7_give_drive</action><next>2</next><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_k7_sci_why_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_k7_sci_why_r</text><next>2</next><next>3</next><next>5</next></phrase>
+            <phrase id="5"><text>dj_k7_sci_bye_a</text><next>51</next></phrase>
+            <phrase id="51"><text>dj_k7_sci_bye_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Крыса" -->
+    <dialog id="dj_s5_rat" attach="diary_s5_rat">
+        <precondition>dialogs_diary.s5_rat_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s5_rat_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s5_rat_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_s5_rat_stash_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_s5_rat_stash_r</text><action>dialogs_diary.s5_free_stash</action></phrase>
+            <phrase id="3"><text>dj_s5_rat_free_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_s5_rat_free_r</text><action>dialogs_diary.s5_free</action></phrase>
+            <phrase id="4"><text>dj_s5_rat_fight_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_s5_rat_fight_r</text><action>dialogs_diary.s5_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Разведчик" -->
+    <dialog id="dj_s6_scout" attach="diary_s6_scout">
+        <precondition>dialogs_diary.s6_scout_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s6_scout_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s6_scout_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="4"><text>dj_s6_scout_recruit_a</text><precondition>dialogs_diary.s6_can_bribe</precondition><next>41</next></phrase>
+            <phrase id="41"><text>dj_s6_scout_recruit_r</text><action>dialogs_diary.s6_bribe</action></phrase>
+            <phrase id="2"><text>dj_s6_scout_chase_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_s6_scout_chase_r</text><action>dialogs_diary.s6_chase</action></phrase>
+            <phrase id="3"><text>dj_s6_scout_fight_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_s6_scout_fight_r</text><action>dialogs_diary.s6_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Переезд": Султан назначает встречу с Бородой -->
+    <dialog id="dj_s9_meet" attach="zat_b7_bandit_boss_sultan">
+        <precondition>dialogs_diary.s9_can_set_meet</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s9_meet_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s9_meet_1</text><next>2</next><next>3</next></phrase>
+            <phrase id="2"><text>dj_s9_meet_with_a</text><next>21</next></phrase>
+            <phrase id="21"><text>dj_s9_meet_with_r</text><action>dialogs_diary.s9_go_with_sultan</action><action>dialogs.break_dialog</action></phrase>
+            <phrase id="3"><text>dj_s9_meet_self_a</text><next>31</next></phrase>
+            <phrase id="31"><text>dj_s9_meet_self_r</text><action>dialogs_diary.s9_set_meet</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Переезд": разговор на троих (говорит квестовый Борода, реплики Султана подписаны) -->
+    <dialog id="dj_s9_talk" attach="diary_s9_boroda">
+        <precondition>dialogs_diary.s9_meeting_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_s9_talk_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_s9_talk_1</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_s9_talk_2</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_s9_talk_3</text><next>4</next><next>5</next></phrase>
+            <phrase id="4"><text>dj_s9_talk_yes_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_s9_talk_yes_r</text><next>42</next></phrase>
+            <phrase id="42"><text>dj_s9_talk_pay_a</text><next>43</next></phrase>
+            <phrase id="43"><text>dj_s9_talk_pay_r</text><action>dialogs_diary.s9_agree</action><next>6</next><next>7</next><next>8</next></phrase>
+            <phrase id="5"><text>dj_s9_talk_no_a</text><next>51</next></phrase>
+            <phrase id="51"><text>dj_s9_talk_no_r</text><action>dialogs_diary.s9_refuse</action><next>6</next><next>7</next><next>8</next></phrase>
+            <phrase id="6"><text>dj_s9_leave_sultan_a</text><next>61</next></phrase>
+            <phrase id="61"><text>dj_s9_leave_sultan_r</text><action>dialogs_diary.s9_leave_sultan</action><action>dialogs.break_dialog</action></phrase>
+            <phrase id="7"><text>dj_s9_leave_boroda_a</text><next>71</next></phrase>
+            <phrase id="71"><text>dj_s9_leave_boroda_r</text><action>dialogs_diary.s9_leave_boroda</action><action>dialogs.break_dialog</action></phrase>
+            <phrase id="8"><text>dj_s9_leave_self_a</text><next>81</next></phrase>
+            <phrase id="81"><text>dj_s9_leave_self_r</text><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- "Пункт 6": мародёры -->
+    <dialog id="dj_k6_talk" attach="generic">
+        <precondition>dialogs_diary.k6_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_k6_talk_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_k6_talk_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_k6_bribe_a</text><precondition>dialogs_diary.k6_can_bribe</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_k6_bribe_r</text><action>dialogs_diary.k6_bribe</action></phrase>
+            <phrase id="3"><text>dj_k6_threat_a</text><action>dialogs_diary.k6_threat</action><next>31</next><next>32</next></phrase>
+            <phrase id="31"><text>dj_k6_threat_ok_r</text><precondition>dialogs_diary.k6_threat_ok</precondition></phrase>
+            <phrase id="32"><text>dj_k6_threat_fail_r</text><precondition>dialogs_diary.k6_threat_fail</precondition><action>dialogs.break_dialog</action></phrase>
+            <phrase id="4"><text>dj_k6_fight_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_k6_fight_r</text><action>dialogs_diary.k6_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Наёмник, должный Компасу -->
+    <dialog id="diary_deb3_talk" attach="generic">
+        <precondition>dialogs_diary.deb3_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_deb3_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_deb3_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>diary_deb3_take_a</text><next>21</next></phrase>
+            <phrase id="21"><text>diary_deb3_take_r</text><action>dialogs_diary.deb3_take</action></phrase>
+            <phrase id="3"><text>diary_deb3_forgive_a</text><next>31</next></phrase>
+            <phrase id="31"><text>diary_deb3_forgive_r</text><action>dialogs_diary.deb3_forgive</action></phrase>
+            <phrase id="4"><text>diary_deb3_fight_a</text><next>41</next></phrase>
+            <phrase id="41"><text>diary_deb3_fight_r</text><action>dialogs_diary.deb3_fight</action><action>dialogs.break_dialog</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Гаваец: с кем договариваться о товаре -->
+    <dialog id="dj_g1_talk" attach="generic">
+        <precondition>dialogs_diary.g1_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_g1_talk_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_g1_talk_1</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_g1_talk_2</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_g1_talk_3</text><action>dialogs_diary.g1_deal</action></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_g1_where_mercs" attach="jup_a6_stalker_barmen">
+        <precondition>dialogs_diary.g1_mercs</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_g1_where_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_g1_where_mercs_r</text></phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="dj_g1_where_cave" attach="jup_a6_stalker_barmen">
+        <precondition>dialogs_diary.g1_cave</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_g1_where_a</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_g1_where_cave_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <!-- Слухи у обычных сталкеров -->
+    <dialog id="diary_rumor" attach="generic">
+        <precondition>dialogs_diary.rumor_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>diary_rumor_0</text><next>1</next></phrase>
+            <phrase id="1"><text>diary_rumor_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>diary_rumor_buy_a</text><precondition>dialogs_diary.rumor_can_pay</precondition><next>21</next></phrase>
+            <phrase id="21"><text>diary_rumor_buy_r</text><action>dialogs_diary.rumor_buy</action></phrase>
+            <phrase id="3"><text>diary_rumor_nomoney_a</text><precondition>dialogs_diary.rumor_cant_pay</precondition><next>31</next></phrase>
+            <phrase id="31"><text>diary_rumor_nomoney_r</text></phrase>
+            <phrase id="4"><text>dj_later</text></phrase>
+        </phrase_list>
+    </dialog>
+
+
+
+    <!-- Сюжет Бороды (n2, n3, n5) -->
+    <dialog id="dj_n2_krim" attach="diary_krim">
+        <precondition>dialogs_diary.n2_krim_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n2_krim_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n2_krim_1</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_n2_krim_a</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_n2_krim_r</text><action>dialogs_diary.n2_krim_talk</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w1ok" attach="diary_n3_wit1">
+        <precondition>dialogs_diary.n3_w1_ok</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w1_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w1_ok</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_n3_w1_a</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_n3_w1_r</text><action>dialogs_diary.n3_w1_done</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w1no" attach="diary_n3_wit1">
+        <precondition>dialogs_diary.n3_w1_no</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w1_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w_no</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w2ok" attach="diary_n3_wit2">
+        <precondition>dialogs_diary.n3_w2_ok</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w2_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w2_ok</text><next>2</next></phrase>
+            <phrase id="2"><text>dj_n3_w2_a</text><next>3</next></phrase>
+            <phrase id="3"><text>dj_n3_w2_r</text><action>dialogs_diary.n3_w2_done</action></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n3_w2no" attach="diary_n3_wit2">
+        <precondition>dialogs_diary.n3_w2_no</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n3_w2_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n3_w_no</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n5_sul" attach="generic">
+        <precondition>dialogs_diary.n5_sul_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n5_sul_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n5_sul_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_n5_sul_free_a</text><precondition>dialogs_diary.n5_sul_free</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_n5_sul_free_r</text><action>dialogs_diary.n5_sul_peace_free</action></phrase>
+            <phrase id="3"><text>dj_n5_sul_pay_a</text><precondition>dialogs_diary.n5_sul_pay_ok</precondition><next>31</next></phrase>
+            <phrase id="31"><text>dj_n5_sul_pay_r</text><action>dialogs_diary.n5_sul_peace_pay</action></phrase>
+            <phrase id="4"><text>dj_n5_bye_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_n5_sul_bye_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="dj_n5_kri" attach="generic">
+        <precondition>dialogs_diary.n5_kri_here</precondition>
+        <phrase_list>
+            <phrase id="0"><text>dj_n5_kri_0</text><next>1</next></phrase>
+            <phrase id="1"><text>dj_n5_kri_1</text><next>2</next><next>3</next><next>4</next></phrase>
+            <phrase id="2"><text>dj_n5_kri_free_a</text><precondition>dialogs_diary.n5_kri_free</precondition><next>21</next></phrase>
+            <phrase id="21"><text>dj_n5_kri_free_r</text><action>dialogs_diary.n5_kri_peace_free</action></phrase>
+            <phrase id="3"><text>dj_n5_kri_pay_a</text><precondition>dialogs_diary.n5_kri_pay_ok</precondition><next>31</next></phrase>
+            <phrase id="31"><text>dj_n5_kri_pay_r</text><action>dialogs_diary.n5_kri_peace_pay</action></phrase>
+            <phrase id="4"><text>dj_n5_bye_a</text><next>41</next></phrase>
+            <phrase id="41"><text>dj_n5_kri_bye_r</text></phrase>
+        </phrase_list>
+    </dialog>
+
+</game_dialogs>

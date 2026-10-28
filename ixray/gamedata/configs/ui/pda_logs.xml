@@ -1,0 +1,57 @@
+<w>
+    <main_wnd x="0" y="0" width="1024" height="768" update_delay="2900"/>
+
+	<background x="-3000" y="0" width="200" height="200"><texture>ui_inGame2_pda_buttons_background</texture></background>
+
+	<center_background x="-3000" y="0" width="200" height="200"><texture>ui_inGame2_pda_buttons_background</texture><auto_frameline x="-3000" y="0" width="200" height="200" vertical="0"><texture>ui_inGame2_pda_ranking_center_caption</texture></auto_frameline></center_background>
+
+    <center_caption x="110" y="160" width="500" height="18">
+		<text align="l" font="letterica16" r="40" g="38" b="46"/>
+	</center_caption>
+	<logs_list x="104" y="186" width="820" height="470" item_height="35" scroll_profile="pda_logs" always_show_scroll="1">
+		<font font="letterica18" color="ui_4"/>
+	</logs_list>
+
+	<logs_item  x="0" y="0" width="795" height="30">
+		<date_static x="55" y="1" width="100" height="14">
+			<text align="l" font="letterica16" r="120" g="60" b="30"/>
+		</date_static>
+		<caption_static x="155" y="1" width="640" height="14">
+			<text align="l" font="letterica16" r="30" g="34" b="66"/>
+		</caption_static>
+		<text_static x="55" y="16" width="735" height="14" complex_mode="1">
+			<text align="l" font="letterica16" r="40" g="38" b="46"/>
+		</text_static>
+		<image x="0" y="2" width="49" height="29" stretch="1"/>
+	</logs_item>
+
+	<filter_news x="112" y="132" width="17" height="17">
+		<window_name>filter_news</window_name>
+        <texture>ui_PDA_checker</texture>
+		<text x="5" font="letterica16" r="40" g="38" b="46">pda_filter_news</text>
+		<options_item entry="pda_filter_news" group="pda_filter_logs"/>
+	</filter_news>
+
+	<filter_talk x="272" y="132" width="17" height="17">
+		<window_name>filter_talk</window_name>
+        <texture>ui_PDA_checker</texture>
+		<text x="5" font="letterica16" r="40" g="38" b="46">pda_filter_talk</text>
+		<options_item entry="pda_filter_talk" group="pda_filter_logs"/>
+	</filter_talk>
+	<period_caption x="560" y="128" width="100" height="23">
+		<text align="r" vert_align="c" font="letterica16" r="40" g="38" b="46">pda_date_filter</text>
+	</period_caption>
+	<period x="700" y="128" width="150" height="23" stretch="1">
+		<text align="c" vert_align="c" font="letterica18" r="40" g="38" b="46"/>
+	</period>
+
+	<btn_prev_period x="670" y="125" width="30" height="30">
+		<window_name>btn_prev_period</window_name>
+		<texture>ui_inGame2_pda_Filtr_arrow_left</texture>
+	</btn_prev_period>
+
+	<btn_next_period x="850" y="125" width="30" height="30">
+		<window_name>btn_next_period</window_name>
+		<texture>ui_inGame2_pda_Filtr_arrow_right</texture>
+	</btn_next_period>
+</w>

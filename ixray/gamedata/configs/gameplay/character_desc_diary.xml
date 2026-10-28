@@ -1,0 +1,523 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<xml>
+  <specific_character id="diary_b4_thief" team_default="1">
+    <name>diary_b4_thief_name</name>
+    <icon>ui_inGame2_neutral_1</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_b4_thief_bio</bio>
+    <class>diary_b4_thief</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <rank>5</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_1_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_pm = 1 \n
+      ammo_9x18_fmj = 1 \n
+      bread = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_b4_thief</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_k2_captive" team_default="1">
+    <name>diary_k2_captive_name</name>
+    <icon>ui_inGame2_neutral_2</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_k2_captive_bio</bio>
+    <class>diary_k2_captive</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <rank>10</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_1_face_1</visual>
+    <supplies>
+      [spawn] \n
+      bread = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_k2_captive</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_s5_rat" team_default="1">
+    <name>diary_s5_rat_name</name>
+    <icon>ui_inGame2_bandit_2</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_s5_rat_bio</bio>
+    <class>diary_s5_rat</class>
+    <community>bandit</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\bandit\</snd_config>
+    <rank>25</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_bandit\stalker_bandit_2</visual>
+    <supplies>
+      [spawn] \n
+      wpn_bm16 = 1 \n
+      ammo_12x70_buck = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_s5_rat</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_s6_scout" team_default="1">
+    <name>diary_s6_scout_name</name>
+    <icon>ui_inGame2_neutral_1</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_s6_scout_bio</bio>
+    <class>diary_s6_scout</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <rank>25</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_1_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_ak74u = 1 \n
+      ammo_5.45x39_fmj = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_s6_scout</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_aegis_syshch" team_default="1">
+    <name>diary_aegis_syshch_name</name>
+    <icon>ui_inGame2_killer_3</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_aegis_syshch_bio</bio>
+    <class>diary_aegis_syshch</class>
+    <community>aegis</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\killer\</snd_config>
+    <rank>60</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_merc\stalker_merc_4</visual>
+    <supplies>
+      [spawn] \n
+      </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <start_dialog>diary_aegis_start</start_dialog>
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+  <specific_character id="diary_aegis_guard_0" team_default="1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>ui_inGame2_killer_3</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_aegis_guard_bio</bio>
+    <class>diary_aegis_guard_0</class>
+    <community>aegis</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>60</rank>
+    <money min="800" max="2000" infinitive="0"/>
+    <reputation>0</reputation>
+    <visual>actors\stalker_merc\stalker_merc_4</visual>
+    <supplies>
+      [spawn] \n
+      wpn_scar = 1 \n
+      ammo_7.62x51_fmj = 3 \n
+      grenade_f1 = 1 \n
+      medkit_army = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <start_dialog>diary_aegis_start</start_dialog>
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+
+  <specific_character id="diary_aegis_guard_1" team_default="1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>ui_inGame2_killer_3</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_aegis_guard_bio</bio>
+    <class>diary_aegis_guard_1</class>
+    <community>aegis</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>55</rank>
+    <money min="800" max="2000" infinitive="0"/>
+    <reputation>0</reputation>
+    <visual>actors\stalker_merc\stalker_merc_4</visual>
+    <supplies>
+      [spawn] \n
+      wpn_g3 = 1 \n
+      ammo_7.62x51_fmj = 3 \n
+      grenade_rgd5 = 1 \n
+      medkit_army = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <start_dialog>diary_aegis_start</start_dialog>
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+
+  <specific_character id="diary_aegis_guard_2" team_default="1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>ui_inGame2_killer_3</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_aegis_guard_bio</bio>
+    <class>diary_aegis_guard_2</class>
+    <community>aegis</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>55</rank>
+    <money min="800" max="2000" infinitive="0"/>
+    <reputation>0</reputation>
+    <visual>actors\stalker_merc\stalker_merc_4</visual>
+    <supplies>
+      [spawn] \n
+      wpn_fal = 1 \n
+      ammo_7.62x51_fmj = 3 \n
+      grenade_rgd5 = 1 \n
+      medkit_army = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <start_dialog>diary_aegis_start</start_dialog>
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+  <specific_character id="diary_s9_sultan" team_default="1">
+    <name>st_zat_b7_bandit_boss_sultan_name</name>
+    <icon>ui_inGame2_Sultan</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_s9_sultan_bio</bio>
+    <class>diary_s9_sultan</class>
+    <community>bandit</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_02\bandit\</snd_config>
+    <rank>60</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_bandit\stalker_bandit_3_face_3</visual>
+    <supplies>
+      [spawn] \n
+      wpn_ak74u = 1 \n
+      ammo_5.45x39_fmj = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+  <specific_character id="diary_s9_boroda" team_default="1">
+    <name>zat_a2_stalker_barmen_name</name>
+    <icon>ui_inGame2_Boroda</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_s9_boroda_bio</bio>
+    <class>diary_s9_boroda</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <rank>60</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_3_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_toz34 = 1 \n
+      ammo_12x70_buck = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_s9_talk</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_dj_sci" team_default="1">
+    <name>diary_dj_sci_name</name>
+    <icon>ui_inGame2_Novikov</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_dj_sci_bio</bio>
+    <class>diary_dj_sci</class>
+    <start_dialog>diary_sci_start</start_dialog>
+    <community>ecolog</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <rank>10</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_nauchniy_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_pm = 1 \n
+      ammo_9x18_fmj = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+  <specific_character id="diary_k7_sci_lab" team_default="1">
+    <name>diary_dj_sci_name</name>
+    <icon>ui_inGame2_Novikov</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_dj_sci_bio</bio>
+    <class>diary_k7_sci_lab</class>
+    <start_dialog>diary_sci_start</start_dialog>
+    <community>ecolog</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <rank>10</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_ucheniy\stalker_ucheniy_1_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_pm = 1 \n
+      ammo_9x18_fmj = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_k7_sci</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_n3_wit1" team_default="1">
+    <name>diary_n3_wit1_name</name>
+    <icon>ui_inGame2_neutral_1</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_n3_wit1_bio</bio>
+    <class>diary_n3_wit1</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <rank>20</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_1_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_pm = 1 \n
+      ammo_9x18_fmj = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_n3_w1ok</actor_dialog>
+		<actor_dialog>dj_n3_w1no</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_n3_wit2" team_default="1">
+    <name>diary_n3_wit2_name</name>
+    <icon>ui_inGame2_neutral_2</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_n3_wit2_bio</bio>
+    <class>diary_n3_wit2</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <rank>20</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_2_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_pm = 1 \n
+      ammo_9x18_fmj = 1 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_n3_w2ok</actor_dialog>
+		<actor_dialog>dj_n3_w2no</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_krim" team_default="1">
+    <name>diary_krim_name</name>
+    <icon>ui_inGame2_merc_4</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>Наёмник. Говорит пунктами контракта.</bio>
+    <class>diary_krim</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>55</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_merc\stalker_merc_4</visual>
+    <supplies>
+      [spawn] \n
+      wpn_m4 \n
+      ammo_5.56x45_ss190 = 2 \n
+    </supplies>
+    <start_dialog>diary_krim_start</start_dialog>
+#include "gameplay\character_criticals_4.xml"
+  		<actor_dialog>diary_krim_start_80</actor_dialog>
+		<actor_dialog>dj_k1_offer</actor_dialog>
+		<actor_dialog>dj_k1_report</actor_dialog>
+		<actor_dialog>dj_k2_offer</actor_dialog>
+		<actor_dialog>dj_k2_report</actor_dialog>
+		<actor_dialog>dj_k2_alt</actor_dialog>
+		<actor_dialog>dj_k4_offer</actor_dialog>
+		<actor_dialog>dj_k4_report</actor_dialog>
+		<actor_dialog>dj_k5_offer</actor_dialog>
+		<actor_dialog>dj_k5_report</actor_dialog>
+		<actor_dialog>dj_k6_offer</actor_dialog>
+		<actor_dialog>dj_k6_report</actor_dialog>
+		<actor_dialog>dj_k7_offer</actor_dialog>
+		<actor_dialog>dj_k7_report</actor_dialog>
+		<actor_dialog>dj_k8_offer</actor_dialog>
+		<actor_dialog>dj_k8_report</actor_dialog>
+		<actor_dialog>dj_n2_krim</actor_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_trader_b5" team_default="1">
+    <name>diary_trader_b5_name</name>
+    <icon>ui_inGame2_bandit_3</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_trader_b5_bio</bio>
+    <class>diary_trader_b5</class>
+    <community>bandit</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_02\bandit\</snd_config>
+    <rank>50</rank>
+    <reputation>0</reputation>
+    <money min="480000" max="480000" infinitive="1" />
+    <visual>actors\stalker_bandit\stalker_bandit_3</visual>
+    <supplies>
+      [spawn] \n
+      wpn_ak74u = 1 \n
+      ammo_5.45x39_fmj = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>dj_y1_deliver</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_tech_b5" team_default="1">
+    <name>diary_tech_b5_name</name>
+    <icon>ui_inGame2_bandit_2</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_tech_b5_bio</bio>
+    <class>diary_tech_b5</class>
+    <community>bandit</community>
+    <mechanic_mode>1</mechanic_mode>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\bandit\</snd_config>
+    <rank>50</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_bandit\stalker_bandit_2</visual>
+    <supplies>
+      [spawn] \n
+      wpn_ak74u = 1 \n
+      ammo_5.45x39_fmj = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+  <specific_character id="diary_trader_b103" team_default="1">
+    <name>diary_trader_b103_name</name>
+    <icon>ui_inGame2_merc_2</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_trader_b103_bio</bio>
+    <class>diary_trader_b103</class>
+    <community>killer</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>50</rank>
+    <reputation>0</reputation>
+    <money min="480000" max="480000" infinitive="1" />
+    <visual>actors\stalker_merc\stalker_merc_2</visual>
+    <supplies>
+      [spawn] \n
+      wpn_ak105 \n
+      ammo_5.45x39_fmj = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+  <specific_character id="diary_tech_b103" team_default="1">
+    <name>diary_tech_b103_name</name>
+    <icon>ui_inGame2_merc_2</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_tech_b103_bio</bio>
+    <class>diary_tech_b103</class>
+    <community>killer</community>
+    <mechanic_mode>1</mechanic_mode>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>50</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_merc\stalker_merc_2</visual>
+    <supplies>
+      [spawn] \n
+      wpn_mr153 \n
+      ammo_12x70_buck = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+  <specific_character id="diary_medic_b5" team_default="1">
+    <name>diary_medic_b5_name</name>
+    <icon>ui_inGame2_bandit_1</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_medic_b5_bio</bio>
+    <class>diary_medic_b5</class>
+    <community>bandit</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\bandit\</snd_config>
+    <rank>40</rank>
+    <reputation>0</reputation>
+    <money min="480000" max="480000" infinitive="1" />
+    <visual>actors\stalker_bandit\stalker_bandit_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_pm = 1 \n
+      ammo_9x18_fmj = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <start_dialog>diary_zat_medic_start</start_dialog>
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>diary_zat_medic_start_100</actor_dialog>
+	</specific_character>
+  <specific_character id="diary_medic_b103" team_default="1">
+    <name>diary_medic_b103_name</name>
+    <icon>ui_inGame2_merc_2</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_medic_b103_bio</bio>
+    <class>diary_medic_b103</class>
+    <community>killer</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>40</rank>
+    <reputation>0</reputation>
+    <money min="480000" max="480000" infinitive="1" />
+    <visual>actors\stalker_merc\stalker_merc_2</visual>
+    <supplies>
+      [spawn] \n
+      wpn_galil = 1 \n
+      ammo_5.56x45_ss190 = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <start_dialog>diary_zat_medic_start</start_dialog>
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  		<actor_dialog>diary_zat_medic_start_100</actor_dialog>
+	</specific_character>
+
+  <specific_character id="diary_b5_sleeper" team_default="1">
+    <name>diary_b5_sleeper_name</name>
+    <icon>ui_inGame2_neutral_1</icon>
+    <map_icon x="1" y="0">
+    </map_icon>
+    <bio>diary_b5_sleeper_bio</bio>
+    <class>diary_b5_sleeper</class>
+    <community>stalker</community>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <rank>20</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_neutral\stalker_neutral_2_face_1</visual>
+    <supplies>
+      [spawn] \n
+      wpn_pm = 1 \n
+      ammo_9x18_fmj = 1 \n
+      bread = 2 \n
+      conserva = 2 \n
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+    <actor_dialog>actor_break_dialog</actor_dialog>
+  </specific_character>
+</xml>

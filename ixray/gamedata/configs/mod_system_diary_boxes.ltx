@@ -1,0 +1,55 @@
+
+; Дневник проводника: тайники и ящики (story_id в секции - после загрузки находится сам)
+[diary_rucksack_box]:inventory_box
+visual = dynamics\devices\dev_rukzak\dev_rukzak.ogf
+
+[diary_cache_cave]:diary_rucksack_box
+story_id = diary_cave
+[diary_cache_logs]:diary_rucksack_box
+story_id = diary_logs
+[diary_cache_attic]:diary_rucksack_box
+story_id = diary_attic
+[diary_cache_tower]:diary_rucksack_box
+story_id = diary_tower
+
+; задания линий и слухи: везде рюкзак. Модели equipment_cache\*_case не годятся - это невидимые
+; оболочки (видимый тайник в ЗП - часть геометрии уровня)
+[diary_dj_box_docs]:diary_rucksack_box
+[diary_dj_box_crate]:diary_rucksack_box
+[diary_dj_box_cache]:diary_rucksack_box
+[diary_dj_box_med]:diary_rucksack_box
+[diary_dj_box_food]:diary_rucksack_box
+[diary_dj_box_stash]:diary_rucksack_box
+[diary_rumor_box]:diary_rucksack_box
+; невидимая точка для метки задания (spot в diary_jobs.ltx)
+[diary_dj_marker]:inventory_box
+visual = dynamics\equipment_cache\equipment_box_02_case.ogf
+
+; "Чужие следы" (n2): патроны-улика - дубликат обычной пачки 7,62x51 (подбор не вливается в имеющуюся пачку)
+[dj_item_n2_ammo]:ammo_7.62x51_fmj
+
+; Маскхалат задания n3 (outfit.ltx в IX-Ray мода не читается)
+; Маскировочный халат ("Второй пустой"): выдаётся на время задания и забирается обратно
+[dj_n3_robe]:novice_outfit
+$spawn 			= "outfit\dj_n3_robe"
+actor_visual	= actors\stalker_neutral\stalker_neutral_2.ogf
+inv_name		= dj_n3_robe_name
+inv_name_short	= dj_n3_robe_name
+description		= dj_n3_robe_descr
+inv_grid_width	= 2
+inv_grid_height	= 3
+icons_texture	= ui\ui_diary_icons
+inv_grid_x		= 0
+inv_grid_y		= 0
+cost			= 0
+can_trade		= false
+inv_weight		= 2.5
+artefact_count					= 0
+
+; Часы Компаса: своя иконка (ui_diary_icons.dds, ячейка 2x0, размер 2x1)
+![dj_item_n4_pledge]
+icons_texture	= ui\ui_diary_icons
+inv_grid_width	= 2
+inv_grid_height	= 1
+inv_grid_x		= 2
+inv_grid_y		= 0
