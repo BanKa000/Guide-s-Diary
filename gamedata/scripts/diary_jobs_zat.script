@@ -1208,9 +1208,29 @@ local function bandit_squads_near(center, r)
 	return res
 end
 
+--' Когда Султан уходит, торговец, техник и медик его базы пропадают: вместо них остаются обычные бандиты
+--' (отряд из трёх, он уходит вместе со всеми). Метка diary_gone_* не даёт им вернуться (diary_world.service_tick).
+local SULTAN_SERVICE = {"diary_trader_b5", "diary_tech_b5", "diary_medic_b5"}
+
+local function s9_service_to_bandits()
+	local n = 0
+	for _, sec in ipairs(SULTAN_SERVICE) do
+		local id = get_story_object_id(sec)
+		if id ~= nil then
+			diary_lib.release(id)
+			n = n + 1
+		end
+		give("diary_gone_" .. sec)
+	end
+	if n > 0 then
+		diary_lib.create_squad("diary_ex_service_bandits", LEAVE.sultan.smart)
+	end
+end
+
 local function s9_exodus_start()
 	local sm = diary_lib.smart(LEAVE.sultan.smart)
 	if sm == nil then return end
+	pcall(s9_service_to_bandits)
 	local pos, lv, gv = diary_cfg.point("job_points", "s9_room")
 	local c = pos or sm.position
 	lv = lv or sm.m_level_vertex_id

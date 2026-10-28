@@ -176,3 +176,9 @@ faction = bandit
 relationship = neutral
 npc = diary_s5_rat
 target_smart = {+dj_s5_flee} zat_sim_8, zat_b7
+
+; Торговец, техник и медик базы Султана после его ухода: обычные бандиты, уходят вместе со всеми
+[diary_ex_service_bandits]:online_offline_group
+faction = bandit
+npc = sim_default_bandit_1, sim_default_bandit_1, sim_default_bandit_1
+target_smart = zat_b5_smart_terrain

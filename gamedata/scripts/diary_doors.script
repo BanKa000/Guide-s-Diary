@@ -29,6 +29,7 @@ end
 local function unlock(o, ph, why)
 	ph.locked = false
 	pcall(function() ph.closed = false end)
+	pcall(function() o:set_tip_text_default() end)
 	local p = o:position()
 	if not logged[o:id()] then
 		logged[o:id()] = true
@@ -36,9 +37,24 @@ local function unlock(o, ph, why)
 	end
 end
 
+--' Двери, которые в оригинале открываются инфопорциями квеста (ветка Глухаря, zat_b38: подвал ВНЗ и лифт):
+--' рядом с дверью игроку выдаются эти инфопорции, тогда её логика (all.spawn) сама снимает запор.
+local function give_open_infos(apos)
+	local pt = diary_cfg.point("doors", "info_door")
+	if pt == nil then return end
+	if apos:distance_to(pt) > diary_cfg.num("doors", "info_radius", 60) then return end
+	for _, inf in ipairs(diary_cfg.list("doors", "open_infos")) do
+		if not db.actor:has_info(inf) then
+			db.actor:give_info_portion(inf)
+			note("info given: " .. inf)
+		end
+	end
+end
+
 function update(delta)
 	local a = db.actor
 	if a == nil then return end
+	pcall(give_open_infos, a:position())
 	local near = diary_cfg.num("doors", "unlock_near", 4)
 	local names = diary_cfg.list("doors", "names")
 	local keep = diary_cfg.list("doors", "keep_locked")
