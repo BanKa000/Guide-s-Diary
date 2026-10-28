@@ -2,7 +2,7 @@
 --' Дневник проводника: запертые двери.
 --' Рядом с игроком снимается запор (ph_door.locked) у запертых дверей, кроме сюжетных
 --' из [doors] keep_locked. Двери из [doors] names открываются всегда, как только появляются в онлайне.
---' Открытие: снимается запор (locked, closed) и вызывается open_door самого скрипта двери, если он доступен.
+--' Дверь отпирается (locked = false), остаётся закрытой (closed = true) и открывается игроком обычным использованием.
 --' Каждая обработанная дверь пишется в diary_errors.log (имя, координаты, поля ph_door).
 --------------------------------------------------------------------------------
 local logged = {}
@@ -47,7 +47,7 @@ end
 
 --' Через скрипт двери: в хранилище ph_door есть door_action (сам обработчик двери) и параметры:
 --' locked (заперта), closed (закрыта), tip_open/tip_unlock (надпись), snd_open_* (звуки).
---' Параметры выставляются как у открытой двери, затем обработчик двери открывает её.
+--' Дверь остаётся закрытой, но не заперта: игрок открывает её сам обычным использованием.
 local function open_by_action(ph)
 	local res = {}
 	local da = ph.door_action
@@ -58,7 +58,7 @@ local function open_by_action(ph)
 		table.insert(res, name .. "=" .. tostring(ok) .. (ok and "" or ("(" .. tostring(err) .. ")")))
 	end
 	try("reset_scheme")
-	try("open_door", true)
+	try("close_door", true)
 	return table.concat(res, " ")
 end
 
@@ -84,7 +84,7 @@ local function unlock(o, sto, ph, why)
 		note(string.format("%s: %s (%.2f, %.2f, %.2f) ph_door{%s}", why, tostring(o:name()), p.x, p.y, p.z, dump(ph)))
 	end
 	ph.locked = false
-	ph.closed = false
+	ph.closed = true
 	ph.tip_open = "tip_door_open"
 	ph.tip_unlock = "tip_door_open"
 	ph.snd_open_start = "trader_door_open_start"
