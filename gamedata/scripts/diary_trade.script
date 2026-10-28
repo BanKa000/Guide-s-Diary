@@ -97,6 +97,8 @@ local function load_stock()
 	end
 end
 
+local restocking = {}
+
 local function restock(npc, sid, t, state)
 	--' старый склад: только то, чем торговец торгует (своё оружие и одежда не трогаются)
 	local kill = {}
@@ -107,42 +109,48 @@ local function restock(npc, sid, t, state)
 			table.insert(kill, item:id())
 		end
 	end, npc)
-	for _, id in ipairs(kill) do diary_lib.release(id) end
-	--' новый склад
 	local pos, lv, gv, pid = npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id()
-	for k = 0, stock_ini:line_count(state) - 1 do
-		local _, item, v = stock_ini:r_line(state, k, "", "")
-		local lo, hi = string.match(v or "", "^%s*(%d+)%s*,%s*(%d+)")
-		lo, hi = tonumber(lo) or 0, tonumber(hi) or tonumber(lo) or 0
-		local cnt = lo
-		if hi > lo then cnt = math.random(lo, hi) end
-		if cnt > 0 then
-			if string.sub(item, 1, 5) == "ammo_" then
-				--' неполные пачки: лимит в патронах, а не в пачках
-				create_ammo(item, pos, lv, gv, pid, cnt)
-			else
-				for i = 1, cnt do alife():create(item, pos, lv, gv, pid) end
+	local key = "diary_stock_" .. sid
+	local now = diary_lib.game_hours()
+	restocking[sid] = true
+	--' новый склад создаётся, когда старый уже удалён из мира (иначе повтор id и вылет)
+	diary_lib.release_then(kill, function()
+		restocking[sid] = nil
+		for k = 0, stock_ini:line_count(state) - 1 do
+			local _, item, v = stock_ini:r_line(state, k, "", "")
+			local lo, hi = string.match(v or "", "^%s*(%d+)%s*,%s*(%d+)")
+			lo, hi = tonumber(lo) or 0, tonumber(hi) or tonumber(lo) or 0
+			local cnt = lo
+			if hi > lo then cnt = math.random(lo, hi) end
+			if cnt > 0 then
+				if string.sub(item, 1, 5) == "ammo_" then
+					--' неполные пачки: лимит в патронах, а не в пачках
+					create_ammo(item, pos, lv, gv, pid, cnt)
+				else
+					for i = 1, cnt do alife():create(item, pos, lv, gv, pid) end
+				end
 			end
 		end
-	end
+		diary_lib.save_var(key .. "_s", state)
+		diary_lib.save_var(key .. "_t", now)
+	end)
 end
 
 local function stock_tick()
+	if not diary_lib.settled() then return end
 	load_stock()
 	local now = diary_lib.game_hours()
 	local period = 24
 	for sid, t in pairs(traders) do
 		local id = get_story_object_id(sid)
 		local npc = id and level.object_by_id(id)
-		if npc ~= nil and npc:alive() and not npc:is_talking() then
+		if npc ~= nil and npc:alive() and not npc:is_talking() and not restocking[sid] then
 			local state = xr_logic.pick_section_from_condlist(db.actor, npc, t.cond)
 			local key = "diary_stock_" .. sid
 			local last_state = diary_lib.load_var(key .. "_s", "")
 			local last_t = diary_lib.load_var(key .. "_t", -1000)
 			if state ~= nil and state ~= "" and (state ~= last_state or now - last_t >= period) then
 				diary_main.safe("restock." .. sid, restock, npc, sid, t, state)
-				diary_lib.save_var(key .. "_s", state)
-				diary_lib.save_var(key .. "_t", now)
 			end
 		end
 	end

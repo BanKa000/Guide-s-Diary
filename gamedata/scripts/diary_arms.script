@@ -52,21 +52,20 @@ local function fix(npc)
 		if BAN[item:section()] then table.insert(bad, item:id()) end
 	end, npc)
 	if #bad == 0 then return end
-	local sim = alife()
-	for _, id in ipairs(bad) do
-		local se = sim:object(id)
-		if se ~= nil then sim:release(se, true) end
-	end
-	for i = 1, #bad do
-		local f = FALLBACK[math.random(#FALLBACK)]
-		local pos, lv, gv = npc:position(), npc:level_vertex_id(), npc:game_vertex_id()
-		sim:create(f[1], pos, lv, gv, npc:id())
-		sim:create_ammo(f[2], pos, lv, gv, npc:id(), 30)
-	end
+	local pos, lv, gv, pid = npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id()
+	local n = #bad
+	--' замена создаётся после того, как старое оружие удалено из мира (иначе повтор id и вылет)
+	diary_lib.release_then(bad, function()
+		for i = 1, n do
+			local f = FALLBACK[math.random(#FALLBACK)]
+			alife():create(f[1], pos, lv, gv, pid)
+			alife():create_ammo(f[2], pos, lv, gv, pid, 30)
+		end
+	end)
 end
 
 function update()
-	if not active() or db.storage == nil then return end
+	if not active() or db.storage == nil or not diary_lib.settled() then return end
 	for id, st in pairs(db.storage) do
 		if not done[id] and st.object ~= nil then
 			local npc = st.object

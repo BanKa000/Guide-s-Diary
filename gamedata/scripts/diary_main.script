@@ -173,6 +173,7 @@ function update(delta)
 		if cur_level ~= nil then leave_level() end
 		enter_level(lvl)
 	end
+	safe("lib.pump", diary_lib.pump)
 	local t = time_global()
 	for i, m in ipairs(active) do
 		if m.period == nil or t >= (next_t[i] or 0) then

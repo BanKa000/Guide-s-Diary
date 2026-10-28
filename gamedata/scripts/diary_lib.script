@@ -139,6 +139,57 @@ function release(id)
 	if se ~= nil then alife():release(se, true) end
 end
 
+--' Удалить объекты и только потом (когда их уже нет в мире) выполнить fn - обычно создание новых.
+--' Нельзя release() и сразу create(): освобождённый id тут же выдаётся новому объекту, а старый
+--' онлайн-объект ещё не убран на клиенте - вылет "CGameObject::net_Spawn: net_Find(E->ID) == nullptr".
+local pending = {}
+
+function release_then(ids, fn)
+	local any = false
+	for _, id in ipairs(ids) do
+		if id ~= nil and alife():object(id) ~= nil then
+			release(id)
+			any = true
+		end
+	end
+	if not any then
+		fn()
+		return
+	end
+	local now = time_global()
+	table.insert(pending, {ids = ids, t = now + 700, deadline = now + 6000, fn = fn})
+end
+
+--' Первые секунды после загрузки сохранения мир ещё поднимается: пересоздавать предметы у NPC рано
+local t0 = nil
+function settled()
+	local now = time_global()
+	if t0 == nil then t0 = now end
+	return now - t0 > 8000
+end
+
+--' вызывается каждый кадр из diary_main.update
+function pump()
+	if #pending == 0 then return end
+	local now = time_global()
+	local i = 1
+	while i <= #pending do
+		local p = pending[i]
+		local ready = now >= p.t
+		if ready and now < p.deadline then
+			for _, id in ipairs(p.ids) do
+				if level.object_by_id(id) ~= nil then ready = false break end
+			end
+		end
+		if ready then
+			table.remove(pending, i)
+			pcall(p.fn)
+		else
+			i = i + 1
+		end
+	end
+end
+
 --' Создать объект на смарте (с вертексами смарта) или в точке pos рядом со смартом
 --' Переставить NPC (как sim_squad_scripted:set_squad_position, но по одному): онлайн - сразу,
 --' офлайн - он появится в этой точке, когда выйдет в онлайн
